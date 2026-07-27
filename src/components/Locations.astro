@@ -24,9 +24,9 @@ const { intro, locations } = Astro.props;
 			<div class="locations-chips" data-reveal>
 				{
 					locations.map((loc, i) => (
-						<span class="loc-chip" class:list={{ 'loc-chip-active': i === 0 }} data-loc={i}>
+						<button type="button" class="loc-chip" class:list={{ 'loc-chip-active': i === 0 }} data-loc={i} aria-pressed={i === 0}>
 							{loc.name}
-						</span>
+						</button>
 					))
 				}
 			</div>
@@ -94,8 +94,10 @@ const { intro, locations } = Astro.props;
 		background: #fdfbf7;
 		border-radius: 100px;
 		padding: 10px 20px;
+		font: inherit;
 		font-size: 13.5px;
 		font-weight: 300;
+		color: inherit;
 		cursor: pointer;
 		transition: background 0.3s ease, border-color 0.3s ease, color 0.3s ease;
 	}

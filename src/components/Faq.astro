@@ -25,14 +25,14 @@ const { faqs, phone, phoneHref } = Astro.props;
 			{
 				faqs.map((item, i) => (
 					<div class="faq-item" class:list={{ 'faq-item-open': i === 0 }} data-faq={i} data-reveal>
-						<div class="faq-q" data-faq-q={i}>
+						<button type="button" class="faq-q" data-faq-q={i} aria-expanded={i === 0} aria-controls={`faq-a-${i}`}>
 							<h4>{item.q}</h4>
-							<span class="faq-icon" data-faq-icon={i}>
+							<span class="faq-icon" data-faq-icon={i} aria-hidden="true">
 								<span class="faq-icon-bar" />
 								<span class="faq-icon-bar faq-icon-bar-v" data-faq-bar={i} />
 							</span>
-						</div>
-						<div class="faq-a" data-faq-a={i}>
+						</button>
+						<div class="faq-a" id={`faq-a-${i}`} data-faq-a={i}>
 							<p>{item.a}</p>
 						</div>
 					</div>
@@ -97,7 +97,13 @@ const { faqs, phone, phoneHref } = Astro.props;
 		grid-template-columns: 1fr 34px;
 		gap: 20px;
 		align-items: center;
+		width: 100%;
 		padding: 24px 28px;
+		background: none;
+		border: none;
+		font: inherit;
+		color: inherit;
+		text-align: left;
 		cursor: pointer;
 		user-select: none;
 	}

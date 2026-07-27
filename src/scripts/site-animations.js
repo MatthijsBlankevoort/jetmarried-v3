@@ -16,6 +16,7 @@ function initFaq() {
 			if (ans) ans.style.height = on ? `${ans.firstElementChild.offsetHeight}px` : '0px';
 			item.classList.toggle('faq-item-open', on);
 			if (bar) bar.style.opacity = on ? '0' : '1';
+			item.querySelector('[data-faq-q]')?.setAttribute('aria-expanded', String(on));
 		});
 		open = i;
 	};
@@ -42,7 +43,10 @@ function initLocations() {
 		if (i === active) return;
 		imgs[active].classList.remove('loc-img-active');
 		imgs[i].classList.add('loc-img-active');
-		chips.forEach((c, k) => c.classList.toggle('loc-chip-active', k === i));
+		chips.forEach((c, k) => {
+			c.classList.toggle('loc-chip-active', k === i);
+			c.setAttribute('aria-pressed', String(k === i));
+		});
 		active = i;
 	};
 

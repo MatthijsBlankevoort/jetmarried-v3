@@ -8,28 +8,28 @@ interface Props {
 const { nav, logoUrl, headerCta } = Astro.props;
 ---
 
-<div class="header-wrap" data-header>
+<header class="header-wrap" data-header>
 	<div class="header-pill">
-		<div class="header-sheen"></div>
+		<div class="header-sheen" aria-hidden="true"></div>
 
 		<a href="#top" class="header-logo">
-			<img src={logoUrl} alt="Jet married" />
+			<img src={logoUrl} alt="Jetmarried" />
 		</a>
 
-		<nav class="header-nav">
+		<nav class="header-nav" aria-label="Hoofdmenu">
 			{nav.map((link) => <a href={link.href}>{link.label}</a>)}
 		</nav>
 
 		<div class="header-actions">
-			<div class="lang-switch">
-				<span class="lang-active">NL</span>
+			<div class="lang-switch" role="group" aria-label="Taal">
+				<span class="lang-active" aria-current="true">NL</span>
 				<a href="#top">DE</a>
 				<a href="#top">EN</a>
 			</div>
 			<a href="#contact" class="header-cta">{headerCta}</a>
 		</div>
 	</div>
-</div>
+</header>
 
 <style>
 	.header-wrap {
