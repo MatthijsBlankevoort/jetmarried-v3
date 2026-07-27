@@ -6,9 +6,9 @@ interface Props {
 	class?: string;
 }
 
-const { src, alt = '', label, class: className } = Astro.props;
+const { src, alt = '', label, class: className, ...rest } = Astro.props;
 ---
 
-<div class:list={['photo-placeholder', className]}>
+<div class:list={['photo-placeholder', className]} {...rest}>
 	{src ? <img src={src} alt={alt} /> : <span class="photo-placeholder__label">{label}</span>}
 </div>
