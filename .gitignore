@@ -26,3 +26,6 @@ public/admin/
 
 # jetbrains setting folder
 .idea/
+
+# impeccable skill working files
+.impeccable/
