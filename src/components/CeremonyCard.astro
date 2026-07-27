@@ -1,0 +1,130 @@
+---
+import Photo from './Photo.astro';
+
+interface Props {
+	id: string;
+	image?: string | null;
+	imageLabel: string;
+	title: string;
+	description: string;
+	bullets: string[];
+	flip?: boolean;
+}
+
+const { id, image, imageLabel, title, description, bullets, flip = false } = Astro.props;
+---
+
+<div id={id} class="cer-card" class:list={{ flip }} data-cer>
+	<Photo src={image} alt={title} label={imageLabel} class="cer-photo" data-cer-img />
+	<div class="cer-body">
+		<h3 class="cer-title">{title}</h3>
+		<p class="cer-desc">{description}</p>
+		<div class="cer-bullets">
+			{
+				bullets.map((bullet) => (
+					<div class="cer-bullet">
+						<span class="cer-dot" />
+						<span>{bullet}</span>
+					</div>
+				))
+			}
+		</div>
+		<a href="#contact" class="btn btn-bordered">Deze ceremonie aanvragen</a>
+	</div>
+</div>
+
+<style>
+	.cer-card {
+		display: grid;
+		grid-template-columns: 0.95fr 1.05fr;
+		grid-template-areas: 'img txt';
+		gap: clamp(24px, 3vw, 52px);
+		align-items: center;
+		border-radius: 34px;
+		background: var(--color-panel-2);
+		border: 1px solid transparent;
+		padding: clamp(22px, 2.4vw, 30px);
+		transition: border-color 0.35s ease;
+	}
+
+	.cer-card:hover {
+		border-color: var(--color-border-strong);
+	}
+
+	.cer-card.flip {
+		grid-template-columns: 1.05fr 0.95fr;
+		grid-template-areas: 'txt img';
+	}
+
+	.cer-card :global(.cer-photo) {
+		grid-area: img;
+		aspect-ratio: 4 / 3;
+		border-radius: 26px;
+		padding: 18px;
+	}
+
+	.cer-body {
+		grid-area: txt;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		padding: clamp(4px, 1vw, 18px) clamp(4px, 1.6vw, 24px);
+	}
+
+	.cer-title {
+		margin: 0 0 14px;
+		font-family: var(--font-display);
+		font-weight: 400;
+		font-size: clamp(30px, 3.2vw, 42px);
+		line-height: 1.04;
+	}
+
+	.cer-desc {
+		margin: 0 0 22px;
+		font-size: 16.5px;
+		line-height: 1.8;
+		font-weight: 300;
+		color: var(--color-text-muted);
+		max-width: 46ch;
+		text-wrap: pretty;
+	}
+
+	.cer-bullets {
+		display: flex;
+		flex-direction: column;
+		gap: 11px;
+		margin-bottom: 28px;
+	}
+
+	.cer-bullet {
+		display: grid;
+		grid-template-columns: 14px 1fr;
+		gap: 12px;
+		align-items: baseline;
+		font-size: 15px;
+		line-height: 1.7;
+		font-weight: 300;
+		color: #6a655c;
+	}
+
+	.cer-dot {
+		width: 5px;
+		height: 5px;
+		border-radius: 50%;
+		background: var(--color-gold-light);
+		display: inline-block;
+	}
+
+	.cer-body :global(.btn-bordered) {
+		align-self: flex-start;
+		padding: 13px 26px;
+	}
+
+	@media (max-width: 780px) {
+		.cer-card,
+		.cer-card.flip {
+			grid-template-columns: 1fr;
+			grid-template-areas: 'img' 'txt';
+		}
+	}
+</style>

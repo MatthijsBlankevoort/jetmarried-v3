@@ -116,32 +116,25 @@ const { image } = Astro.props;
 		align-items: center;
 	}
 
-	.btn {
-		display: inline-block;
-		border-radius: 100px;
-		font-size: 15px;
-		transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease;
-	}
-
-	.btn-light {
+	.hero :global(.btn-light) {
 		padding: 17px 34px;
 		background: var(--color-bg);
 		color: var(--color-text);
 		letter-spacing: 0.02em;
 	}
 
-	.btn-light:hover {
+	.hero :global(.btn-light:hover) {
 		background: var(--color-gold-pale);
 		color: var(--color-text);
 	}
 
-	.btn-outline {
+	.hero :global(.btn-outline) {
 		padding: 17px 30px;
 		border: 1px solid rgba(255, 255, 255, 0.45);
 		color: var(--color-bg);
 	}
 
-	.btn-outline:hover {
+	.hero :global(.btn-outline:hover) {
 		background: rgba(255, 255, 255, 0.14);
 		color: #fff;
 	}
