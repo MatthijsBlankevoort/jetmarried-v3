@@ -1,0 +1,218 @@
+---
+const testimonials = [
+	{
+		quote: 'Jij hebt ons verhaal heel mooi verteld. Het was fijn en veilig om alles met jou te delen.',
+		author: 'Marcel & Nicole · mei 2025',
+	},
+	{
+		quote:
+			'Die Zeremonie war wunderschön, persönlich, emotional und dennoch lustig. Schöner, als wir es uns vorgestellt haben.',
+		author: 'Sophie & Leon · Mai 2025',
+	},
+	{
+		quote: 'Thank you Jet for the amazing ceremony. It was really so nice — everyone gave so many compliments.',
+		author: 'Yoni & Carine · Zweden, juni 2024',
+	},
+	{
+		quote: 'Een perfecte mix van emotie en vrolijkheid. Je merkt meteen dat je van je vak houdt.',
+		author: 'Carina & Felix · september 2025',
+		highlight: true,
+	},
+	{
+		quote: 'Empathisch, liefdevol, welbespraakt en gepassioneerd. Ik raad Mariëtte aan als BABS én als spreker.',
+		author: 'We Love Texel · oktober 2022',
+	},
+	{
+		quote: 'Het was echt een prachtige ceremonie. Ik heb zelf ook wel een traantje gelaten.',
+		author: 'Sophie Brugemann, fotograaf · juli 2024',
+	},
+];
+---
+
+<div id="verhalen" class="testimonials">
+	<div class="testimonials-head">
+		<h2 class="section-title" data-reveal>Wat bruidsparen zeggen</h2>
+		<a href="#contact" class="btn btn-bordered" data-reveal>Alle 13 reacties</a>
+	</div>
+
+	<div class="testimonials-viewport" data-rev-view>
+		<div class="testimonials-track" data-rev-track>
+			{
+				testimonials.map((t, i) => (
+					<div class="testimonial-card" class:list={{ 'testimonial-card-highlight': t.highlight }} data-rev>
+						<div class="testimonial-top">
+							<div class="quote-mark">&ldquo;</div>
+							<div class="testimonial-index">
+								{String(i + 1).padStart(2, '0')} / {String(testimonials.length).padStart(2, '0')}
+							</div>
+						</div>
+						<p class="testimonial-quote">{t.quote}</p>
+						<div class="testimonial-author">{t.author}</div>
+					</div>
+				))
+			}
+		</div>
+	</div>
+
+	<div class="testimonials-controls">
+		<div class="testimonials-bar">
+			<div class="testimonials-bar-fill" data-rev-bar></div>
+		</div>
+		<div class="testimonials-arrows">
+			<span class="arrow-btn" data-rev-prev>←</span>
+			<span class="arrow-btn" data-rev-next>→</span>
+		</div>
+	</div>
+</div>
+
+<style>
+	.testimonials {
+		padding: clamp(60px, 7vw, 110px) clamp(24px, 4vw, 60px);
+	}
+
+	.testimonials-head {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: flex-end;
+		justify-content: space-between;
+		gap: 20px;
+		margin-bottom: 48px;
+	}
+
+	.testimonials-head :global(.btn-bordered) {
+		padding: 13px 24px;
+		font-size: 14px;
+	}
+
+	.testimonials-viewport {
+		overflow: hidden;
+		margin: 0 calc(-1 * clamp(24px, 4vw, 60px));
+		padding: 8px clamp(24px, 4vw, 60px) 12px;
+		cursor: grab;
+		touch-action: pan-y;
+	}
+
+	.testimonials-track {
+		display: flex;
+		gap: 18px;
+		width: max-content;
+		will-change: transform;
+	}
+
+	.testimonial-card {
+		width: 400px;
+		border-radius: 30px;
+		background: var(--color-panel);
+		padding: 38px 34px;
+		display: flex;
+		flex-direction: column;
+		transition: border-color 0.35s ease;
+		border: 1px solid var(--color-border);
+	}
+
+	.testimonial-card:hover {
+		border-color: var(--color-border-strong);
+	}
+
+	.testimonial-card-highlight {
+		border-color: var(--color-border-strong);
+	}
+
+	.testimonial-top {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		margin-bottom: 18px;
+	}
+
+	.quote-mark {
+		font-family: var(--font-display);
+		font-size: 44px;
+		line-height: 0.6;
+		color: var(--color-gold-light);
+	}
+
+	.testimonial-card-highlight .quote-mark {
+		color: var(--color-gold);
+	}
+
+	.testimonial-index {
+		font: 400 11.5px/1 'Jost', sans-serif;
+		letter-spacing: 0.16em;
+		color: #a9a091;
+	}
+
+	.testimonial-quote {
+		margin: 0 0 auto;
+		font-size: 19px;
+		line-height: 1.65;
+		font-weight: 300;
+		color: #4a463f;
+		text-wrap: pretty;
+	}
+
+	.testimonial-author {
+		margin-top: 26px;
+		padding-top: 18px;
+		border-top: 1px solid var(--color-border);
+		font-size: 12.5px;
+		letter-spacing: 0.1em;
+		text-transform: uppercase;
+		color: var(--color-text-mutedest);
+	}
+
+	.testimonials-controls {
+		display: flex;
+		align-items: center;
+		gap: 16px;
+		margin-top: 26px;
+	}
+
+	.testimonials-bar {
+		position: relative;
+		flex: 1;
+		height: 2px;
+		background: var(--color-border);
+		border-radius: 2px;
+	}
+
+	.testimonials-bar-fill {
+		position: absolute;
+		left: 0;
+		top: 0;
+		height: 100%;
+		width: 100%;
+		background: var(--color-gold);
+		border-radius: 2px;
+		transform: scaleX(0.22);
+		transform-origin: left;
+	}
+
+	.testimonials-arrows {
+		display: flex;
+		gap: 10px;
+		flex: 0 0 auto;
+	}
+
+	.arrow-btn {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 46px;
+		height: 46px;
+		border-radius: 50%;
+		border: 1px solid var(--color-border-soft);
+		color: var(--color-text-muted);
+		font-size: 17px;
+		line-height: 1;
+		cursor: pointer;
+		user-select: none;
+		transition: background 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+	}
+
+	.arrow-btn:hover {
+		background: var(--color-text);
+		border-color: var(--color-text);
+		color: var(--color-bg);
+	}
+</style>
