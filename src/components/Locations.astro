@@ -1,0 +1,169 @@
+---
+import Photo from './Photo.astro';
+
+const locations = [
+	{ name: 'De Slufter', imageLabel: 'FOTO — De Slufter, weids duinlandschap' },
+	{ name: 'Strandpaviljoen bij zonsondergang', imageLabel: 'FOTO — strandpaviljoen, laag zonlicht' },
+	{ name: 'Vuurtoren De Cocksdorp', imageLabel: 'FOTO — rode vuurtoren, De Cocksdorp' },
+	{ name: 'Dennenbos bij De Koog', imageLabel: 'FOTO — dennenbos, zacht licht tussen de stammen' },
+	{ name: 'Schapenboet in de polder', imageLabel: 'FOTO — schapenboet, Texelse polder' },
+	{ name: 'Aan boord, op het wad', imageLabel: 'FOTO — zeilschip op het wad' },
+	{ name: 'Gewoon in jullie eigen tuin', imageLabel: 'FOTO — tuinceremonie, gedekte tafels' },
+];
+---
+
+<div class="locations-outer">
+	<div class="locations-panel">
+		<div class="locations-copy">
+			<div class="eyebrow" data-reveal>Locaties</div>
+			<h2 class="section-title" data-reveal>Plekken op Texel die ik zelf aanraad</h2>
+			<p class="locations-intro" data-reveal>
+				Ik ken het eiland en de mensen die er werken. Vertel me wat voor gevoel jullie zoeken, dan denk ik
+				mee.
+			</p>
+			<div class="locations-chips" data-reveal>
+				{
+					locations.map((loc, i) => (
+						<span class="loc-chip" class:list={{ 'loc-chip-active': i === 0 }} data-loc={i}>
+							{loc.name}
+						</span>
+					))
+				}
+			</div>
+		</div>
+		<div class="locations-stage-outer">
+			<div class="locations-stage" data-locstage>
+				{
+					locations.map((loc, i) => (
+						<div class="loc-img" class:list={{ 'loc-img-active': i === 0 }} data-locimg={i}>
+							<Photo label={loc.imageLabel} class="loc-photo" />
+							<div class="loc-caption-wrap">
+								<span class="loc-caption">{loc.name}</span>
+							</div>
+						</div>
+					))
+				}
+			</div>
+		</div>
+	</div>
+</div>
+
+<style>
+	.locations-outer {
+		padding: 0 14px;
+	}
+
+	.locations-panel {
+		position: relative;
+		border-radius: 44px;
+		overflow: hidden;
+		background: var(--color-panel);
+		color: var(--color-text);
+		display: grid;
+		grid-template-columns: 1fr 1.1fr;
+	}
+
+	.locations-copy {
+		padding: clamp(56px, 6vw, 96px) clamp(28px, 4vw, 60px);
+	}
+
+	.locations-copy .section-title {
+		margin: 0 0 24px;
+		font-size: clamp(34px, 3.8vw, 50px);
+		line-height: 1.06;
+	}
+
+	.locations-intro {
+		margin: 0 0 38px;
+		font-size: 16px;
+		line-height: 1.85;
+		font-weight: 300;
+		color: #5a554d;
+		max-width: 44ch;
+		text-wrap: pretty;
+	}
+
+	.locations-chips {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 10px;
+	}
+
+	.loc-chip {
+		border: 1px solid var(--color-border-strong);
+		background: #fdfbf7;
+		border-radius: 100px;
+		padding: 10px 20px;
+		font-size: 13.5px;
+		font-weight: 300;
+		cursor: pointer;
+		transition: background 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+	}
+
+	.loc-chip:hover,
+	.loc-chip-active {
+		background: var(--color-text);
+		border-color: var(--color-text);
+		color: var(--color-bg);
+	}
+
+	.locations-stage-outer {
+		min-height: 540px;
+		padding: 22px 22px 22px 0;
+	}
+
+	.locations-stage {
+		position: relative;
+		height: 100%;
+		border-radius: 32px;
+		overflow: hidden;
+	}
+
+	.loc-img {
+		position: absolute;
+		inset: 0;
+		opacity: 0;
+		transform: scale(1.04);
+		transition: opacity 0.55s ease, transform 0.7s ease;
+		border-radius: 32px;
+		overflow: hidden;
+	}
+
+	.loc-img-active {
+		opacity: 1;
+		transform: scale(1);
+	}
+
+	.loc-img :global(.loc-photo) {
+		position: absolute;
+		inset: 0;
+	}
+
+	.loc-caption-wrap {
+		position: absolute;
+		inset: 0;
+		display: flex;
+		align-items: flex-end;
+		padding: 24px;
+		pointer-events: none;
+		background: linear-gradient(to top, rgba(38, 32, 25, 0.32), rgba(38, 32, 25, 0) 45%);
+	}
+
+	.loc-caption {
+		font-family: var(--font-display);
+		font-size: 26px;
+		line-height: 1.1;
+		color: #4a463f;
+	}
+
+	@media (max-width: 900px) {
+		.locations-panel {
+			grid-template-columns: 1fr;
+		}
+
+		.locations-stage-outer {
+			padding: 0 22px 22px;
+			min-height: 360px;
+		}
+	}
+</style>
