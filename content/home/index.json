@@ -1,175 +1,203 @@
 {
-	"hero": {
-		"titleLine1": "De mooiste",
-		"titleLine2": "ja van jullie leven",
-		"text": "Een ceremonie moet passen als een warme jas. Ik luister, schrijf jullie verhaal op en spreek het uit alsof ik erbij was.",
-		"image": ""
-	},
-	"marqueeText": "Ja, ik wil · Ich will · I do",
-	"about": {
-		"eyebrow": "Over Mariëtte",
-		"titleLine1": "Ik ben Mariëtte.",
-		"titleLine2": "En ik hou van dit moment.",
-		"paragraph1Before": "Vijfentwintig jaar getrouwd met Ron, moeder van Matthijs, Jesse en Nino, en Texelaar in hart en nieren. Mijn lijfspreuk is",
-		"motto": "geniet vandaag",
-		"paragraph1After": "— en daar begint eigenlijk alles mee.",
-		"paragraph2": "In onze gesprekken leren we elkaar echt kennen. Alles wat ik hoor verbind ik met een stukje van mijn eigen creativiteit. Zo ontstaat een speech die niemand anders had kunnen schrijven, omdat hij alleen over jullie gaat.",
-		"image": ""
-	},
-	"ceremoniesIntro": {
-		"title": "Vier manieren om ja te zeggen",
-		"text": "Van een wettelijk huwelijk tot een ceremonie zonder regels — of allebei, op één dag. Alle vier in het Nederlands, Duits of Engels."
-	},
-	"ceremonies": [
-		{
-			"id": "wettelijk",
-			"title": "Wettelijk huwelijk",
-			"imageLabel": "FOTO — tekenmoment, staand",
-			"image": "",
-			"description": "Beëdigd als BABS bij gemeente Den Helder — en mee te nemen naar bijna elke andere gemeente.",
-			"bullets": [
-				"Wettelijk geldig, met twee tot vier getuigen",
-				"'BABS voor één dag': ik regel de beëdiging",
-				"Trouwboekje via jullie eigen gemeente"
-			]
-		},
-		{
-			"id": "ceremonieel",
-			"title": "Ceremoniespreker",
-			"imageLabel": "FOTO — ceremonie buiten, staand",
-			"image": "",
-			"description": "Geen regels, geen tijdslot, geen zaal. Op de plek en het moment dat bij jullie past.",
-			"bullets": [
-				"Vrije locatie, vrije dag, vrij tijdstip",
-				"Ceremonie op maat van 20 tot 40 minuten",
-				"Rituelen: zand, kaars of handfasting"
-			]
-		},
-		{
-			"id": "herbevestiging",
-			"title": "Herbevestiging",
-			"imageLabel": "FOTO — ouder paar, staand",
-			"image": "",
-			"description": "Lang geleden getrouwd, veel meegemaakt, nog steeds samen. Zeg het nog een keer hardop.",
-			"bullets": [
-				"Mooi bij een jubileum of nieuw hoofdstuk",
-				"Kinderen en kleinkinderen doen mee",
-				"Dezelfde zorg als een eerste ceremonie"
-			]
-		},
-		{
-			"id": "verbintenis",
-			"title": "Verbintenis zonder papieren",
-			"imageLabel": "FOTO — intiem detail, staand",
-			"image": "",
-			"description": "Een belofte aan elkaar, zonder juridische gevolgen — volledig naar eigen invulling.",
-			"bullets": [
-				"Voor partners, vrienden of gekozen familie",
-				"Geen gang naar de gemeente nodig",
-				"Even persoonlijk voorbereid als de rest"
-			]
-		}
-	],
-	"werkwijze": {
-		"title": "Van eerste kop koffie tot het ja-woord",
-		"steps": [
-			{
-				"number": "01",
-				"title": "Kennismaken",
-				"text": "Vrijblijvend, bij mij thuis of via videobellen. We praten over jullie, niet over pakketten. Klikt het? Dan pas gaan we het over data hebben.",
-				"tag": "Kop koffie, geen verplichtingen"
-			},
-			{
-				"number": "02",
-				"title": "Jullie verhaal",
-				"text": "Twee gesprekken waarin ik alles hoor. Ook de dingen die jullie zelf niet bijzonder vinden — juist die maken de speech persoonlijk.",
-				"tag": "Twee gesprekken"
-			},
-			{
-				"number": "03",
-				"title": "De speech",
-				"text": "Ik schrijf, jullie lezen mee en sturen bij. Verrassingen bewaren we voor de dag zelf, de rest is precies zoals jullie het willen.",
-				"tag": "Ruim voor de dag klaar"
-			},
-			{
-				"number": "04",
-				"title": "De dag zelf",
-				"text": "Ik ben ruim op tijd, stem af met jullie fotograaf en locatie, en dan is het zover. Jullie hoeven alleen nog ja te zeggen.",
-				"tag": "En dan zeggen jullie ja"
-			}
-		]
-	},
-	"locationsIntro": {
-		"title": "Plekken op Texel die ik zelf aanraad",
-		"text": "Ik ken het eiland en de mensen die er werken. Vertel me wat voor gevoel jullie zoeken, dan denk ik mee."
-	},
-	"locations": [
-		{ "name": "De Slufter", "imageLabel": "FOTO — De Slufter, weids duinlandschap", "image": "" },
-		{ "name": "Strandpaviljoen bij zonsondergang", "imageLabel": "FOTO — strandpaviljoen, laag zonlicht", "image": "" },
-		{ "name": "Vuurtoren De Cocksdorp", "imageLabel": "FOTO — rode vuurtoren, De Cocksdorp", "image": "" },
-		{ "name": "Dennenbos bij De Koog", "imageLabel": "FOTO — dennenbos, zacht licht tussen de stammen", "image": "" },
-		{ "name": "Schapenboet in de polder", "imageLabel": "FOTO — schapenboet, Texelse polder", "image": "" },
-		{ "name": "Aan boord, op het wad", "imageLabel": "FOTO — zeilschip op het wad", "image": "" },
-		{ "name": "Gewoon in jullie eigen tuin", "imageLabel": "FOTO — tuinceremonie, gedekte tafels", "image": "" }
-	],
-	"testimonialsLinkLabel": "Alle 13 reacties",
-	"testimonials": [
-		{
-			"quote": "Jij hebt ons verhaal heel mooi verteld. Het was fijn en veilig om alles met jou te delen.",
-			"author": "Marcel & Nicole · mei 2025",
-			"highlight": false
-		},
-		{
-			"quote": "Die Zeremonie war wunderschön, persönlich, emotional und dennoch lustig. Schöner, als wir es uns vorgestellt haben.",
-			"author": "Sophie & Leon · Mai 2025",
-			"highlight": false
-		},
-		{
-			"quote": "Thank you Jet for the amazing ceremony. It was really so nice — everyone gave so many compliments.",
-			"author": "Yoni & Carine · Zweden, juni 2024",
-			"highlight": false
-		},
-		{
-			"quote": "Een perfecte mix van emotie en vrolijkheid. Je merkt meteen dat je van je vak houdt.",
-			"author": "Carina & Felix · september 2025",
-			"highlight": true
-		},
-		{
-			"quote": "Empathisch, liefdevol, welbespraakt en gepassioneerd. Ik raad Mariëtte aan als BABS én als spreker.",
-			"author": "We Love Texel · oktober 2022",
-			"highlight": false
-		},
-		{
-			"quote": "Het was echt een prachtige ceremonie. Ik heb zelf ook wel een traantje gelaten.",
-			"author": "Sophie Brugemann, fotograaf · juli 2024",
-			"highlight": false
-		}
-	],
-	"faq": [
-		{
-			"q": "Wat kost een ceremonie?",
-			"a": "€ 825, inclusief alle gesprekken en de geschreven speech. Een Duitstalige ceremonie kost € 125 extra. Reis- en eventuele gemeentekosten komen daar nog bij."
-		},
-		{
-			"q": "Kunnen we je meenemen naar onze eigen gemeente?",
-			"a": "Ja. Bijna alle Nederlandse gemeenten kennen de regeling 'BABS voor één dag'. Ik regel de beëdiging; naast de gemeentelijke leges ontvangen jullie ook mijn factuur."
-		},
-		{
-			"q": "In welke talen spreek je?",
-			"a": "Nederlands, Duits en Engels. Een tweetalige ceremonie kan ook — veel paren kiezen daarvoor als de familie uit twee landen komt."
-		},
-		{
-			"q": "Hoe ver van tevoren moeten we boeken?",
-			"a": "Zes tot twaalf maanden is gebruikelijk, maar vraag altijd. Soms is er ruimte over drie weken."
-		},
-		{
-			"q": "En als het regent?",
-			"a": "Dan is er een plan B, dat we ruim van tevoren samen bedenken. Texels weer is geen verrassing voor mij."
-		}
-	],
-	"contact": {
-		"titleLine1": "Zullen we",
-		"titleLine2": "kennismaken?",
-		"text": "Laat je datum en een paar woorden achter. Ik reageer meestal binnen een dag en maak een vrijblijvende offerte."
-	}
+  "hero": {
+    "titleLine1": "De mooiste",
+    "titleLine2": "ja van jullie leven",
+    "text": "Een ceremonie moet passen als een warme jas. Ik luister, schrijf jullie verhaal op en spreek het uit alsof ik erbij was.",
+    "image": "/uploads/landing.webp"
+  },
+  "marqueeText": "Ja, ik wil · Ich will · I do",
+  "about": {
+    "eyebrow": "Over Mariëtte",
+    "titleLine1": "Ik ben Mariëtte.",
+    "titleLine2": "En ik hou van dit moment.",
+    "paragraph1Before": "Vijfentwintig jaar getrouwd met Ron, moeder van Matthijs, Jesse en Nino, en Texelaar in hart en nieren. Mijn lijfspreuk is",
+    "motto": "geniet vandaag",
+    "paragraph1After": "— en daar begint eigenlijk alles mee.",
+    "paragraph2": "In onze gesprekken leren we elkaar echt kennen. Alles wat ik hoor verbind ik met een stukje van mijn eigen creativiteit. Zo ontstaat een speech die niemand anders had kunnen schrijven, omdat hij alleen over jullie gaat.",
+    "image": "/uploads/profielfoto.webp"
+  },
+  "ceremoniesIntro": {
+    "title": "Vier manieren om ja te zeggen",
+    "text": "Van een wettelijk huwelijk tot een ceremonie zonder regels — of allebei, op één dag. Alle vier in het Nederlands, Duits of Engels."
+  },
+  "ceremonies": [
+    {
+      "id": "wettelijk",
+      "title": "Wettelijk huwelijk",
+      "imageLabel": "FOTO — tekenmoment, staand",
+      "image": "",
+      "description": "Beëdigd als BABS bij gemeente Den Helder — en mee te nemen naar bijna elke andere gemeente.",
+      "bullets": [
+        "Wettelijk geldig, met twee tot vier getuigen",
+        "'BABS voor één dag': ik regel de beëdiging",
+        "Trouwboekje via jullie eigen gemeente"
+      ]
+    },
+    {
+      "id": "ceremonieel",
+      "title": "Ceremoniespreker",
+      "imageLabel": "FOTO — ceremonie buiten, staand",
+      "image": "",
+      "description": "Geen regels, geen tijdslot, geen zaal. Op de plek en het moment dat bij jullie past.",
+      "bullets": [
+        "Vrije locatie, vrije dag, vrij tijdstip",
+        "Ceremonie op maat van 20 tot 40 minuten",
+        "Rituelen: zand, kaars of handfasting"
+      ]
+    },
+    {
+      "id": "herbevestiging",
+      "title": "Herbevestiging",
+      "imageLabel": "FOTO — ouder paar, staand",
+      "image": "",
+      "description": "Lang geleden getrouwd, veel meegemaakt, nog steeds samen. Zeg het nog een keer hardop.",
+      "bullets": [
+        "Mooi bij een jubileum of nieuw hoofdstuk",
+        "Kinderen en kleinkinderen doen mee",
+        "Dezelfde zorg als een eerste ceremonie"
+      ]
+    },
+    {
+      "id": "verbintenis",
+      "title": "Verbintenis zonder papieren",
+      "imageLabel": "FOTO — intiem detail, staand",
+      "image": "",
+      "description": "Een belofte aan elkaar, zonder juridische gevolgen — volledig naar eigen invulling.",
+      "bullets": [
+        "Voor partners, vrienden of gekozen familie",
+        "Geen gang naar de gemeente nodig",
+        "Even persoonlijk voorbereid als de rest"
+      ]
+    }
+  ],
+  "werkwijze": {
+    "title": "Van eerste kop koffie tot het ja-woord",
+    "steps": [
+      {
+        "number": "01",
+        "title": "Kennismaken",
+        "text": "Vrijblijvend, bij mij thuis of via videobellen. We praten over jullie, niet over pakketten. Klikt het? Dan pas gaan we het over data hebben.",
+        "tag": "Kop koffie, geen verplichtingen"
+      },
+      {
+        "number": "02",
+        "title": "Jullie verhaal",
+        "text": "Twee gesprekken waarin ik alles hoor. Ook de dingen die jullie zelf niet bijzonder vinden — juist die maken de speech persoonlijk.",
+        "tag": "Twee gesprekken"
+      },
+      {
+        "number": "03",
+        "title": "De speech",
+        "text": "Ik schrijf, jullie lezen mee en sturen bij. Verrassingen bewaren we voor de dag zelf, de rest is precies zoals jullie het willen.",
+        "tag": "Ruim voor de dag klaar"
+      },
+      {
+        "number": "04",
+        "title": "De dag zelf",
+        "text": "Ik ben ruim op tijd, stem af met jullie fotograaf en locatie, en dan is het zover. Jullie hoeven alleen nog ja te zeggen.",
+        "tag": "En dan zeggen jullie ja"
+      }
+    ]
+  },
+  "locationsIntro": {
+    "title": "Plekken op Texel die ik zelf aanraad",
+    "text": "Ik ken het eiland en de mensen die er werken. Vertel me wat voor gevoel jullie zoeken, dan denk ik mee."
+  },
+  "locations": [
+    {
+      "name": "De Slufter",
+      "imageLabel": "FOTO — De Slufter, weids duinlandschap",
+      "image": ""
+    },
+    {
+      "name": "Strandpaviljoen bij zonsondergang",
+      "imageLabel": "FOTO — strandpaviljoen, laag zonlicht",
+      "image": ""
+    },
+    {
+      "name": "Vuurtoren De Cocksdorp",
+      "imageLabel": "FOTO — rode vuurtoren, De Cocksdorp",
+      "image": ""
+    },
+    {
+      "name": "Dennenbos bij De Koog",
+      "imageLabel": "FOTO — dennenbos, zacht licht tussen de stammen",
+      "image": ""
+    },
+    {
+      "name": "Schapenboet in de polder",
+      "imageLabel": "FOTO — schapenboet, Texelse polder",
+      "image": ""
+    },
+    {
+      "name": "Aan boord, op het wad",
+      "imageLabel": "FOTO — zeilschip op het wad",
+      "image": ""
+    },
+    {
+      "name": "Gewoon in jullie eigen tuin",
+      "imageLabel": "FOTO — tuinceremonie, gedekte tafels",
+      "image": ""
+    }
+  ],
+  "testimonialsLinkLabel": "Alle 13 reacties",
+  "testimonials": [
+    {
+      "quote": "Jij hebt ons verhaal heel mooi verteld. Het was fijn en veilig om alles met jou te delen.",
+      "author": "Marcel & Nicole · mei 2025",
+      "highlight": false
+    },
+    {
+      "quote": "Die Zeremonie war wunderschön, persönlich, emotional und dennoch lustig. Schöner, als wir es uns vorgestellt haben.",
+      "author": "Sophie & Leon · Mai 2025",
+      "highlight": false
+    },
+    {
+      "quote": "Thank you Jet for the amazing ceremony. It was really so nice — everyone gave so many compliments.",
+      "author": "Yoni & Carine · Zweden, juni 2024",
+      "highlight": false
+    },
+    {
+      "quote": "Een perfecte mix van emotie en vrolijkheid. Je merkt meteen dat je van je vak houdt.",
+      "author": "Carina & Felix · september 2025",
+      "highlight": true
+    },
+    {
+      "quote": "Empathisch, liefdevol, welbespraakt en gepassioneerd. Ik raad Mariëtte aan als BABS én als spreker.",
+      "author": "We Love Texel · oktober 2022",
+      "highlight": false
+    },
+    {
+      "quote": "Het was echt een prachtige ceremonie. Ik heb zelf ook wel een traantje gelaten.",
+      "author": "Sophie Brugemann, fotograaf · juli 2024",
+      "highlight": false
+    }
+  ],
+  "faq": [
+    {
+      "q": "Wat kost een ceremonie?",
+      "a": "€ 825, inclusief alle gesprekken en de geschreven speech. Een Duitstalige ceremonie kost € 125 extra. Reis- en eventuele gemeentekosten komen daar nog bij."
+    },
+    {
+      "q": "Kunnen we je meenemen naar onze eigen gemeente?",
+      "a": "Ja. Bijna alle Nederlandse gemeenten kennen de regeling 'BABS voor één dag'. Ik regel de beëdiging; naast de gemeentelijke leges ontvangen jullie ook mijn factuur."
+    },
+    {
+      "q": "In welke talen spreek je?",
+      "a": "Nederlands, Duits en Engels. Een tweetalige ceremonie kan ook — veel paren kiezen daarvoor als de familie uit twee landen komt."
+    },
+    {
+      "q": "Hoe ver van tevoren moeten we boeken?",
+      "a": "Zes tot twaalf maanden is gebruikelijk, maar vraag altijd. Soms is er ruimte over drie weken."
+    },
+    {
+      "q": "En als het regent?",
+      "a": "Dan is er een plan B, dat we ruim van tevoren samen bedenken. Texels weer is geen verrassing voor mij."
+    }
+  ],
+  "contact": {
+    "titleLine1": "Zullen we",
+    "titleLine2": "kennismaken?",
+    "text": "Laat je datum en een paar woorden achter. Ik reageer meestal binnen een dag en maak een vrijblijvende offerte."
+  }
 }
