@@ -28,8 +28,28 @@ const { nav, logoUrl, headerCta } = Astro.props;
 			</div>
 			<a href="#contact" class="header-cta">{headerCta}</a>
 		</div>
+
+		<button type="button" class="header-burger" aria-label="Menu openen" aria-expanded="false" aria-controls="mobile-nav" data-menu-toggle>
+			<span></span>
+			<span></span>
+			<span></span>
+		</button>
 	</div>
 </header>
+
+<div class="mobile-nav" id="mobile-nav" data-mobile-nav>
+	<nav aria-label="Mobiel menu">
+		{nav.map((link) => <a href={link.href} data-menu-link>{link.label}</a>)}
+	</nav>
+	<div class="mobile-nav-footer">
+		<div class="lang-switch" role="group" aria-label="Taal">
+			<span class="lang-active" aria-current="true">NL</span>
+			<a href="#top">DE</a>
+			<a href="#top">EN</a>
+		</div>
+		<a href="#contact" class="header-cta" data-menu-link>{headerCta}</a>
+	</div>
+</div>
 
 <style>
 	.header-wrap {
@@ -158,9 +178,130 @@ const { nav, logoUrl, headerCta } = Astro.props;
 		color: #fff;
 	}
 
+	.header-burger {
+		display: none;
+		position: relative;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		gap: 5px;
+		width: 44px;
+		height: 44px;
+		border-radius: 50%;
+		background: transparent;
+		flex-shrink: 0;
+	}
+
+	.header-burger span {
+		display: block;
+		width: 18px;
+		height: 1.5px;
+		border-radius: 2px;
+		background: var(--color-text);
+		transition: transform 0.3s ease, opacity 0.3s ease;
+	}
+
+	.header-burger[aria-expanded="true"] span:nth-child(1) {
+		transform: translateY(6.5px) rotate(45deg);
+	}
+
+	.header-burger[aria-expanded="true"] span:nth-child(2) {
+		opacity: 0;
+	}
+
+	.header-burger[aria-expanded="true"] span:nth-child(3) {
+		transform: translateY(-6.5px) rotate(-45deg);
+	}
+
+	.mobile-nav {
+		position: fixed;
+		inset: 0;
+		z-index: 80;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		gap: 40px;
+		padding: 100px 32px 48px;
+		background: var(--color-bg);
+		opacity: 0;
+		visibility: hidden;
+		transform: translateY(-8px);
+		transition: opacity 0.3s ease, transform 0.3s ease, visibility 0s linear 0.3s;
+	}
+
+	.mobile-nav.is-open {
+		opacity: 1;
+		visibility: visible;
+		transform: translateY(0);
+		transition: opacity 0.3s ease, transform 0.3s ease, visibility 0s linear 0s;
+	}
+
+	.mobile-nav nav {
+		display: flex;
+		flex-direction: column;
+		gap: 6px;
+	}
+
+	.mobile-nav nav a {
+		font-family: var(--font-display);
+		font-size: clamp(30px, 3.2vw, 42px);
+		font-weight: 300;
+		line-height: 1.04;
+		color: var(--color-text);
+	}
+
+	.mobile-nav-footer {
+		display: flex;
+		align-items: center;
+		gap: 16px;
+	}
+
 	@media (max-width: 860px) {
-		.header-nav {
+		.header-nav,
+		.header-actions {
+			display: none;
+		}
+
+		.header-burger {
+			display: flex;
+		}
+	}
+
+	@media (min-width: 861px) {
+		.mobile-nav {
 			display: none;
 		}
 	}
 </style>
+
+<script>
+	const toggle = document.querySelector<HTMLButtonElement>('[data-menu-toggle]');
+	const panel = document.querySelector<HTMLElement>('[data-mobile-nav]');
+
+	if (toggle && panel) {
+		const closeMenu = () => {
+			toggle.setAttribute('aria-expanded', 'false');
+			panel.classList.remove('is-open');
+			document.body.style.overflow = '';
+		};
+
+		const openMenu = () => {
+			toggle.setAttribute('aria-expanded', 'true');
+			panel.classList.add('is-open');
+			document.body.style.overflow = 'hidden';
+		};
+
+		toggle.addEventListener('click', () => {
+			const isOpen = toggle.getAttribute('aria-expanded') === 'true';
+			isOpen ? closeMenu() : openMenu();
+		});
+
+		panel.querySelectorAll<HTMLAnchorElement>('[data-menu-link]').forEach((link) => {
+			link.addEventListener('click', closeMenu);
+		});
+
+		window.addEventListener('keydown', (event) => {
+			if (event.key === 'Escape') closeMenu();
+		});
+	}
+</script>

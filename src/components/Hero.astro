@@ -49,18 +49,35 @@ const [line2First, ...line2Rest] = titleLine2.split(' ');
 
 	.hero :global(.hero-photo) {
 		position: absolute;
-		top: -6%;
+		top: 0;
 		left: 0;
 		width: 100%;
-		height: 112%;
+		height: 100%;
 		background-size: cover;
 		background-position: center;
+	}
+
+	.hero :global(.hero-photo img) {
+		object-position: 38% center;
+	}
+
+	@media (max-width: 640px) {
+		.hero {
+			height: min(78vh, 700px);
+			min-height: 600px;
+		}
 	}
 
 	.hero-overlay {
 		position: absolute;
 		inset: 0;
 		background: linear-gradient(to top, rgba(38, 32, 25, 0.58), rgba(38, 32, 25, 0.06) 54%, rgba(38, 32, 25, 0.22));
+	}
+
+	@media (max-width: 640px) {
+		.hero-overlay {
+			background: linear-gradient(to top, rgba(28, 23, 17, 0.82) 0%, rgba(28, 23, 17, 0.5) 32%, rgba(28, 23, 17, 0.08) 58%, rgba(28, 23, 17, 0.26) 100%);
+		}
 	}
 
 	.hero-content {
@@ -101,6 +118,13 @@ const [line2First, ...line2Rest] = titleLine2.split(' ');
 		margin-top: 34px;
 	}
 
+	@media (max-width: 640px) {
+		.hero-bottom-row {
+			gap: 18px;
+			margin-top: 18px;
+		}
+	}
+
 	.hero-text {
 		margin: 0;
 		max-width: 480px;
@@ -115,6 +139,19 @@ const [line2First, ...line2Rest] = titleLine2.split(' ');
 		display: flex;
 		gap: 12px;
 		align-items: center;
+	}
+
+	@media (max-width: 640px) {
+		.hero-buttons {
+			flex-direction: column;
+			align-items: stretch;
+			width: 100%;
+			gap: 10px;
+		}
+
+		.hero :global(.hero-buttons .btn) {
+			text-align: center;
+		}
 	}
 
 	.hero :global(.btn-light) {
