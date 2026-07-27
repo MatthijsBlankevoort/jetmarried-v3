@@ -1,0 +1,31 @@
+---
+const text = 'Ja, ik wil · Ich will · I do · Ja, ik wil · Ich will · I do · Ja, ik wil · Ich will · I do ·';
+---
+
+<div class="marquee-outer">
+	<div class="marquee-track" data-marquee>
+		<span>{text}</span>
+		<span>{text}</span>
+	</div>
+</div>
+
+<style>
+	.marquee-outer {
+		overflow: hidden;
+		padding: 44px 0 30px;
+	}
+
+	.marquee-track {
+		display: flex;
+		gap: 44px;
+		white-space: nowrap;
+		will-change: transform;
+	}
+
+	.marquee-track span {
+		font-family: var(--font-display);
+		font-size: 38px;
+		font-weight: 300;
+		color: var(--color-gold-light);
+	}
+</style>

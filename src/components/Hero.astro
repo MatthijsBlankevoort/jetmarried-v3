@@ -1,0 +1,148 @@
+---
+import Photo from './Photo.astro';
+
+interface Props {
+	image?: string | null;
+}
+
+const { image } = Astro.props;
+---
+
+<div id="top" class="hero-outer">
+	<div class="hero" data-hero-scale>
+		<Photo src={image} alt="" label="FOTO — sfeerbeeld bruidspaar, liggend, veel lucht" class="hero-photo" data-hero-img />
+		<div class="hero-overlay"></div>
+
+		<div class="hero-content">
+			<h1 class="hero-title">
+				<span class="hero-reveal">De mooiste</span>
+				<span class="hero-reveal"><em>ja</em> van jullie leven</span>
+			</h1>
+			<div class="hero-bottom-row">
+				<p class="hero-reveal hero-text">
+					Een ceremonie moet passen als een warme jas. Ik luister, schrijf jullie verhaal op en spreek het
+					uit alsof ik erbij was.
+				</p>
+				<div class="hero-reveal hero-buttons">
+					<a href="#contact" class="btn btn-light">Ja, ik wil kennismaken</a>
+					<a href="#ceremonies" class="btn btn-outline">Bekijk de ceremonies</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<style>
+	.hero-outer {
+		padding: 14px 14px 0;
+	}
+
+	.hero {
+		position: relative;
+		height: min(96vh, 940px);
+		min-height: 660px;
+		border-radius: 44px;
+		overflow: hidden;
+		background: #e3dbcd;
+	}
+
+	.hero :global(.hero-photo) {
+		position: absolute;
+		top: -6%;
+		left: 0;
+		width: 100%;
+		height: 112%;
+		background-size: cover;
+		background-position: center;
+	}
+
+	.hero-overlay {
+		position: absolute;
+		inset: 0;
+		background: linear-gradient(to top, rgba(38, 32, 25, 0.58), rgba(38, 32, 25, 0.06) 54%, rgba(38, 32, 25, 0.22));
+	}
+
+	.hero-content {
+		position: absolute;
+		inset: 0;
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-end;
+		padding: 0 clamp(28px, 5vw, 72px) clamp(40px, 6vw, 80px);
+		color: var(--color-bg);
+	}
+
+	.hero-title {
+		margin: 0;
+		font-family: var(--font-display);
+		font-weight: 300;
+		font-size: clamp(52px, 7.4vw, 104px);
+		line-height: 0.94;
+		letter-spacing: -0.015em;
+		max-width: 15ch;
+	}
+
+	.hero-title span {
+		display: block;
+	}
+
+	.hero-title em {
+		font-style: italic;
+		color: var(--color-gold-pale);
+	}
+
+	.hero-bottom-row {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: flex-end;
+		justify-content: space-between;
+		gap: 32px;
+		margin-top: 34px;
+	}
+
+	.hero-text {
+		margin: 0;
+		max-width: 480px;
+		font-size: 18px;
+		line-height: 1.7;
+		font-weight: 300;
+		opacity: 0.92;
+		text-wrap: pretty;
+	}
+
+	.hero-buttons {
+		display: flex;
+		gap: 12px;
+		align-items: center;
+	}
+
+	.btn {
+		display: inline-block;
+		border-radius: 100px;
+		font-size: 15px;
+		transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+	}
+
+	.btn-light {
+		padding: 17px 34px;
+		background: var(--color-bg);
+		color: var(--color-text);
+		letter-spacing: 0.02em;
+	}
+
+	.btn-light:hover {
+		background: var(--color-gold-pale);
+		color: var(--color-text);
+	}
+
+	.btn-outline {
+		padding: 17px 30px;
+		border: 1px solid rgba(255, 255, 255, 0.45);
+		color: var(--color-bg);
+	}
+
+	.btn-outline:hover {
+		background: rgba(255, 255, 255, 0.14);
+		color: #fff;
+	}
+</style>
