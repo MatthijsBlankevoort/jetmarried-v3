@@ -1,0 +1,122 @@
+---
+import Photo from './Photo.astro';
+
+interface Props {
+	image?: string | null;
+}
+
+const { image } = Astro.props;
+---
+
+<div id="over" class="about">
+	<div class="about-media" data-reveal>
+		<Photo src={image} alt="Portret Mariëtte" label={'FOTO — portret Mariëtte,\nbuiten, natuurlijk licht'} class="about-photo" />
+	</div>
+	<div>
+		<div class="eyebrow" data-reveal>Over Mariëtte</div>
+		<h2 class="about-title" data-reveal>Ik ben Mariëtte.<br />En ik hou van dit moment.</h2>
+		<p class="about-text" data-reveal>
+			Vijfentwintig jaar getrouwd met Ron, moeder van Matthijs, Jesse en Nino, en Texelaar in hart en nieren.
+			Mijn lijfspreuk is <span class="motto" data-motto><span class="motto-line" data-motto-line></span>geniet
+				vandaag</span> — en daar begint eigenlijk alles mee.
+		</p>
+		<p class="about-text" data-reveal>
+			In onze gesprekken leren we elkaar echt kennen. Alles wat ik hoor verbind ik met een stukje van mijn
+			eigen creativiteit. Zo ontstaat een speech die niemand anders had kunnen schrijven, omdat hij alleen over
+			jullie gaat.
+		</p>
+		<a href="#blog" class="btn btn-bordered" data-reveal>Lees mijn verhaal</a>
+	</div>
+</div>
+
+<style>
+	.about {
+		display: grid;
+		grid-template-columns: 0.9fr 1.1fr;
+		gap: clamp(40px, 6vw, 90px);
+		padding: clamp(60px, 7vw, 110px) clamp(24px, 4vw, 60px);
+		align-items: center;
+	}
+
+	.about-media {
+		position: relative;
+	}
+
+	.about-media :global(.about-photo) {
+		aspect-ratio: 4 / 5;
+		border-radius: 34px;
+		align-items: flex-end;
+		padding: 20px;
+		white-space: pre-line;
+	}
+
+	.eyebrow {
+		font-size: 12px;
+		letter-spacing: 0.22em;
+		text-transform: uppercase;
+		color: var(--color-gold);
+		margin-bottom: 24px;
+	}
+
+	.about-title {
+		margin: 0 0 28px;
+		font-family: var(--font-display);
+		font-weight: 300;
+		font-size: clamp(36px, 4.2vw, 56px);
+		line-height: 1.06;
+		text-wrap: balance;
+	}
+
+	.about-text {
+		margin: 0 0 20px;
+		font-size: 17px;
+		line-height: 1.85;
+		font-weight: 300;
+		color: var(--color-text-muted);
+		max-width: 56ch;
+		text-wrap: pretty;
+	}
+
+	.motto {
+		position: relative;
+		display: inline-block;
+		font-family: var(--font-display);
+		font-style: italic;
+		font-size: 22px;
+		line-height: 1;
+		color: #7d5f3e;
+		white-space: nowrap;
+	}
+
+	.motto-line {
+		position: absolute;
+		left: 0;
+		right: 0;
+		bottom: -3px;
+		height: 2px;
+		background: var(--color-gold-light);
+		border-radius: 2px;
+		transform: scaleX(0);
+		transform-origin: left;
+	}
+
+	.btn-bordered {
+		padding: 15px 28px;
+		border: 1px solid var(--color-border-soft);
+		font-size: 14.5px;
+		margin-top: 14px;
+		transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+	}
+
+	.btn-bordered:hover {
+		background: var(--color-text);
+		color: var(--color-bg);
+		border-color: var(--color-text);
+	}
+
+	@media (max-width: 780px) {
+		.about {
+			grid-template-columns: 1fr;
+		}
+	}
+</style>
