@@ -1,0 +1,185 @@
+---
+const faqs = [
+	{
+		q: 'Wat kost een ceremonie?',
+		a: '€ 825, inclusief alle gesprekken en de geschreven speech. Een Duitstalige ceremonie kost € 125 extra. Reis- en eventuele gemeentekosten komen daar nog bij.',
+	},
+	{
+		q: 'Kunnen we je meenemen naar onze eigen gemeente?',
+		a: "Ja. Bijna alle Nederlandse gemeenten kennen de regeling 'BABS voor één dag'. Ik regel de beëdiging; naast de gemeentelijke leges ontvangen jullie ook mijn factuur.",
+	},
+	{
+		q: 'In welke talen spreek je?',
+		a: 'Nederlands, Duits en Engels. Een tweetalige ceremonie kan ook — veel paren kiezen daarvoor als de familie uit twee landen komt.',
+	},
+	{
+		q: 'Hoe ver van tevoren moeten we boeken?',
+		a: 'Zes tot twaalf maanden is gebruikelijk, maar vraag altijd. Soms is er ruimte over drie weken.',
+	},
+	{
+		q: 'En als het regent?',
+		a: 'Dan is er een plan B, dat we ruim van tevoren samen bedenken. Texels weer is geen verrassing voor mij.',
+	},
+];
+---
+
+<div class="faq-outer">
+	<div class="faq-panel">
+		<div>
+			<h2 class="section-title faq-title" data-reveal>Veelgestelde vragen</h2>
+			<p class="faq-intro" data-reveal>
+				Staat jullie vraag er niet bij? Bel gerust: <a href="tel:0643233505" class="faq-phone">06-43233505</a>
+			</p>
+		</div>
+		<div class="faq-list">
+			{
+				faqs.map((item, i) => (
+					<div class="faq-item" class:list={{ 'faq-item-open': i === 0 }} data-faq={i} data-reveal>
+						<div class="faq-q" data-faq-q={i}>
+							<h4>{item.q}</h4>
+							<span class="faq-icon" data-faq-icon={i}>
+								<span class="faq-icon-bar" />
+								<span class="faq-icon-bar faq-icon-bar-v" data-faq-bar={i} />
+							</span>
+						</div>
+						<div class="faq-a" data-faq-a={i}>
+							<p>{item.a}</p>
+						</div>
+					</div>
+				))
+			}
+		</div>
+	</div>
+</div>
+
+<style>
+	.faq-outer {
+		padding: 0 14px;
+	}
+
+	.faq-panel {
+		border-radius: 44px;
+		background: var(--color-panel);
+		padding: clamp(56px, 6vw, 96px) clamp(28px, 4vw, 60px);
+		display: grid;
+		grid-template-columns: 0.8fr 1.2fr;
+		gap: clamp(36px, 5vw, 80px);
+	}
+
+	.faq-title {
+		margin: 0 0 18px;
+		font-size: clamp(34px, 3.8vw, 50px);
+		line-height: 1.05;
+	}
+
+	.faq-intro {
+		margin: 0;
+		font-size: 15.5px;
+		line-height: 1.8;
+		font-weight: 300;
+		color: var(--color-text-muted);
+	}
+
+	.faq-phone {
+		border-bottom: 1px solid var(--color-gold);
+	}
+
+	.faq-list {
+		display: flex;
+		flex-direction: column;
+		gap: 10px;
+	}
+
+	.faq-item {
+		border-radius: 26px;
+		background: var(--color-panel-2);
+		border: 1px solid transparent;
+		overflow: hidden;
+		transition: border-color 0.35s ease;
+	}
+
+	.faq-item-open {
+		border-color: var(--color-border-strong);
+	}
+
+	.faq-q {
+		display: grid;
+		grid-template-columns: 1fr 34px;
+		gap: 20px;
+		align-items: center;
+		padding: 24px 28px;
+		cursor: pointer;
+		user-select: none;
+	}
+
+	.faq-q h4 {
+		margin: 0;
+		font-size: 18px;
+		font-weight: 500;
+		letter-spacing: 0.01em;
+		text-wrap: pretty;
+	}
+
+	.faq-icon {
+		position: relative;
+		width: 30px;
+		height: 30px;
+		border-radius: 50%;
+		border: 1px solid var(--color-border-soft);
+		display: block;
+		transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.35s ease, background 0.35s ease;
+	}
+
+	.faq-item-open .faq-icon {
+		transform: rotate(180deg);
+		background: #f0e8da;
+		border-color: var(--color-border-strong);
+	}
+
+	.faq-icon-bar {
+		position: absolute;
+		left: 50%;
+		top: 50%;
+		width: 11px;
+		height: 1.5px;
+		background: var(--color-text-muted);
+		transform: translate(-50%, -50%);
+	}
+
+	.faq-icon-bar-v {
+		width: 1.5px;
+		height: 11px;
+		transition: opacity 0.3s ease;
+	}
+
+	.faq-item-open .faq-icon-bar-v {
+		opacity: 0;
+	}
+
+	.faq-a {
+		overflow: hidden;
+		height: 0;
+		transition: height 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+	}
+
+	.faq-item-open .faq-a {
+		height: auto;
+	}
+
+	.faq-a p {
+		margin: 0;
+		padding: 0 28px 26px;
+		font-size: 15.5px;
+		line-height: 1.8;
+		font-weight: 300;
+		color: var(--color-text-muted);
+		max-width: 60ch;
+		text-wrap: pretty;
+	}
+
+	@media (max-width: 780px) {
+		.faq-panel {
+			grid-template-columns: 1fr;
+		}
+	}
+</style>
