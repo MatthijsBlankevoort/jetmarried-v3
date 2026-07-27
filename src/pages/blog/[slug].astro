@@ -1,0 +1,95 @@
+---
+import { getCollection, render } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Photo from '../../components/Photo.astro';
+
+export async function getStaticPaths() {
+	const posts = await getCollection('posts');
+	return posts.map((post) => ({
+		params: { slug: post.id },
+		props: { post },
+	}));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+
+const dateLabel = post.data.date.toLocaleDateString('nl-NL', { day: 'numeric', month: 'long', year: 'numeric' });
+---
+
+<Layout title={`${post.data.title} — Jetmarried`} description={post.data.excerpt}>
+	<Header />
+	<main>
+		<article class="post">
+			<div class="post-head">
+				<div class="eyebrow" data-reveal>{dateLabel}</div>
+				<h1 class="section-title post-title" data-reveal>{post.data.title}</h1>
+			</div>
+			<Photo src={post.data.cover} alt={post.data.title} label={post.data.coverLabel} class="post-cover" />
+			<div class="post-body" data-reveal>
+				<Content />
+			</div>
+			<a href="/blog/" class="btn btn-bordered post-back">← Alle verhalen</a>
+		</article>
+	</main>
+</Layout>
+
+<style>
+	.post {
+		max-width: 780px;
+		margin: 0 auto;
+		padding: clamp(140px, 14vw, 180px) clamp(24px, 4vw, 60px) clamp(60px, 7vw, 110px);
+	}
+
+	.post-head {
+		margin-bottom: 32px;
+	}
+
+	.post-title {
+		margin: 0;
+		font-size: clamp(34px, 4vw, 50px);
+		line-height: 1.08;
+	}
+
+	.post :global(.post-cover) {
+		aspect-ratio: 16 / 9;
+		border-radius: 30px;
+		padding: 20px;
+		margin-bottom: 40px;
+	}
+
+	.post-body {
+		font-size: 17px;
+		line-height: 1.85;
+		font-weight: 300;
+		color: var(--color-text-muted);
+	}
+
+	.post-body :global(h2) {
+		font-family: var(--font-display);
+		font-weight: 400;
+		font-size: 30px;
+		color: var(--color-text);
+		margin: 40px 0 16px;
+	}
+
+	.post-body :global(p) {
+		margin: 0 0 20px;
+		text-wrap: pretty;
+	}
+
+	.post-body :global(ul) {
+		margin: 0 0 20px;
+		padding-left: 20px;
+	}
+
+	.post-body :global(li) {
+		margin-bottom: 8px;
+	}
+
+	.post-back {
+		display: inline-block;
+		margin-top: 44px;
+	}
+</style>

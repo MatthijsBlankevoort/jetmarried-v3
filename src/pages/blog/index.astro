@@ -1,0 +1,56 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import BlogCard from '../../components/BlogCard.astro';
+
+const posts = (await getCollection('posts')).sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+---
+
+<Layout title="Blog — Jetmarried">
+	<Header />
+	<main>
+		<div class="blog-index">
+			<div class="eyebrow" data-reveal>Blog</div>
+			<h1 class="section-title" data-reveal>Verhalen van Jetmarried</h1>
+			<div class="blog-index-grid">
+				{
+					posts.map((post) => (
+						<div data-reveal>
+							<BlogCard
+								slug={post.id}
+								title={post.data.title}
+								excerpt={post.data.excerpt}
+								date={post.data.date}
+								cover={post.data.cover}
+								coverLabel={post.data.coverLabel}
+							/>
+						</div>
+					))
+				}
+			</div>
+		</div>
+	</main>
+</Layout>
+
+<style>
+	.blog-index {
+		padding: clamp(140px, 14vw, 180px) clamp(24px, 4vw, 60px) clamp(60px, 7vw, 110px);
+	}
+
+	.blog-index h1 {
+		margin: 0 0 44px;
+	}
+
+	.blog-index-grid {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 24px;
+	}
+
+	@media (max-width: 900px) {
+		.blog-index-grid {
+			grid-template-columns: 1fr;
+		}
+	}
+</style>
