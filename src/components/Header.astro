@@ -1,0 +1,166 @@
+---
+const navLinks = [
+	{ href: '#over', label: 'Over Mariëtte' },
+	{ href: '#ceremonies', label: 'Ceremonies' },
+	{ href: '#werkwijze', label: 'Zo werkt het' },
+	{ href: '#verhalen', label: 'Verhalen' },
+	{ href: '#blog', label: 'Blog' },
+];
+---
+
+<div class="header-wrap" data-header>
+	<div class="header-pill">
+		<div class="header-sheen"></div>
+
+		<a href="#top" class="header-logo">
+			<img src="https://www.jetmarried.nl/jetmarried_400x400.png" alt="Jet married" />
+		</a>
+
+		<nav class="header-nav">
+			{navLinks.map((link) => <a href={link.href}>{link.label}</a>)}
+		</nav>
+
+		<div class="header-actions">
+			<div class="lang-switch">
+				<span class="lang-active">NL</span>
+				<a href="#top">DE</a>
+				<a href="#top">EN</a>
+			</div>
+			<a href="#contact" class="header-cta">Ja, ik wil</a>
+		</div>
+	</div>
+</div>
+
+<style>
+	.header-wrap {
+		position: fixed;
+		top: 18px;
+		left: 50%;
+		transform: translateX(-50%);
+		z-index: 90;
+		width: min(1240px, calc(100% - 36px));
+	}
+
+	.header-pill {
+		position: relative;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 22px;
+		padding: 11px 11px 11px 26px;
+		border-radius: 100px;
+		background: rgba(250, 248, 244, 0.55);
+		backdrop-filter: blur(22px) saturate(190%);
+		-webkit-backdrop-filter: blur(22px) saturate(190%);
+		border: 1px solid rgba(255, 255, 255, 0.7);
+		overflow: hidden;
+	}
+
+	.header-sheen {
+		position: absolute;
+		inset: 0;
+		border-radius: 100px;
+		pointer-events: none;
+		background: linear-gradient(
+			122deg,
+			rgba(255, 255, 255, 0.85) 0%,
+			rgba(255, 255, 255, 0.12) 26%,
+			rgba(255, 255, 255, 0) 48%,
+			rgba(255, 255, 255, 0.22) 72%,
+			rgba(255, 255, 255, 0.6) 100%
+		);
+		mix-blend-mode: screen;
+	}
+
+	.header-logo {
+		position: relative;
+		display: flex;
+		align-items: center;
+		gap: 10px;
+		white-space: nowrap;
+	}
+
+	.header-logo img {
+		height: 34px;
+		width: auto;
+		display: block;
+		border-radius: 8px;
+	}
+
+	.header-nav {
+		position: relative;
+		display: flex;
+		align-items: center;
+		gap: 4px;
+		font-size: 14px;
+		font-weight: 400;
+	}
+
+	.header-nav a {
+		padding: 9px 15px;
+		border-radius: 100px;
+		transition: background 0.3s ease, color 0.3s ease;
+	}
+
+	.header-nav a:hover {
+		background: rgba(255, 255, 255, 0.75);
+		color: var(--color-text);
+	}
+
+	.header-actions {
+		position: relative;
+		display: flex;
+		align-items: center;
+		gap: 12px;
+	}
+
+	.lang-switch {
+		display: flex;
+		gap: 2px;
+		padding: 3px;
+		border-radius: 100px;
+		background: rgba(255, 255, 255, 0.5);
+		border: 1px solid rgba(255, 255, 255, 0.7);
+		font-size: 12px;
+		letter-spacing: 0.06em;
+	}
+
+	.lang-switch a,
+	.lang-active {
+		padding: 5px 10px;
+		border-radius: 100px;
+		display: inline-block;
+	}
+
+	.lang-active {
+		background: #fff;
+		color: var(--color-text);
+	}
+
+	.lang-switch a {
+		color: #8d857a;
+	}
+
+	.header-cta {
+		display: inline-block;
+		padding: 12px 24px;
+		border-radius: 100px;
+		background: var(--color-text);
+		color: var(--color-bg);
+		font-size: 13.5px;
+		letter-spacing: 0.04em;
+		white-space: nowrap;
+		transition: background 0.3s ease, color 0.3s ease;
+	}
+
+	.header-cta:hover {
+		background: var(--color-gold);
+		color: #fff;
+	}
+
+	@media (max-width: 860px) {
+		.header-nav {
+			display: none;
+		}
+	}
+</style>
