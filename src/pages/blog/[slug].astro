@@ -2,6 +2,7 @@
 import { getCollection, render } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
 import Photo from '../../components/Photo.astro';
 
 export async function getStaticPaths() {
@@ -33,6 +34,7 @@ const dateLabel = post.data.date.toLocaleDateString('nl-NL', { day: 'numeric', m
 			<a href="/blog/" class="btn btn-bordered post-back">← Alle verhalen</a>
 		</article>
 	</main>
+	<Footer />
 </Layout>
 
 <style>
