@@ -1,62 +1,28 @@
 ---
 import CeremonyCard from './CeremonyCard.astro';
 
-const ceremonies = [
-	{
-		id: 'wettelijk',
-		title: 'Wettelijk huwelijk',
-		imageLabel: 'FOTO — tekenmoment, staand',
-		description: 'Beëdigd als BABS bij gemeente Den Helder — en mee te nemen naar bijna elke andere gemeente.',
-		bullets: [
-			'Wettelijk geldig, met twee tot vier getuigen',
-			"'BABS voor één dag': ik regel de beëdiging",
-			'Trouwboekje via jullie eigen gemeente',
-		],
-	},
-	{
-		id: 'ceremonieel',
-		title: 'Ceremoniespreker',
-		imageLabel: 'FOTO — ceremonie buiten, staand',
-		description: 'Geen regels, geen tijdslot, geen zaal. Op de plek en het moment dat bij jullie past.',
-		bullets: [
-			'Vrije locatie, vrije dag, vrij tijdstip',
-			'Ceremonie op maat van 20 tot 40 minuten',
-			'Rituelen: zand, kaars of handfasting',
-		],
-	},
-	{
-		id: 'herbevestiging',
-		title: 'Herbevestiging',
-		imageLabel: 'FOTO — ouder paar, staand',
-		description: 'Lang geleden getrouwd, veel meegemaakt, nog steeds samen. Zeg het nog een keer hardop.',
-		bullets: [
-			'Mooi bij een jubileum of nieuw hoofdstuk',
-			'Kinderen en kleinkinderen doen mee',
-			'Dezelfde zorg als een eerste ceremonie',
-		],
-	},
-	{
-		id: 'verbintenis',
-		title: 'Verbintenis zonder papieren',
-		imageLabel: 'FOTO — intiem detail, staand',
-		description: 'Een belofte aan elkaar, zonder juridische gevolgen — volledig naar eigen invulling.',
-		bullets: [
-			'Voor partners, vrienden of gekozen familie',
-			'Geen gang naar de gemeente nodig',
-			'Even persoonlijk voorbereid als de rest',
-		],
-	},
-];
+interface Ceremony {
+	id: string;
+	title: string;
+	imageLabel: string;
+	image?: string;
+	description: string;
+	bullets: string[];
+}
+
+interface Props {
+	intro: { title: string; text: string };
+	ceremonies: Ceremony[];
+}
+
+const { intro, ceremonies } = Astro.props;
 ---
 
 <div id="ceremonies" class="ceremonies-outer">
 	<div class="ceremonies-panel">
 		<div class="ceremonies-head">
-			<h2 class="section-title" data-reveal>Vier manieren om ja te zeggen</h2>
-			<p class="ceremonies-intro" data-reveal>
-				Van een wettelijk huwelijk tot een ceremonie zonder regels — of allebei, op één dag. Alle vier in het
-				Nederlands, Duits of Engels.
-			</p>
+			<h2 class="section-title" data-reveal>{intro.title}</h2>
+			<p class="ceremonies-intro" data-reveal>{intro.text}</p>
 		</div>
 		<div class="ceremonies-list">
 			{ceremonies.map((c, i) => <CeremonyCard {...c} flip={i % 2 === 1} />)}

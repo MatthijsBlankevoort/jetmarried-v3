@@ -1,38 +1,22 @@
 ---
-const testimonials = [
-	{
-		quote: 'Jij hebt ons verhaal heel mooi verteld. Het was fijn en veilig om alles met jou te delen.',
-		author: 'Marcel & Nicole · mei 2025',
-	},
-	{
-		quote:
-			'Die Zeremonie war wunderschön, persönlich, emotional und dennoch lustig. Schöner, als wir es uns vorgestellt haben.',
-		author: 'Sophie & Leon · Mai 2025',
-	},
-	{
-		quote: 'Thank you Jet for the amazing ceremony. It was really so nice — everyone gave so many compliments.',
-		author: 'Yoni & Carine · Zweden, juni 2024',
-	},
-	{
-		quote: 'Een perfecte mix van emotie en vrolijkheid. Je merkt meteen dat je van je vak houdt.',
-		author: 'Carina & Felix · september 2025',
-		highlight: true,
-	},
-	{
-		quote: 'Empathisch, liefdevol, welbespraakt en gepassioneerd. Ik raad Mariëtte aan als BABS én als spreker.',
-		author: 'We Love Texel · oktober 2022',
-	},
-	{
-		quote: 'Het was echt een prachtige ceremonie. Ik heb zelf ook wel een traantje gelaten.',
-		author: 'Sophie Brugemann, fotograaf · juli 2024',
-	},
-];
+interface Testimonial {
+	quote: string;
+	author: string;
+	highlight?: boolean;
+}
+
+interface Props {
+	testimonials: Testimonial[];
+	linkLabel: string;
+}
+
+const { testimonials, linkLabel } = Astro.props;
 ---
 
 <div id="verhalen" class="testimonials">
 	<div class="testimonials-head">
 		<h2 class="section-title" data-reveal>Wat bruidsparen zeggen</h2>
-		<a href="#contact" class="btn btn-bordered" data-reveal>Alle 13 reacties</a>
+		<a href="#contact" class="btn btn-bordered" data-reveal>{linkLabel}</a>
 	</div>
 
 	<div class="testimonials-viewport" data-rev-view>

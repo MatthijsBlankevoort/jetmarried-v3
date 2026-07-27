@@ -1,26 +1,16 @@
 ---
-const faqs = [
-	{
-		q: 'Wat kost een ceremonie?',
-		a: '€ 825, inclusief alle gesprekken en de geschreven speech. Een Duitstalige ceremonie kost € 125 extra. Reis- en eventuele gemeentekosten komen daar nog bij.',
-	},
-	{
-		q: 'Kunnen we je meenemen naar onze eigen gemeente?',
-		a: "Ja. Bijna alle Nederlandse gemeenten kennen de regeling 'BABS voor één dag'. Ik regel de beëdiging; naast de gemeentelijke leges ontvangen jullie ook mijn factuur.",
-	},
-	{
-		q: 'In welke talen spreek je?',
-		a: 'Nederlands, Duits en Engels. Een tweetalige ceremonie kan ook — veel paren kiezen daarvoor als de familie uit twee landen komt.',
-	},
-	{
-		q: 'Hoe ver van tevoren moeten we boeken?',
-		a: 'Zes tot twaalf maanden is gebruikelijk, maar vraag altijd. Soms is er ruimte over drie weken.',
-	},
-	{
-		q: 'En als het regent?',
-		a: 'Dan is er een plan B, dat we ruim van tevoren samen bedenken. Texels weer is geen verrassing voor mij.',
-	},
-];
+interface FaqItem {
+	q: string;
+	a: string;
+}
+
+interface Props {
+	faqs: FaqItem[];
+	phone: string;
+	phoneHref: string;
+}
+
+const { faqs, phone, phoneHref } = Astro.props;
 ---
 
 <div class="faq-outer">
@@ -28,7 +18,7 @@ const faqs = [
 		<div>
 			<h2 class="section-title faq-title" data-reveal>Veelgestelde vragen</h2>
 			<p class="faq-intro" data-reveal>
-				Staat jullie vraag er niet bij? Bel gerust: <a href="tel:0643233505" class="faq-phone">06-43233505</a>
+				Staat jullie vraag er niet bij? Bel gerust: <a href={`tel:${phoneHref}`} class="faq-phone">{phone}</a>
 			</p>
 		</div>
 		<div class="faq-list">

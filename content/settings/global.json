@@ -1,0 +1,22 @@
+{
+	"logoUrl": "https://www.jetmarried.nl/jetmarried_400x400.png",
+	"headerCta": "Ja, ik wil",
+	"nav": [
+		{ "label": "Over Mariëtte", "href": "#over" },
+		{ "label": "Ceremonies", "href": "#ceremonies" },
+		{ "label": "Zo werkt het", "href": "#werkwijze" },
+		{ "label": "Verhalen", "href": "#verhalen" },
+		{ "label": "Blog", "href": "#blog" }
+	],
+	"contactName": "Mariëtte Boot",
+	"phone": "06 43 23 35 05",
+	"phoneHref": "0643233505",
+	"email": "trouwen@jetmarried.nl",
+	"kvk": "70404488",
+	"priceNote": "Een ceremonie kost € 825. Duitstalig € 125 extra. Exclusief eventuele bijkomende kosten.",
+	"footerSocials": [
+		{ "label": "Facebook", "href": "#top" },
+		{ "label": "Instagram", "href": "#top" },
+		{ "label": "Privacyverklaring", "href": "#top" }
+	]
+}

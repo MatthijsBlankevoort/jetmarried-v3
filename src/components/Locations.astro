@@ -1,26 +1,26 @@
 ---
 import Photo from './Photo.astro';
 
-const locations = [
-	{ name: 'De Slufter', imageLabel: 'FOTO — De Slufter, weids duinlandschap' },
-	{ name: 'Strandpaviljoen bij zonsondergang', imageLabel: 'FOTO — strandpaviljoen, laag zonlicht' },
-	{ name: 'Vuurtoren De Cocksdorp', imageLabel: 'FOTO — rode vuurtoren, De Cocksdorp' },
-	{ name: 'Dennenbos bij De Koog', imageLabel: 'FOTO — dennenbos, zacht licht tussen de stammen' },
-	{ name: 'Schapenboet in de polder', imageLabel: 'FOTO — schapenboet, Texelse polder' },
-	{ name: 'Aan boord, op het wad', imageLabel: 'FOTO — zeilschip op het wad' },
-	{ name: 'Gewoon in jullie eigen tuin', imageLabel: 'FOTO — tuinceremonie, gedekte tafels' },
-];
+interface Location {
+	name: string;
+	imageLabel: string;
+	image?: string;
+}
+
+interface Props {
+	intro: { title: string; text: string };
+	locations: Location[];
+}
+
+const { intro, locations } = Astro.props;
 ---
 
 <div class="locations-outer">
 	<div class="locations-panel">
 		<div class="locations-copy">
 			<div class="eyebrow" data-reveal>Locaties</div>
-			<h2 class="section-title" data-reveal>Plekken op Texel die ik zelf aanraad</h2>
-			<p class="locations-intro" data-reveal>
-				Ik ken het eiland en de mensen die er werken. Vertel me wat voor gevoel jullie zoeken, dan denk ik
-				mee.
-			</p>
+			<h2 class="section-title" data-reveal>{intro.title}</h2>
+			<p class="locations-intro" data-reveal>{intro.text}</p>
 			<div class="locations-chips" data-reveal>
 				{
 					locations.map((loc, i) => (
@@ -36,7 +36,7 @@ const locations = [
 				{
 					locations.map((loc, i) => (
 						<div class="loc-img" class:list={{ 'loc-img-active': i === 0 }} data-locimg={i}>
-							<Photo label={loc.imageLabel} class="loc-photo" />
+							<Photo src={loc.image} alt={loc.name} label={loc.imageLabel} class="loc-photo" />
 							<div class="loc-caption-wrap">
 								<span class="loc-caption">{loc.name}</span>
 							</div>

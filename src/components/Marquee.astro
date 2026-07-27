@@ -1,5 +1,10 @@
 ---
-const text = 'Ja, ik wil · Ich will · I do · Ja, ik wil · Ich will · I do · Ja, ik wil · Ich will · I do ·';
+interface Props {
+	text: string;
+}
+
+const { text: base } = Astro.props;
+const text = `${base} · ${base} · ${base} ·`;
 ---
 
 <div class="marquee-outer">

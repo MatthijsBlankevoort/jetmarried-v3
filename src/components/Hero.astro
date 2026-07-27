@@ -2,10 +2,14 @@
 import Photo from './Photo.astro';
 
 interface Props {
+	titleLine1: string;
+	titleLine2: string;
+	text: string;
 	image?: string | null;
 }
 
-const { image } = Astro.props;
+const { titleLine1, titleLine2, text, image } = Astro.props;
+const [line2First, ...line2Rest] = titleLine2.split(' ');
 ---
 
 <div id="top" class="hero-outer">
@@ -15,14 +19,11 @@ const { image } = Astro.props;
 
 		<div class="hero-content">
 			<h1 class="hero-title">
-				<span data-hero>De mooiste</span>
-				<span data-hero><em>ja</em> van jullie leven</span>
+				<span data-hero>{titleLine1}</span>
+				<span data-hero><em>{line2First}</em> {line2Rest.join(' ')}</span>
 			</h1>
 			<div class="hero-bottom-row">
-				<p class="hero-text" data-hero>
-					Een ceremonie moet passen als een warme jas. Ik luister, schrijf jullie verhaal op en spreek het
-					uit alsof ik erbij was.
-				</p>
+				<p class="hero-text" data-hero>{text}</p>
 				<div class="hero-buttons" data-hero>
 					<a href="#contact" class="btn btn-light">Ja, ik wil kennismaken</a>
 					<a href="#ceremonies" class="btn btn-outline">Bekijk de ceremonies</a>

@@ -1,23 +1,30 @@
 ---
+interface Props {
+	titleLine1: string;
+	titleLine2: string;
+	text: string;
+	contactName: string;
+	phone: string;
+	phoneHref: string;
+	email: string;
+	priceNote: string;
+}
+
+const { titleLine1, titleLine2, text, contactName, phone, phoneHref, email, priceNote } = Astro.props;
 ---
 
 <div id="contact" class="contact-outer">
 	<div class="contact-panel">
 		<div>
 			<div class="contact-eyebrow" data-reveal>Contact</div>
-			<h2 class="contact-title" data-reveal>Zullen we<br />kennismaken?</h2>
-			<p class="contact-text" data-reveal>
-				Laat je datum en een paar woorden achter. Ik reageer meestal binnen een dag en maak een vrijblijvende
-				offerte.
-			</p>
+			<h2 class="contact-title" data-reveal>{titleLine1}<br />{titleLine2}</h2>
+			<p class="contact-text" data-reveal>{text}</p>
 			<div class="contact-details" data-reveal>
-				<div>Mariëtte Boot</div>
-				<a href="tel:0643233505">06 43 23 35 05</a>
-				<a href="mailto:trouwen@jetmarried.nl">trouwen@jetmarried.nl</a>
+				<div>{contactName}</div>
+				<a href={`tel:${phoneHref}`}>{phone}</a>
+				<a href={`mailto:${email}`}>{email}</a>
 			</div>
-			<div class="contact-price" data-reveal>
-				Een ceremonie kost € 825. Duitstalig € 125 extra. Exclusief eventuele bijkomende kosten.
-			</div>
+			<div class="contact-price" data-reveal>{priceNote}</div>
 		</div>
 		<form class="contact-form" data-reveal>
 			<label class="form-field">

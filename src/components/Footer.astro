@@ -1,14 +1,19 @@
 ---
+interface Props {
+	contactName: string;
+	kvk: string;
+	socials: { label: string; href: string }[];
+}
+
+const { contactName, kvk, socials } = Astro.props;
 const currentYear = new Date().getFullYear();
 ---
 
 <footer class="site-footer">
 	<span class="footer-logo">Jet<em>married</em></span>
-	<span>© {currentYear} Mariëtte Boot · KVK 70404488</span>
+	<span>© {currentYear} {contactName} · KVK {kvk}</span>
 	<span class="footer-links">
-		<a href="#top">Facebook</a>
-		<a href="#top">Instagram</a>
-		<a href="#top">Privacyverklaring</a>
+		{socials.map((s) => <a href={s.href}>{s.label}</a>)}
 	</span>
 </footer>
 

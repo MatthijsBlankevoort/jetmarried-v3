@@ -1,11 +1,11 @@
 ---
-const navLinks = [
-	{ href: '#over', label: 'Over Mariëtte' },
-	{ href: '#ceremonies', label: 'Ceremonies' },
-	{ href: '#werkwijze', label: 'Zo werkt het' },
-	{ href: '#verhalen', label: 'Verhalen' },
-	{ href: '#blog', label: 'Blog' },
-];
+interface Props {
+	nav: { label: string; href: string }[];
+	logoUrl: string;
+	headerCta: string;
+}
+
+const { nav, logoUrl, headerCta } = Astro.props;
 ---
 
 <div class="header-wrap" data-header>
@@ -13,11 +13,11 @@ const navLinks = [
 		<div class="header-sheen"></div>
 
 		<a href="#top" class="header-logo">
-			<img src="https://www.jetmarried.nl/jetmarried_400x400.png" alt="Jet married" />
+			<img src={logoUrl} alt="Jet married" />
 		</a>
 
 		<nav class="header-nav">
-			{navLinks.map((link) => <a href={link.href}>{link.label}</a>)}
+			{nav.map((link) => <a href={link.href}>{link.label}</a>)}
 		</nav>
 
 		<div class="header-actions">
@@ -26,7 +26,7 @@ const navLinks = [
 				<a href="#top">DE</a>
 				<a href="#top">EN</a>
 			</div>
-			<a href="#contact" class="header-cta">Ja, ik wil</a>
+			<a href="#contact" class="header-cta">{headerCta}</a>
 		</div>
 	</div>
 </div>

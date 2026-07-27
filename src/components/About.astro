@@ -2,10 +2,17 @@
 import Photo from './Photo.astro';
 
 interface Props {
+	eyebrow: string;
+	titleLine1: string;
+	titleLine2: string;
+	paragraph1Before: string;
+	motto: string;
+	paragraph1After: string;
+	paragraph2: string;
 	image?: string | null;
 }
 
-const { image } = Astro.props;
+const { eyebrow, titleLine1, titleLine2, paragraph1Before, motto, paragraph1After, paragraph2, image } = Astro.props;
 ---
 
 <div id="over" class="about">
@@ -13,18 +20,13 @@ const { image } = Astro.props;
 		<Photo src={image} alt="Portret Mariëtte" label={'FOTO — portret Mariëtte,\nbuiten, natuurlijk licht'} class="about-photo" />
 	</div>
 	<div>
-		<div class="eyebrow" data-reveal>Over Mariëtte</div>
-		<h2 class="about-title" data-reveal>Ik ben Mariëtte.<br />En ik hou van dit moment.</h2>
+		<div class="eyebrow" data-reveal>{eyebrow}</div>
+		<h2 class="about-title" data-reveal>{titleLine1}<br />{titleLine2}</h2>
 		<p class="about-text" data-reveal>
-			Vijfentwintig jaar getrouwd met Ron, moeder van Matthijs, Jesse en Nino, en Texelaar in hart en nieren.
-			Mijn lijfspreuk is <span class="motto" data-motto><span class="motto-line" data-motto-line></span>geniet
-				vandaag</span> — en daar begint eigenlijk alles mee.
+			{paragraph1Before} <span class="motto" data-motto><span class="motto-line" data-motto-line></span
+				>{motto}</span> {paragraph1After}
 		</p>
-		<p class="about-text" data-reveal>
-			In onze gesprekken leren we elkaar echt kennen. Alles wat ik hoor verbind ik met een stukje van mijn
-			eigen creativiteit. Zo ontstaat een speech die niemand anders had kunnen schrijven, omdat hij alleen over
-			jullie gaat.
-		</p>
+		<p class="about-text" data-reveal>{paragraph2}</p>
 		<a href="#blog" class="btn btn-bordered" data-reveal>Lees mijn verhaal</a>
 	</div>
 </div>

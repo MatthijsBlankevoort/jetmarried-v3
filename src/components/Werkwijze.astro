@@ -1,62 +1,53 @@
 ---
-const steps = [
-	{
-		number: '01',
-		title: 'Kennismaken',
-		text: 'Vrijblijvend, bij mij thuis of via videobellen. We praten over jullie, niet over pakketten. Klikt het? Dan pas gaan we het over data hebben.',
-		tag: 'Kop koffie, geen verplichtingen',
-	},
-	{
-		number: '02',
-		title: 'Jullie verhaal',
-		text: 'Twee gesprekken waarin ik alles hoor. Ook de dingen die jullie zelf niet bijzonder vinden — juist die maken de speech persoonlijk.',
-		tag: 'Twee gesprekken',
-	},
-	{
-		number: '03',
-		title: 'De speech',
-		text: 'Ik schrijf, jullie lezen mee en sturen bij. Verrassingen bewaren we voor de dag zelf, de rest is precies zoals jullie het willen.',
-		tag: 'Ruim voor de dag klaar',
-	},
-	{
-		number: '04',
-		title: 'De dag zelf',
-		text: 'Ik ben ruim op tijd, stem af met jullie fotograaf en locatie, en dan is het zover. Jullie hoeven alleen nog ja te zeggen.',
-		tag: 'En dan zeggen jullie ja',
-		active: true,
-	},
-];
+interface Step {
+	number: string;
+	title: string;
+	text: string;
+	tag: string;
+}
+
+interface Props {
+	title: string;
+	steps: Step[];
+}
+
+const { title, steps } = Astro.props;
 ---
 
 <div id="werkwijze" class="werkwijze">
 	<div class="eyebrow" data-reveal>Zo werkt het</div>
-	<h2 class="section-title werkwijze-title" data-reveal>Van eerste kop koffie tot het ja-woord</h2>
+	<h2 class="section-title werkwijze-title" data-reveal>{title}</h2>
 
 	<div class="steps">
 		<div class="steps-line"></div>
 		<div class="steps-line steps-line-active" data-step-bar></div>
 
 		{
-			steps.map((step) => (
-				<div class="step" data-step>
-					<div class="step-dot-col">
-						<span class="step-dot" class:list={{ 'step-dot-active': step.active }} data-step-dot />
-					</div>
-					<div class="step-card" class:list={{ 'step-card-active': step.active }} data-step-card>
-						<div>
-							<div class="step-number" class:list={{ 'step-number-active': step.active }}>{step.number}</div>
-							<h4 class="step-title">{step.title}</h4>
+			steps.map((step, i) => {
+				const active = i === steps.length - 1;
+				return (
+					<div class="step" data-step>
+						<div class="step-dot-col">
+							<span class="step-dot" class:list={{ 'step-dot-active': active }} data-step-dot />
 						</div>
-						<div>
-							<p class="step-text">{step.text}</p>
-							<div class="step-tag">
-								<span class="step-tag-dash" />
-								{step.tag}
+						<div class="step-card" class:list={{ 'step-card-active': active }} data-step-card>
+							<div>
+								<div class="step-number" class:list={{ 'step-number-active': active }}>
+									{step.number}
+								</div>
+								<h4 class="step-title">{step.title}</h4>
+							</div>
+							<div>
+								<p class="step-text">{step.text}</p>
+								<div class="step-tag">
+									<span class="step-tag-dash" />
+									{step.tag}
+								</div>
 							</div>
 						</div>
 					</div>
-				</div>
-			))
+				);
+			})
 		}
 	</div>
 </div>

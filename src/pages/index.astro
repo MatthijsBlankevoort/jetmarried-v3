@@ -1,4 +1,5 @@
 ---
+import { getEntry } from 'astro:content';
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import Hero from '../components/Hero.astro';
@@ -12,21 +13,42 @@ import Faq from '../components/Faq.astro';
 import BlogTeasers from '../components/BlogTeasers.astro';
 import Contact from '../components/Contact.astro';
 import Footer from '../components/Footer.astro';
+
+const settings = (await getEntry('settings', 'global'))!.data;
+const home = (await getEntry('home', 'index'))!.data;
 ---
 
 <Layout>
-	<Header />
+	<Header nav={settings.nav} logoUrl={settings.logoUrl} headerCta={settings.headerCta} />
 	<main>
-		<Hero />
-		<Marquee />
-		<About />
-		<Ceremonies />
-		<Werkwijze />
-		<Locations />
-		<Testimonials />
-		<Faq />
+		<Hero titleLine1={home.hero.titleLine1} titleLine2={home.hero.titleLine2} text={home.hero.text} image={home.hero.image} />
+		<Marquee text={home.marqueeText} />
+		<About
+			eyebrow={home.about.eyebrow}
+			titleLine1={home.about.titleLine1}
+			titleLine2={home.about.titleLine2}
+			paragraph1Before={home.about.paragraph1Before}
+			motto={home.about.motto}
+			paragraph1After={home.about.paragraph1After}
+			paragraph2={home.about.paragraph2}
+			image={home.about.image}
+		/>
+		<Ceremonies intro={home.ceremoniesIntro} ceremonies={home.ceremonies} />
+		<Werkwijze title={home.werkwijze.title} steps={home.werkwijze.steps} />
+		<Locations intro={home.locationsIntro} locations={home.locations} />
+		<Testimonials testimonials={home.testimonials} linkLabel={home.testimonialsLinkLabel} />
+		<Faq faqs={home.faq} phone={settings.phone} phoneHref={settings.phoneHref} />
 		<BlogTeasers />
-		<Contact />
+		<Contact
+			titleLine1={home.contact.titleLine1}
+			titleLine2={home.contact.titleLine2}
+			text={home.contact.text}
+			contactName={settings.contactName}
+			phone={settings.phone}
+			phoneHref={settings.phoneHref}
+			email={settings.email}
+			priceNote={settings.priceNote}
+		/>
 	</main>
-	<Footer />
+	<Footer contactName={settings.contactName} kvk={settings.kvk} socials={settings.footerSocials} />
 </Layout>
