@@ -1,5 +1,5 @@
 {
-	"logoUrl": "https://www.jetmarried.nl/jetmarried_400x400.png",
+	"logoUrl": "/uploads/logo.webp",
 	"headerCta": "Ja, ik wil",
 	"nav": [
 		{ "label": "Over Mariëtte", "href": "#over" },

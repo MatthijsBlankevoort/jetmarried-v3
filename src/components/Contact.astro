@@ -55,8 +55,9 @@ const { titleLine1, titleLine2, text, contactName, phone, phoneHref, email, pric
 
 	.contact-panel {
 		border-radius: 44px;
-		background: var(--color-dark);
-		color: var(--color-dark-text);
+		background: var(--color-panel-2);
+		border: 1px solid var(--color-border);
+		color: var(--color-text);
 		padding: clamp(56px, 6vw, 96px) clamp(28px, 4vw, 60px);
 		display: grid;
 		grid-template-columns: 1fr 1fr;
@@ -67,7 +68,7 @@ const { titleLine1, titleLine2, text, contactName, phone, phoneHref, email, pric
 		font-size: 12px;
 		letter-spacing: 0.22em;
 		text-transform: uppercase;
-		color: var(--color-dark-accent);
+		color: var(--color-gold);
 		margin-bottom: 22px;
 	}
 
@@ -84,7 +85,7 @@ const { titleLine1, titleLine2, text, contactName, phone, phoneHref, email, pric
 		font-size: 17px;
 		line-height: 1.85;
 		font-weight: 300;
-		opacity: 0.82;
+		color: var(--color-text-muted);
 		max-width: 44ch;
 		text-wrap: pretty;
 	}
@@ -95,26 +96,26 @@ const { titleLine1, titleLine2, text, contactName, phone, phoneHref, email, pric
 		gap: 14px;
 		font-size: 16px;
 		font-weight: 300;
-		opacity: 0.86;
+		color: var(--color-text-muted);
 	}
 
 	.contact-price {
 		margin-top: 40px;
 		padding: 20px 24px;
 		border-radius: 22px;
-		background: rgba(242, 238, 230, 0.07);
-		border: 1px solid rgba(242, 238, 230, 0.14);
+		background: var(--color-panel);
+		border: 1px solid var(--color-border);
 		font-size: 14.5px;
 		line-height: 1.8;
 		font-weight: 300;
-		opacity: 0.72;
+		color: var(--color-text-muted);
 		max-width: 44ch;
 	}
 
 	.contact-form {
 		border-radius: 32px;
-		background: rgba(242, 238, 230, 0.06);
-		border: 1px solid rgba(242, 238, 230, 0.13);
+		background: var(--color-panel);
+		border: 1px solid var(--color-border);
 		padding: clamp(28px, 3vw, 42px);
 		display: flex;
 		flex-direction: column;
@@ -130,7 +131,7 @@ const { titleLine1, titleLine2, text, contactName, phone, phoneHref, email, pric
 		font-size: 12.5px;
 		letter-spacing: 0.12em;
 		text-transform: uppercase;
-		opacity: 0.6;
+		color: var(--color-text-mutedest);
 		margin-bottom: 9px;
 	}
 
@@ -138,9 +139,9 @@ const { titleLine1, titleLine2, text, contactName, phone, phoneHref, email, pric
 	.form-field textarea {
 		width: 100%;
 		border-radius: 14px;
-		background: rgba(242, 238, 230, 0.08);
-		border: 1px solid rgba(242, 238, 230, 0.14);
-		color: var(--color-dark-text);
+		background: var(--color-panel-2);
+		border: 1px solid var(--color-border);
+		color: var(--color-text);
 		font-family: var(--font-body);
 		font-size: 15px;
 		padding: 14px 16px;
@@ -157,9 +158,9 @@ const { titleLine1, titleLine2, text, contactName, phone, phoneHref, email, pric
 
 	.form-field input:focus-visible,
 	.form-field textarea:focus-visible {
-		outline: 2px solid var(--color-dark-accent);
+		outline: 2px solid var(--color-gold);
 		outline-offset: 1px;
-		border-color: var(--color-dark-accent);
+		border-color: var(--color-gold);
 	}
 
 	.form-consent {
@@ -168,22 +169,22 @@ const { titleLine1, titleLine2, text, contactName, phone, phoneHref, email, pric
 		gap: 11px;
 		font-size: 13.5px;
 		font-weight: 300;
-		opacity: 0.72;
+		color: var(--color-text-muted);
 	}
 
 	.form-consent input {
 		width: 17px;
 		height: 17px;
 		border-radius: 6px;
-		accent-color: var(--color-dark-accent);
+		accent-color: var(--color-gold);
 	}
 
 	.form-submit {
 		align-self: flex-start;
 		margin-top: 6px;
 		padding: 16px 38px;
-		background: var(--color-panel);
-		color: var(--color-text);
+		background: var(--color-text);
+		color: var(--color-bg);
 		font-size: 14.5px;
 		letter-spacing: 0.02em;
 		border: none;
@@ -191,8 +192,8 @@ const { titleLine1, titleLine2, text, contactName, phone, phoneHref, email, pric
 	}
 
 	.form-submit:hover {
-		background: var(--color-dark-accent);
-		color: var(--color-text);
+		background: var(--color-gold);
+		color: var(--color-bg);
 	}
 
 	@media (max-width: 780px) {

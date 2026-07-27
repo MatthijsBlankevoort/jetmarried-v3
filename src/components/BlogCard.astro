@@ -24,16 +24,19 @@ const dateLabel = date.toLocaleDateString('nl-NL', { day: 'numeric', month: 'lon
 
 <style>
 	.blog-card {
-		display: block;
+		display: flex;
+		flex-direction: column;
+		height: 100%;
 		border-radius: 30px;
 		background: var(--color-panel-2);
 		border: 1px solid var(--color-border);
 		padding: 20px 20px 28px;
-		transition: border-color 0.35s ease;
+		transition: border-color 0.35s ease, transform 0.35s ease;
 	}
 
 	.blog-card:hover {
 		border-color: var(--color-border-strong);
+		transform: translateY(-6px);
 	}
 
 	.blog-card :global(.blog-photo) {
@@ -41,6 +44,22 @@ const dateLabel = date.toLocaleDateString('nl-NL', { day: 'numeric', month: 'lon
 		border-radius: 20px;
 		padding: 14px;
 		margin-bottom: 20px;
+	}
+
+	.blog-card :global(.blog-photo img) {
+		transition: transform 0.5s ease;
+	}
+
+	.blog-card:hover :global(.blog-photo img) {
+		transform: scale(1.06);
+	}
+
+	.blog-title {
+		transition: color 0.3s ease;
+	}
+
+	.blog-card:hover .blog-title {
+		color: var(--color-gold);
 	}
 
 	.blog-date {
@@ -61,6 +80,7 @@ const dateLabel = date.toLocaleDateString('nl-NL', { day: 'numeric', month: 'lon
 
 	.blog-excerpt {
 		margin: 0 4px;
+		flex: 1;
 		font-size: 15px;
 		line-height: 1.75;
 		font-weight: 300;

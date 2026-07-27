@@ -36,7 +36,7 @@ const {
 
 <style is:global>
 	:root {
-		--color-bg: #faf8f4;
+		--color-bg: #faf5ec;
 		--color-text: #2c2a26;
 		--color-text-muted: #5a554d;
 		--color-text-mutedest: #8a8378;
@@ -74,6 +74,12 @@ const {
 		font-family: var(--font-body);
 		overflow-x: clip;
 		position: relative;
+	}
+
+	/* Caps content width on very large (XXL) screens so sections don't stretch edge-to-edge */
+	main {
+		max-width: 1600px;
+		margin-inline: auto;
 	}
 
 	h1,

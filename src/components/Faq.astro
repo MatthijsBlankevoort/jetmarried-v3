@@ -14,43 +14,35 @@ const { faqs, phone, phoneHref } = Astro.props;
 ---
 
 <div class="faq-outer">
-	<div class="faq-panel">
-		<div>
-			<h2 class="section-title faq-title" data-reveal>Veelgestelde vragen</h2>
-			<p class="faq-intro" data-reveal>
-				Staat jullie vraag er niet bij? Bel gerust: <a href={`tel:${phoneHref}`} class="faq-phone">{phone}</a>
-			</p>
-		</div>
-		<div class="faq-list">
-			{
-				faqs.map((item, i) => (
-					<div class="faq-item" class:list={{ 'faq-item-open': i === 0 }} data-faq={i} data-reveal>
-						<button type="button" class="faq-q" data-faq-q={i} aria-expanded={i === 0} aria-controls={`faq-a-${i}`}>
-							<h4>{item.q}</h4>
-							<span class="faq-icon" data-faq-icon={i} aria-hidden="true">
-								<span class="faq-icon-bar" />
-								<span class="faq-icon-bar faq-icon-bar-v" data-faq-bar={i} />
-							</span>
-						</button>
-						<div class="faq-a" id={`faq-a-${i}`} data-faq-a={i}>
-							<p>{item.a}</p>
-						</div>
+	<div>
+		<h2 class="section-title faq-title" data-reveal>Veelgestelde vragen</h2>
+		<p class="faq-intro" data-reveal>
+			Staat jullie vraag er niet bij? Bel gerust: <a href={`tel:${phoneHref}`} class="faq-phone">{phone}</a>
+		</p>
+	</div>
+	<div class="faq-list">
+		{
+			faqs.map((item, i) => (
+				<div class="faq-item" class:list={{ 'faq-item-open': i === 0 }} data-faq={i} data-reveal>
+					<button type="button" class="faq-q" data-faq-q={i} aria-expanded={i === 0} aria-controls={`faq-a-${i}`}>
+						<h4>{item.q}</h4>
+						<span class="faq-icon" data-faq-icon={i} aria-hidden="true">
+							<span class="faq-icon-bar" />
+							<span class="faq-icon-bar faq-icon-bar-v" data-faq-bar={i} />
+						</span>
+					</button>
+					<div class="faq-a" id={`faq-a-${i}`} data-faq-a={i}>
+						<p>{item.a}</p>
 					</div>
-				))
-			}
-		</div>
+				</div>
+			))
+		}
 	</div>
 </div>
 
 <style>
 	.faq-outer {
-		padding: 0 14px;
-	}
-
-	.faq-panel {
-		border-radius: 44px;
-		background: var(--color-panel);
-		padding: clamp(56px, 6vw, 96px) clamp(28px, 4vw, 60px);
+		padding: clamp(60px, 7vw, 110px) clamp(24px, 4vw, 60px);
 		display: grid;
 		grid-template-columns: 0.8fr 1.2fr;
 		gap: clamp(36px, 5vw, 80px);
@@ -174,7 +166,7 @@ const { faqs, phone, phoneHref } = Astro.props;
 	}
 
 	@media (max-width: 780px) {
-		.faq-panel {
+		.faq-outer {
 			grid-template-columns: 1fr;
 		}
 	}

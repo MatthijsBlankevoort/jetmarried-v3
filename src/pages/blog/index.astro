@@ -33,7 +33,7 @@ const settings = (await getEntry('settings', 'global'))!.data;
 			</div>
 		</div>
 	</main>
-	<Footer contactName={settings.contactName} kvk={settings.kvk} socials={settings.footerSocials} />
+	<Footer contactName={settings.contactName} kvk={settings.kvk} socials={settings.footerSocials} logoUrl={settings.logoUrl} />
 </Layout>
 
 <style>

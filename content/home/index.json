@@ -5,7 +5,7 @@
     "text": "Een ceremonie moet passen als een warme jas. Ik luister, schrijf jullie verhaal op en spreek het uit alsof ik erbij was.",
     "image": "/uploads/landing.webp"
   },
-  "marqueeText": "Ja, ik wil · Ich will · I do",
+  "marqueeText": "Ja, ik wil · Ja, ich will · Yes, I do",
   "about": {
     "eyebrow": "Over Mariëtte",
     "titleLine1": "Ik ben Mariëtte.",
@@ -25,7 +25,7 @@
       "id": "wettelijk",
       "title": "Wettelijk huwelijk",
       "imageLabel": "FOTO — tekenmoment, staand",
-      "image": "",
+      "image": "/uploads/signeren-strand.webp",
       "description": "Beëdigd als BABS bij gemeente Den Helder — en mee te nemen naar bijna elke andere gemeente.",
       "bullets": [
         "Wettelijk geldig, met twee tot vier getuigen",
@@ -37,7 +37,7 @@
       "id": "ceremonieel",
       "title": "Ceremoniespreker",
       "imageLabel": "FOTO — ceremonie buiten, staand",
-      "image": "",
+      "image": "/uploads/jetmarried-garden.webp",
       "description": "Geen regels, geen tijdslot, geen zaal. Op de plek en het moment dat bij jullie past.",
       "bullets": [
         "Vrije locatie, vrije dag, vrij tijdstip",
@@ -49,7 +49,7 @@
       "id": "herbevestiging",
       "title": "Herbevestiging",
       "imageLabel": "FOTO — ouder paar, staand",
-      "image": "",
+      "image": "/uploads/herbevestiging-kerk.webp",
       "description": "Lang geleden getrouwd, veel meegemaakt, nog steeds samen. Zeg het nog een keer hardop.",
       "bullets": [
         "Mooi bij een jubileum of nieuw hoofdstuk",
@@ -61,7 +61,7 @@
       "id": "verbintenis",
       "title": "Verbintenis zonder papieren",
       "imageLabel": "FOTO — intiem detail, staand",
-      "image": "",
+      "image": "/uploads/detail-strand.webp",
       "description": "Een belofte aan elkaar, zonder juridische gevolgen — volledig naar eigen invulling.",
       "bullets": [
         "Voor partners, vrienden of gekozen familie",
@@ -107,37 +107,37 @@
     {
       "name": "De Slufter",
       "imageLabel": "FOTO — De Slufter, weids duinlandschap",
-      "image": ""
+      "image": "/uploads/landing.webp"
     },
     {
       "name": "Strandpaviljoen bij zonsondergang",
       "imageLabel": "FOTO — strandpaviljoen, laag zonlicht",
-      "image": ""
+      "image": "/uploads/strandpaviljoen.webp"
     },
     {
       "name": "Vuurtoren De Cocksdorp",
       "imageLabel": "FOTO — rode vuurtoren, De Cocksdorp",
-      "image": ""
+      "image": "/uploads/blog-strandceremonie.webp"
     },
     {
       "name": "Dennenbos bij De Koog",
       "imageLabel": "FOTO — dennenbos, zacht licht tussen de stammen",
-      "image": ""
+      "image": "/uploads/jetmarried-garden.webp"
     },
     {
       "name": "Schapenboet in de polder",
       "imageLabel": "FOTO — schapenboet, Texelse polder",
-      "image": ""
+      "image": "/uploads/herbevestiging-kerk.webp"
     },
     {
       "name": "Aan boord, op het wad",
       "imageLabel": "FOTO — zeilschip op het wad",
-      "image": ""
+      "image": "/uploads/detail-strand.webp"
     },
     {
       "name": "Gewoon in jullie eigen tuin",
       "imageLabel": "FOTO — tuinceremonie, gedekte tafels",
-      "image": ""
+      "image": "/uploads/signeren-strand.webp"
     }
   ],
   "testimonialsLinkLabel": "Alle 13 reacties",

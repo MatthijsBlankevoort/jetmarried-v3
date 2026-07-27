@@ -4,7 +4,7 @@ interface Props {
 }
 
 const { text: base } = Astro.props;
-const text = `${base} · ${base} · ${base} ·`;
+const text = `${base} · ${base} · ${base} · `;
 ---
 
 <div class="marquee-outer">
@@ -18,11 +18,12 @@ const text = `${base} · ${base} · ${base} ·`;
 	.marquee-outer {
 		overflow: hidden;
 		padding: 44px 0 30px;
+		-webkit-mask-image: linear-gradient(to right, transparent, black 80px, black calc(100% - 80px), transparent);
+		mask-image: linear-gradient(to right, transparent, black 80px, black calc(100% - 80px), transparent);
 	}
 
 	.marquee-track {
 		display: flex;
-		gap: 44px;
 		white-space: nowrap;
 		will-change: transform;
 	}

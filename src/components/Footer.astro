@@ -3,15 +3,18 @@ interface Props {
 	contactName: string;
 	kvk: string;
 	socials: { label: string; href: string }[];
+	logoUrl: string;
 }
 
-const { contactName, kvk, socials } = Astro.props;
+const { contactName, kvk, socials, logoUrl } = Astro.props;
 const currentYear = new Date().getFullYear();
 ---
 
 <footer class="site-footer">
-	<span class="footer-logo">Jet<em>married</em></span>
-	<span>© {currentYear} {contactName} · KVK {kvk}</span>
+	<a href="#top" class="footer-logo">
+		<img src={logoUrl} alt="Jetmarried" />
+	</a>
+	<span>© {currentYear} Jetmarried · {contactName} · KVK {kvk}</span>
 	<span class="footer-links">
 		{socials.map((s) => <a href={s.href}>{s.label}</a>)}
 	</span>
@@ -24,8 +27,9 @@ const currentYear = new Date().getFullYear();
 		gap: 20px;
 		justify-content: space-between;
 		align-items: center;
-		margin: 44px clamp(24px, 4vw, 60px) 48px;
-		padding-top: 26px;
+		max-width: 1600px;
+		margin: 44px auto 48px;
+		padding: 26px clamp(24px, 4vw, 60px) 0;
 		border-top: 1px solid var(--color-border);
 		color: var(--color-text-mutedest);
 		font-size: 13.5px;
@@ -33,14 +37,14 @@ const currentYear = new Date().getFullYear();
 	}
 
 	.footer-logo {
-		font-family: var(--font-display);
-		font-size: 19px;
-		color: var(--color-text-muted);
+		display: flex;
+		align-items: center;
 	}
 
-	.footer-logo em {
-		font-style: italic;
-		color: var(--color-gold);
+	.footer-logo img {
+		height: 30px;
+		width: auto;
+		display: block;
 	}
 
 	.footer-links {
