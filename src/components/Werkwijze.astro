@@ -1,0 +1,193 @@
+---
+const steps = [
+	{
+		number: '01',
+		title: 'Kennismaken',
+		text: 'Vrijblijvend, bij mij thuis of via videobellen. We praten over jullie, niet over pakketten. Klikt het? Dan pas gaan we het over data hebben.',
+		tag: 'Kop koffie, geen verplichtingen',
+	},
+	{
+		number: '02',
+		title: 'Jullie verhaal',
+		text: 'Twee gesprekken waarin ik alles hoor. Ook de dingen die jullie zelf niet bijzonder vinden — juist die maken de speech persoonlijk.',
+		tag: 'Twee gesprekken',
+	},
+	{
+		number: '03',
+		title: 'De speech',
+		text: 'Ik schrijf, jullie lezen mee en sturen bij. Verrassingen bewaren we voor de dag zelf, de rest is precies zoals jullie het willen.',
+		tag: 'Ruim voor de dag klaar',
+	},
+	{
+		number: '04',
+		title: 'De dag zelf',
+		text: 'Ik ben ruim op tijd, stem af met jullie fotograaf en locatie, en dan is het zover. Jullie hoeven alleen nog ja te zeggen.',
+		tag: 'En dan zeggen jullie ja',
+		active: true,
+	},
+];
+---
+
+<div id="werkwijze" class="werkwijze">
+	<div class="eyebrow" data-reveal>Zo werkt het</div>
+	<h2 class="section-title werkwijze-title" data-reveal>Van eerste kop koffie tot het ja-woord</h2>
+
+	<div class="steps">
+		<div class="steps-line"></div>
+		<div class="steps-line steps-line-active" data-step-bar></div>
+
+		{
+			steps.map((step) => (
+				<div class="step" data-step>
+					<div class="step-dot-col">
+						<span class="step-dot" class:list={{ 'step-dot-active': step.active }} data-step-dot />
+					</div>
+					<div class="step-card" class:list={{ 'step-card-active': step.active }} data-step-card>
+						<div>
+							<div class="step-number" class:list={{ 'step-number-active': step.active }}>{step.number}</div>
+							<h4 class="step-title">{step.title}</h4>
+						</div>
+						<div>
+							<p class="step-text">{step.text}</p>
+							<div class="step-tag">
+								<span class="step-tag-dash" />
+								{step.tag}
+							</div>
+						</div>
+					</div>
+				</div>
+			))
+		}
+	</div>
+</div>
+
+<style>
+	.werkwijze {
+		padding: clamp(60px, 7vw, 110px) clamp(24px, 4vw, 60px);
+	}
+
+	.werkwijze-title {
+		margin: 0 0 clamp(44px, 5vw, 64px);
+		max-width: 20ch;
+	}
+
+	.steps {
+		position: relative;
+		display: flex;
+		flex-direction: column;
+		gap: clamp(22px, 2.6vw, 38px);
+		padding: 8px 0;
+	}
+
+	.steps-line {
+		position: absolute;
+		left: 31px;
+		top: 0;
+		bottom: 0;
+		width: 2px;
+		border-radius: 2px;
+		background: linear-gradient(
+			to bottom,
+			rgba(226, 218, 203, 0) 0%,
+			#e2dacb 9%,
+			#e2dacb 91%,
+			rgba(226, 218, 203, 0) 100%
+		);
+	}
+
+	.steps-line-active {
+		background: linear-gradient(to bottom, rgba(156, 122, 85, 0) 0%, #9c7a55 9%, #9c7a55 91%, rgba(156, 122, 85, 0) 100%);
+		transform: scaleY(0);
+		transform-origin: top;
+	}
+
+	.step {
+		display: grid;
+		grid-template-columns: 64px 1fr;
+		gap: clamp(18px, 2.4vw, 34px);
+		align-items: start;
+	}
+
+	.step-dot-col {
+		display: flex;
+		justify-content: center;
+		padding-top: clamp(34px, 3.4vw, 46px);
+	}
+
+	.step-dot {
+		position: relative;
+		z-index: 1;
+		width: 15px;
+		height: 15px;
+		border-radius: 50%;
+		background: var(--color-bg);
+		border: 2px solid var(--color-gold-light);
+	}
+
+	.step-card {
+		border-radius: 30px;
+		background: var(--color-panel);
+		border: 1px solid transparent;
+		padding: clamp(34px, 3.6vw, 50px) clamp(30px, 3.4vw, 48px);
+		display: grid;
+		grid-template-columns: minmax(190px, 0.62fr) 1.38fr;
+		gap: clamp(24px, 3.4vw, 56px);
+		align-items: start;
+	}
+
+	.step-card-active {
+		border-color: var(--color-border-strong);
+	}
+
+	.step-number {
+		font-family: var(--font-display);
+		font-size: clamp(40px, 4vw, 52px);
+		line-height: 1;
+		color: var(--color-gold-light);
+		margin-bottom: 14px;
+	}
+
+	.step-number-active {
+		color: var(--color-gold);
+	}
+
+	.step-title {
+		margin: 0;
+		font-size: 20px;
+		font-weight: 500;
+		letter-spacing: 0.01em;
+	}
+
+	.step-text {
+		margin: 0 0 18px;
+		font-size: 16.5px;
+		line-height: 1.85;
+		font-weight: 300;
+		color: var(--color-text-muted);
+		max-width: 52ch;
+		text-wrap: pretty;
+	}
+
+	.step-tag {
+		display: inline-flex;
+		align-items: center;
+		gap: 10px;
+		font-size: 11.5px;
+		letter-spacing: 0.16em;
+		text-transform: uppercase;
+		color: #a9a091;
+	}
+
+	.step-tag-dash {
+		width: 18px;
+		height: 1px;
+		background: var(--color-gold-light);
+		display: inline-block;
+	}
+
+	@media (max-width: 640px) {
+		.step-card {
+			grid-template-columns: 1fr;
+		}
+	}
+</style>
