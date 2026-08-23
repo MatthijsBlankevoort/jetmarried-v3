@@ -1,5 +1,6 @@
 ---
 import Photo from './Photo.astro';
+import { useTranslations } from '../i18n/ui';
 
 interface Props {
 	titleLine1: string;
@@ -9,12 +10,13 @@ interface Props {
 }
 
 const { titleLine1, titleLine2, text, image } = Astro.props;
+const t = useTranslations(Astro.currentLocale);
 const [line2First, ...line2Rest] = titleLine2.split(' ');
 ---
 
 <div id="top" class="hero-outer">
 	<div class="hero" data-hero-scale>
-		<Photo src={image} alt="" label="FOTO — sfeerbeeld bruidspaar, liggend, veel lucht" class="hero-photo" data-hero-img />
+		<Photo src={image} alt="" label={t('hero.photoLabel')} class="hero-photo" data-hero-img />
 		<div class="hero-overlay"></div>
 
 		<div class="hero-content">
@@ -25,8 +27,8 @@ const [line2First, ...line2Rest] = titleLine2.split(' ');
 			<div class="hero-bottom-row">
 				<p class="hero-text" data-hero>{text}</p>
 				<div class="hero-buttons" data-hero>
-					<a href="#contact" class="btn btn-light">Ja, ik wil</a>
-					<a href="#ceremonies" class="btn btn-outline">Bekijk de ceremonies</a>
+					<a href="#contact" class="btn btn-light">{t('hero.cta')}</a>
+					<a href="#ceremonies" class="btn btn-outline">{t('hero.ctaSecondary')}</a>
 				</div>
 			</div>
 		</div>

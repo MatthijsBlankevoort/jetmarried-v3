@@ -1,0 +1,203 @@
+{
+  "hero": {
+    "titleLine1": "The most beautiful",
+    "titleLine2": "yes of your lives",
+    "text": "A ceremony should fit like a warm coat. I listen, write your story down and speak it as if I had been there myself.",
+    "image": "/uploads/landing.webp"
+  },
+  "marqueeText": "Ja, ik wil · Ja, ich will · Yes, I do",
+  "about": {
+    "eyebrow": "About Mariëtte",
+    "titleLine1": "I am Mariëtte.",
+    "titleLine2": "And I love this moment.",
+    "paragraph1Before": "Twenty-five years married to Ron, mother of Matthijs, Jesse and Nino, and a Texel islander through and through. My motto is",
+    "motto": "enjoy today",
+    "paragraph1After": "— and really, everything starts there.",
+    "paragraph2": "In our conversations we get to know each other properly. Everything I hear I connect with a piece of my own creativity. What comes out is a speech nobody else could have written, because it is only about you.",
+    "image": "/uploads/profielfoto.webp"
+  },
+  "ceremoniesIntro": {
+    "title": "Four ways to say yes",
+    "text": "From a legally binding marriage to a ceremony without any rules — or both, on the same day. All four in Dutch, German or English."
+  },
+  "ceremonies": [
+    {
+      "id": "wettelijk",
+      "title": "Legal marriage",
+      "imageLabel": "PHOTO — signing the register, portrait",
+      "image": "/uploads/signeren-strand.webp",
+      "description": "Sworn in as a registrar with the municipality of Den Helder — and able to travel to almost any other Dutch municipality.",
+      "bullets": [
+        "Legally valid, with two to four witnesses",
+        "‘Registrar for a day’: I arrange the swearing-in",
+        "Marriage certificate through your own municipality"
+      ]
+    },
+    {
+      "id": "ceremonieel",
+      "title": "Celebrant ceremony",
+      "imageLabel": "PHOTO — outdoor ceremony, portrait",
+      "image": "/uploads/jetmarried-garden.webp",
+      "description": "No rules, no time slot, no town hall. In the place and at the moment that suits you.",
+      "bullets": [
+        "Any location, any day, any time",
+        "Tailor-made ceremony of 20 to 40 minutes",
+        "Rituals: sand, candle or handfasting"
+      ]
+    },
+    {
+      "id": "herbevestiging",
+      "title": "Vow renewal",
+      "imageLabel": "PHOTO — older couple, portrait",
+      "image": "/uploads/herbevestiging-kerk.webp",
+      "description": "Married long ago, plenty of life in between, still together. Say it out loud one more time.",
+      "bullets": [
+        "Perfect for an anniversary or a new chapter",
+        "Children and grandchildren can take part",
+        "The same care as a first ceremony"
+      ]
+    },
+    {
+      "id": "verbintenis",
+      "title": "Commitment without paperwork",
+      "imageLabel": "PHOTO — intimate detail, portrait",
+      "image": "/uploads/detail-strand.webp",
+      "description": "A promise to each other, without legal consequences — entirely on your own terms.",
+      "bullets": [
+        "For partners, friends or chosen family",
+        "No trip to the town hall required",
+        "Prepared just as personally as any other ceremony"
+      ]
+    }
+  ],
+  "werkwijze": {
+    "title": "From the first cup of coffee to the moment you say yes",
+    "steps": [
+      {
+        "number": "01",
+        "title": "Getting to know each other",
+        "text": "No strings attached, at my home or over video call. We talk about you, not about packages. Does it click? Only then do we talk dates.",
+        "tag": "A coffee, no obligations"
+      },
+      {
+        "number": "02",
+        "title": "Your story",
+        "text": "Two conversations in which I hear everything. Including the things you do not find special yourselves — those are exactly what makes the speech personal.",
+        "tag": "Two conversations"
+      },
+      {
+        "number": "03",
+        "title": "The speech",
+        "text": "I write, you read along and steer. Surprises we save for the day itself, the rest is exactly the way you want it.",
+        "tag": "Ready well before the day"
+      },
+      {
+        "number": "04",
+        "title": "The day itself",
+        "text": "I arrive early, coordinate with your photographer and venue, and then the moment is there. All that is left for you is to say yes.",
+        "tag": "And then you say yes"
+      }
+    ]
+  },
+  "locationsIntro": {
+    "title": "Places on Texel I recommend myself",
+    "text": "I know the island and the people who work here. Tell me what kind of feeling you are after and I will think along."
+  },
+  "locations": [
+    {
+      "name": "De Slufter",
+      "imageLabel": "PHOTO — De Slufter, wide dune landscape",
+      "image": "/uploads/landing.webp"
+    },
+    {
+      "name": "Beach pavilion at sunset",
+      "imageLabel": "PHOTO — beach pavilion, low sunlight",
+      "image": "/uploads/strandpaviljoen.webp"
+    },
+    {
+      "name": "De Cocksdorp lighthouse",
+      "imageLabel": "PHOTO — red lighthouse, De Cocksdorp",
+      "image": "/uploads/blog-strandceremonie.webp"
+    },
+    {
+      "name": "Pine forest near De Koog",
+      "imageLabel": "PHOTO — pine forest, soft light between the trunks",
+      "image": "/uploads/jetmarried-garden.webp"
+    },
+    {
+      "name": "Sheep barn in the polder",
+      "imageLabel": "PHOTO — sheep barn, Texel polder",
+      "image": "/uploads/herbevestiging-kerk.webp"
+    },
+    {
+      "name": "On board, out on the Wadden Sea",
+      "imageLabel": "PHOTO — sailing ship on the Wadden Sea",
+      "image": "/uploads/detail-strand.webp"
+    },
+    {
+      "name": "Simply in your own garden",
+      "imageLabel": "PHOTO — garden ceremony, laid tables",
+      "image": "/uploads/signeren-strand.webp"
+    }
+  ],
+  "testimonialsLinkLabel": "All 13 reviews",
+  "testimonials": [
+    {
+      "quote": "You told our story beautifully. It felt good and safe to share everything with you.",
+      "author": "Marcel & Nicole · May 2025",
+      "highlight": false
+    },
+    {
+      "quote": "The ceremony was wonderful, personal, emotional and funny at the same time. More beautiful than we had imagined.",
+      "author": "Sophie & Leon · May 2025",
+      "highlight": false
+    },
+    {
+      "quote": "Thank you Jet for the amazing ceremony. It was really so nice — everyone gave so many compliments.",
+      "author": "Yoni & Carine · Sweden, June 2024",
+      "highlight": false
+    },
+    {
+      "quote": "A perfect mix of emotion and cheerfulness. You can tell straight away that you love what you do.",
+      "author": "Carina & Felix · September 2025",
+      "highlight": true
+    },
+    {
+      "quote": "Empathetic, warm, eloquent and passionate. I recommend Mariëtte both as a registrar and as a celebrant.",
+      "author": "We Love Texel · October 2022",
+      "highlight": false
+    },
+    {
+      "quote": "It really was a beautiful ceremony. I shed a little tear myself too.",
+      "author": "Sophie Brugemann, photographer · July 2024",
+      "highlight": false
+    }
+  ],
+  "faq": [
+    {
+      "q": "What does a ceremony cost?",
+      "a": "€ 825, including all conversations and the written speech. A German-language ceremony is € 125 extra. Travel costs and any municipal fees come on top of that."
+    },
+    {
+      "q": "Can we take you along to our own municipality?",
+      "a": "Yes. Almost every Dutch municipality offers the ‘registrar for a day’ arrangement. I take care of the swearing-in; alongside the municipal fees you will receive my invoice."
+    },
+    {
+      "q": "Which languages do you speak?",
+      "a": "Dutch, German and English. A bilingual ceremony is possible too — many couples choose that when the family comes from two countries."
+    },
+    {
+      "q": "How far in advance should we book?",
+      "a": "Six to twelve months is common, but always ask. Sometimes there is room in three weeks."
+    },
+    {
+      "q": "And what if it rains?",
+      "a": "Then there is a plan B, which we work out together well in advance. Texel weather holds no surprises for me."
+    }
+  ],
+  "contact": {
+    "titleLine1": "Shall we",
+    "titleLine2": "get acquainted?",
+    "text": "Leave your date and a few words. I usually reply within a day and will send a no-obligation quote."
+  }
+}

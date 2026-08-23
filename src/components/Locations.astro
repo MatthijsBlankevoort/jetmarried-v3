@@ -1,5 +1,6 @@
 ---
 import Photo from './Photo.astro';
+import { useTranslations } from '../i18n/ui';
 
 interface Location {
 	name: string;
@@ -13,12 +14,13 @@ interface Props {
 }
 
 const { intro, locations } = Astro.props;
+const t = useTranslations(Astro.currentLocale);
 ---
 
 <div class="locations-outer">
 	<div class="locations-panel">
 		<div class="locations-copy">
-			<div class="eyebrow" data-reveal>Locaties</div>
+			<div class="eyebrow" data-reveal>{t('locations.eyebrow')}</div>
 			<h2 class="section-title" data-reveal>{intro.title}</h2>
 			<p class="locations-intro" data-reveal>{intro.text}</p>
 			<div class="locations-chips" data-reveal>

@@ -1,4 +1,6 @@
 ---
+import { useTranslations } from '../i18n/ui';
+
 interface Props {
 	titleLine1: string;
 	titleLine2: string;
@@ -11,12 +13,13 @@ interface Props {
 }
 
 const { titleLine1, titleLine2, text, contactName, phone, phoneHref, email, priceNote } = Astro.props;
+const t = useTranslations(Astro.currentLocale);
 ---
 
 <div id="contact" class="contact-outer">
 	<div class="contact-panel">
 		<div>
-			<div class="contact-eyebrow" data-reveal>Contact</div>
+			<div class="contact-eyebrow" data-reveal>{t('contact.eyebrow')}</div>
 			<h2 class="contact-title" data-reveal>{titleLine1}<br />{titleLine2}</h2>
 			<p class="contact-text" data-reveal>{text}</p>
 			<div class="contact-details" data-reveal>
@@ -28,22 +31,22 @@ const { titleLine1, titleLine2, text, contactName, phone, phoneHref, email, pric
 		</div>
 		<form class="contact-form" data-reveal>
 			<label class="form-field">
-				<span class="form-label">Naam</span>
+				<span class="form-label">{t('contact.name')}</span>
 				<input type="text" name="name" />
 			</label>
 			<label class="form-field">
-				<span class="form-label">E-mail</span>
+				<span class="form-label">{t('contact.email')}</span>
 				<input type="email" name="email" />
 			</label>
 			<label class="form-field">
-				<span class="form-label">Bericht</span>
+				<span class="form-label">{t('contact.message')}</span>
 				<textarea name="message" rows="4"></textarea>
 			</label>
 			<label class="form-consent">
 				<input type="checkbox" name="consent" />
-				Ik ga akkoord met de privacyverklaring
+				{t('contact.consent')}
 			</label>
-			<button type="submit" class="btn form-submit">Versturen</button>
+			<button type="submit" class="btn form-submit">{t('contact.submit')}</button>
 		</form>
 	</div>
 </div>

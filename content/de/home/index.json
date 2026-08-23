@@ -1,0 +1,203 @@
+{
+  "hero": {
+    "titleLine1": "Das schönste",
+    "titleLine2": "Ja eures Lebens",
+    "text": "Eine Zeremonie soll passen wie ein warmer Mantel. Ich höre zu, schreibe eure Geschichte auf und erzähle sie, als wäre ich dabei gewesen.",
+    "image": "/uploads/landing.webp"
+  },
+  "marqueeText": "Ja, ik wil · Ja, ich will · Yes, I do",
+  "about": {
+    "eyebrow": "Über Mariëtte",
+    "titleLine1": "Ich bin Mariëtte.",
+    "titleLine2": "Und ich liebe diesen Moment.",
+    "paragraph1Before": "Seit fünfundzwanzig Jahren mit Ron verheiratet, Mutter von Matthijs, Jesse und Nino, und mit Leib und Seele Texelerin. Mein Lebensmotto lautet",
+    "motto": "genieße heute",
+    "paragraph1After": "— und genau da fängt eigentlich alles an.",
+    "paragraph2": "In unseren Gesprächen lernen wir uns wirklich kennen. Alles, was ich höre, verbinde ich mit einem Stück meiner eigenen Kreativität. So entsteht eine Rede, die niemand sonst hätte schreiben können, weil sie nur von euch handelt.",
+    "image": "/uploads/profielfoto.webp"
+  },
+  "ceremoniesIntro": {
+    "title": "Vier Arten, Ja zu sagen",
+    "text": "Von der rechtsgültigen Eheschließung bis zur Zeremonie ganz ohne Regeln — oder beides an einem Tag. Alle vier auf Niederländisch, Deutsch oder Englisch."
+  },
+  "ceremonies": [
+    {
+      "id": "wettelijk",
+      "title": "Rechtsgültige Eheschließung",
+      "imageLabel": "FOTO — Unterschrift, hochkant",
+      "image": "/uploads/signeren-strand.webp",
+      "description": "Vereidigt als Standesbeamtin bei der Gemeinde Den Helder — und mitzunehmen in fast jede andere niederländische Gemeinde.",
+      "bullets": [
+        "Rechtsgültig, mit zwei bis vier Trauzeugen",
+        "‚Standesbeamtin für einen Tag‘: die Vereidigung übernehme ich",
+        "Familienstammbuch über eure eigene Gemeinde"
+      ]
+    },
+    {
+      "id": "ceremonieel",
+      "title": "Freie Trauung",
+      "imageLabel": "FOTO — Zeremonie im Freien, hochkant",
+      "image": "/uploads/jetmarried-garden.webp",
+      "description": "Keine Regeln, kein Zeitfenster, kein Saal. An dem Ort und in dem Moment, der zu euch passt.",
+      "bullets": [
+        "Freier Ort, freier Tag, freie Uhrzeit",
+        "Maßgeschneiderte Zeremonie von 20 bis 40 Minuten",
+        "Rituale: Sand, Kerze oder Handfasting"
+      ]
+    },
+    {
+      "id": "herbevestiging",
+      "title": "Erneuerung des Eheversprechens",
+      "imageLabel": "FOTO — älteres Paar, hochkant",
+      "image": "/uploads/herbevestiging-kerk.webp",
+      "description": "Vor langer Zeit geheiratet, viel erlebt, immer noch zusammen. Sagt es noch einmal laut.",
+      "bullets": [
+        "Schön zum Jubiläum oder für ein neues Kapitel",
+        "Kinder und Enkel machen mit",
+        "Dieselbe Sorgfalt wie bei einer ersten Zeremonie"
+      ]
+    },
+    {
+      "id": "verbintenis",
+      "title": "Verbindung ohne Papiere",
+      "imageLabel": "FOTO — intimes Detail, hochkant",
+      "image": "/uploads/detail-strand.webp",
+      "description": "Ein Versprechen aneinander, ohne rechtliche Folgen — ganz nach eurer eigenen Vorstellung.",
+      "bullets": [
+        "Für Partner, Freunde oder gewählte Familie",
+        "Kein Gang zur Gemeinde nötig",
+        "Genauso persönlich vorbereitet wie alles andere"
+      ]
+    }
+  ],
+  "werkwijze": {
+    "title": "Von der ersten Tasse Kaffee bis zum Jawort",
+    "steps": [
+      {
+        "number": "01",
+        "title": "Kennenlernen",
+        "text": "Unverbindlich, bei mir zu Hause oder per Videocall. Wir sprechen über euch, nicht über Pakete. Passt es? Erst dann reden wir über Termine.",
+        "tag": "Eine Tasse Kaffee, keine Verpflichtungen"
+      },
+      {
+        "number": "02",
+        "title": "Eure Geschichte",
+        "text": "Zwei Gespräche, in denen ich alles erfahre. Auch die Dinge, die ihr selbst gar nicht besonders findet — gerade die machen die Rede persönlich.",
+        "tag": "Zwei Gespräche"
+      },
+      {
+        "number": "03",
+        "title": "Die Rede",
+        "text": "Ich schreibe, ihr lest mit und korrigiert. Überraschungen heben wir uns für den Tag selbst auf, der Rest wird genau so, wie ihr es wollt.",
+        "tag": "Lange vor dem Tag fertig"
+      },
+      {
+        "number": "04",
+        "title": "Der große Tag",
+        "text": "Ich bin früh da, stimme mich mit eurem Fotografen und der Location ab, und dann ist es so weit. Ihr müsst nur noch Ja sagen.",
+        "tag": "Und dann sagt ihr Ja"
+      }
+    ]
+  },
+  "locationsIntro": {
+    "title": "Orte auf Texel, die ich selbst empfehle",
+    "text": "Ich kenne die Insel und die Menschen, die hier arbeiten. Erzählt mir, welches Gefühl ihr sucht, dann denke ich mit."
+  },
+  "locations": [
+    {
+      "name": "De Slufter",
+      "imageLabel": "FOTO — De Slufter, weite Dünenlandschaft",
+      "image": "/uploads/landing.webp"
+    },
+    {
+      "name": "Strandpavillon bei Sonnenuntergang",
+      "imageLabel": "FOTO — Strandpavillon, tiefstehende Sonne",
+      "image": "/uploads/strandpaviljoen.webp"
+    },
+    {
+      "name": "Leuchtturm De Cocksdorp",
+      "imageLabel": "FOTO — roter Leuchtturm, De Cocksdorp",
+      "image": "/uploads/blog-strandceremonie.webp"
+    },
+    {
+      "name": "Kiefernwald bei De Koog",
+      "imageLabel": "FOTO — Kiefernwald, weiches Licht zwischen den Stämmen",
+      "image": "/uploads/jetmarried-garden.webp"
+    },
+    {
+      "name": "Schafscheune im Polder",
+      "imageLabel": "FOTO — Schafscheune, Texeler Polder",
+      "image": "/uploads/herbevestiging-kerk.webp"
+    },
+    {
+      "name": "An Bord, auf dem Wattenmeer",
+      "imageLabel": "FOTO — Segelschiff auf dem Wattenmeer",
+      "image": "/uploads/detail-strand.webp"
+    },
+    {
+      "name": "Einfach in eurem eigenen Garten",
+      "imageLabel": "FOTO — Gartenzeremonie, gedeckte Tische",
+      "image": "/uploads/signeren-strand.webp"
+    }
+  ],
+  "testimonialsLinkLabel": "Alle 13 Stimmen",
+  "testimonials": [
+    {
+      "quote": "Du hast unsere Geschichte wunderschön erzählt. Es war schön und sicher, alles mit dir zu teilen.",
+      "author": "Marcel & Nicole · Mai 2025",
+      "highlight": false
+    },
+    {
+      "quote": "Die Zeremonie war wunderschön, persönlich, emotional und dennoch lustig. Schöner, als wir es uns vorgestellt haben.",
+      "author": "Sophie & Leon · Mai 2025",
+      "highlight": false
+    },
+    {
+      "quote": "Danke, Jet, für die großartige Zeremonie. Es war wirklich so schön — alle haben uns Komplimente gemacht.",
+      "author": "Yoni & Carine · Schweden, Juni 2024",
+      "highlight": false
+    },
+    {
+      "quote": "Eine perfekte Mischung aus Emotion und Fröhlichkeit. Man merkt sofort, dass du deinen Beruf liebst.",
+      "author": "Carina & Felix · September 2025",
+      "highlight": true
+    },
+    {
+      "quote": "Einfühlsam, liebevoll, wortgewandt und leidenschaftlich. Ich empfehle Mariëtte als Standesbeamtin und als Rednerin.",
+      "author": "We Love Texel · Oktober 2022",
+      "highlight": false
+    },
+    {
+      "quote": "Es war wirklich eine wunderschöne Zeremonie. Ich habe selbst auch ein Tränchen verdrückt.",
+      "author": "Sophie Brugemann, Fotografin · Juli 2024",
+      "highlight": false
+    }
+  ],
+  "faq": [
+    {
+      "q": "Was kostet eine Zeremonie?",
+      "a": "€ 825, inklusive aller Gespräche und der geschriebenen Rede. Eine deutschsprachige Zeremonie kostet € 125 zusätzlich. Fahrtkosten und eventuelle Gebühren der Gemeinde kommen hinzu."
+    },
+    {
+      "q": "Können wir dich in unsere eigene Gemeinde mitnehmen?",
+      "a": "Ja. Fast alle niederländischen Gemeinden kennen die Regelung ‚Standesbeamtin für einen Tag‘. Ich kümmere mich um die Vereidigung; neben den Gebühren der Gemeinde erhaltet ihr auch meine Rechnung."
+    },
+    {
+      "q": "Welche Sprachen sprichst du?",
+      "a": "Niederländisch, Deutsch und Englisch. Eine zweisprachige Zeremonie ist ebenfalls möglich — viele Paare wählen das, wenn die Familie aus zwei Ländern kommt."
+    },
+    {
+      "q": "Wie lange im Voraus sollten wir buchen?",
+      "a": "Sechs bis zwölf Monate sind üblich, aber fragt immer nach. Manchmal ist in drei Wochen noch etwas frei."
+    },
+    {
+      "q": "Und wenn es regnet?",
+      "a": "Dann gibt es einen Plan B, den wir rechtzeitig gemeinsam überlegen. Das Texeler Wetter überrascht mich nicht."
+    }
+  ],
+  "contact": {
+    "titleLine1": "Sollen wir uns",
+    "titleLine2": "kennenlernen?",
+    "text": "Hinterlasst euer Datum und ein paar Worte. Ich antworte meist innerhalb eines Tages und erstelle ein unverbindliches Angebot."
+  }
+}

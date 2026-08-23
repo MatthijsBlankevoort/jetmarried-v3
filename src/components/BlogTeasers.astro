@@ -1,21 +1,29 @@
 ---
-import { getCollection } from 'astro:content';
 import BlogCard from './BlogCard.astro';
+import { localePath, useTranslations, type Locale } from '../i18n/ui';
+import { getPosts, postSlug } from '../lib/content';
 
-const posts = (await getCollection('posts')).sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf()).slice(0, 3);
+interface Props {
+	locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+
+const posts = (await getPosts(locale)).slice(0, 3);
 ---
 
 <div id="blog" class="blog-teasers">
 	<div class="blog-head">
-		<h2 class="section-title" data-reveal>Uit mijn blog</h2>
-		<a href="/blog/" class="btn btn-bordered" data-reveal>Alle verhalen</a>
+		<h2 class="section-title" data-reveal>{t('blog.teaserTitle')}</h2>
+		<a href={localePath(locale, '/blog/')} class="btn btn-bordered" data-reveal>{t('blog.all')}</a>
 	</div>
 	<div class="blog-grid">
 		{
 			posts.map((post) => (
 				<div data-reveal>
 					<BlogCard
-						slug={post.id}
+						slug={postSlug(post.id)}
 						title={post.data.title}
 						excerpt={post.data.excerpt}
 						date={post.data.date}

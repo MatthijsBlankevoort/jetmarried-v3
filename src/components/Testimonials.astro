@@ -1,4 +1,6 @@
 ---
+import { useTranslations } from '../i18n/ui';
+
 interface Testimonial {
 	quote: string;
 	author: string;
@@ -11,11 +13,12 @@ interface Props {
 }
 
 const { testimonials, linkLabel } = Astro.props;
+const t = useTranslations(Astro.currentLocale);
 ---
 
 <div id="verhalen" class="testimonials">
 	<div class="testimonials-head">
-		<h2 class="section-title" data-reveal>Wat bruidsparen zeggen</h2>
+		<h2 class="section-title" data-reveal>{t('testimonials.title')}</h2>
 		<a href="#contact" class="btn btn-bordered" data-reveal>{linkLabel}</a>
 	</div>
 

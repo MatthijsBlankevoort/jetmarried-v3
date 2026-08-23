@@ -1,0 +1,70 @@
+---
+import type { GetStaticPaths } from 'astro';
+import Layout from '../../../layouts/Layout.astro';
+import Header from '../../../components/Header.astro';
+import Footer from '../../../components/Footer.astro';
+import BlogCard from '../../../components/BlogCard.astro';
+import { locales, localeParam, useTranslations, type Locale } from '../../../i18n/ui';
+import { getPosts, getSettings, postSlug } from '../../../lib/content';
+
+export const getStaticPaths = (() =>
+	locales.map((locale) => ({
+		params: { locale: localeParam(locale) },
+		props: { locale },
+	}))) satisfies GetStaticPaths;
+
+const { locale } = Astro.props as { locale: Locale };
+const t = useTranslations(locale);
+
+const posts = await getPosts(locale);
+const settings = await getSettings(locale);
+---
+
+<Layout title={t('blog.pageTitle')}>
+	<Header nav={settings.nav} logoUrl={settings.logoUrl} headerCta={settings.headerCta} />
+	<main>
+		<div class="blog-index">
+			<div class="eyebrow" data-reveal>{t('blog.eyebrow')}</div>
+			<h1 class="section-title" data-reveal>{t('blog.indexTitle')}</h1>
+			<div class="blog-index-grid">
+				{
+					posts.map((post) => (
+						<div data-reveal>
+							<BlogCard
+								slug={postSlug(post.id)}
+								title={post.data.title}
+								excerpt={post.data.excerpt}
+								date={post.data.date}
+								cover={post.data.cover}
+								coverLabel={post.data.coverLabel}
+							/>
+						</div>
+					))
+				}
+			</div>
+		</div>
+	</main>
+	<Footer contactName={settings.contactName} kvk={settings.kvk} socials={settings.footerSocials} logoUrl={settings.logoUrl} />
+</Layout>
+
+<style>
+	.blog-index {
+		padding: clamp(140px, 14vw, 180px) clamp(24px, 4vw, 60px) clamp(60px, 7vw, 110px);
+	}
+
+	.blog-index h1 {
+		margin: 0 0 44px;
+	}
+
+	.blog-index-grid {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 24px;
+	}
+
+	@media (max-width: 900px) {
+		.blog-index-grid {
+			grid-template-columns: 1fr;
+		}
+	}
+</style>

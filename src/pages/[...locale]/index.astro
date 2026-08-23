@@ -1,21 +1,31 @@
 ---
-import { getEntry } from 'astro:content';
-import Layout from '../layouts/Layout.astro';
-import Header from '../components/Header.astro';
-import Hero from '../components/Hero.astro';
-import Marquee from '../components/Marquee.astro';
-import About from '../components/About.astro';
-import Ceremonies from '../components/Ceremonies.astro';
-import Werkwijze from '../components/Werkwijze.astro';
-import Locations from '../components/Locations.astro';
-import Testimonials from '../components/Testimonials.astro';
-import Faq from '../components/Faq.astro';
-import BlogTeasers from '../components/BlogTeasers.astro';
-import Contact from '../components/Contact.astro';
-import Footer from '../components/Footer.astro';
+import type { GetStaticPaths } from 'astro';
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Hero from '../../components/Hero.astro';
+import Marquee from '../../components/Marquee.astro';
+import About from '../../components/About.astro';
+import Ceremonies from '../../components/Ceremonies.astro';
+import Werkwijze from '../../components/Werkwijze.astro';
+import Locations from '../../components/Locations.astro';
+import Testimonials from '../../components/Testimonials.astro';
+import Faq from '../../components/Faq.astro';
+import BlogTeasers from '../../components/BlogTeasers.astro';
+import Contact from '../../components/Contact.astro';
+import Footer from '../../components/Footer.astro';
+import { locales, localeParam, type Locale } from '../../i18n/ui';
+import { getHome, getSettings } from '../../lib/content';
 
-const settings = (await getEntry('settings', 'global'))!.data;
-const home = (await getEntry('home', 'index'))!.data;
+export const getStaticPaths = (() =>
+	locales.map((locale) => ({
+		params: { locale: localeParam(locale) },
+		props: { locale },
+	}))) satisfies GetStaticPaths;
+
+const { locale } = Astro.props as { locale: Locale };
+
+const settings = await getSettings(locale);
+const home = await getHome(locale);
 ---
 
 <Layout>
@@ -38,7 +48,7 @@ const home = (await getEntry('home', 'index'))!.data;
 		<Locations intro={home.locationsIntro} locations={home.locations} />
 		<Testimonials testimonials={home.testimonials} linkLabel={home.testimonialsLinkLabel} />
 		<Faq faqs={home.faq} phone={settings.phone} phoneHref={settings.phoneHref} />
-		<BlogTeasers />
+		<BlogTeasers locale={locale} />
 		<Contact
 			titleLine1={home.contact.titleLine1}
 			titleLine2={home.contact.titleLine2}

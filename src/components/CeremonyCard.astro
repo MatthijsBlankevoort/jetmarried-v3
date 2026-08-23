@@ -1,5 +1,6 @@
 ---
 import Photo from './Photo.astro';
+import { useTranslations } from '../i18n/ui';
 
 interface Props {
 	id: string;
@@ -12,6 +13,7 @@ interface Props {
 }
 
 const { id, image, imageLabel, title, description, bullets, flip = false } = Astro.props;
+const t = useTranslations(Astro.currentLocale);
 ---
 
 <div id={id} class="cer-card" class:list={{ flip }} data-cer>
@@ -29,7 +31,7 @@ const { id, image, imageLabel, title, description, bullets, flip = false } = Ast
 				))
 			}
 		</div>
-		<a href="#contact" class="btn btn-bordered">Deze ceremonie aanvragen</a>
+		<a href="#contact" class="btn btn-bordered">{t('ceremony.cta')}</a>
 	</div>
 </div>
 

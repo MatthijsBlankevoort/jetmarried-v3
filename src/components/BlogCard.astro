@@ -1,5 +1,6 @@
 ---
 import Photo from './Photo.astro';
+import { formatDate, localePath, toLocale } from '../i18n/ui';
 
 interface Props {
 	slug: string;
@@ -12,10 +13,11 @@ interface Props {
 
 const { slug, title, excerpt, date, cover, coverLabel } = Astro.props;
 
-const dateLabel = date.toLocaleDateString('nl-NL', { day: 'numeric', month: 'long', year: 'numeric' });
+const locale = toLocale(Astro.currentLocale);
+const dateLabel = formatDate(date, locale);
 ---
 
-<a href={`/blog/${slug}/`} class="blog-card">
+<a href={localePath(locale, `/blog/${slug}/`)} class="blog-card">
 	<Photo src={cover} alt={title} label={coverLabel} class="blog-photo" />
 	<div class="blog-date">{dateLabel}</div>
 	<h4 class="blog-title">{title}</h4>

@@ -1,17 +1,26 @@
 ---
+import { locales, localeTag, localePath, stripLocale, toLocale, useTranslations } from '../i18n/ui';
+
 interface Props {
 	title?: string;
 	description?: string;
 }
 
-const {
-	title = 'Jetmarried — Mariëtte Boot, trouwambtenaar op Texel',
-	description = 'Een ceremonie moet passen als een warme jas. Ik luister, schrijf jullie verhaal op en spreek het uit alsof ik erbij was.',
-} = Astro.props;
+const locale = toLocale(Astro.currentLocale);
+const t = useTranslations(locale);
+
+const { title = t('site.title'), description = t('site.description') } = Astro.props;
+
+/** Same page, other languages — used for the hreflang alternates. */
+const path = stripLocale(Astro.url.pathname);
+const alternates = locales.map((l) => ({
+	locale: l,
+	href: new URL(localePath(l, path), Astro.site ?? Astro.url).href,
+}));
 ---
 
 <!doctype html>
-<html lang="nl">
+<html lang={locale}>
 	<head>
 		<meta charset="utf-8" />
 		<link rel="icon" href="/favicon.ico" sizes="any" />
@@ -22,6 +31,9 @@ const {
 		<meta name="generator" content={Astro.generator} />
 		<meta name="description" content={description} />
 		<title>{title}</title>
+
+		{alternates.map((alt) => <link rel="alternate" hreflang={localeTag[alt.locale]} href={alt.href} />)}
+		<link rel="alternate" hreflang="x-default" href={alternates[0].href} />
 
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />

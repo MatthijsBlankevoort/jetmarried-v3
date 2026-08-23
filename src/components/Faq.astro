@@ -1,4 +1,6 @@
 ---
+import { useTranslations } from '../i18n/ui';
+
 interface FaqItem {
 	q: string;
 	a: string;
@@ -11,13 +13,14 @@ interface Props {
 }
 
 const { faqs, phone, phoneHref } = Astro.props;
+const t = useTranslations(Astro.currentLocale);
 ---
 
 <div class="faq-outer">
 	<div>
-		<h2 class="section-title faq-title" data-reveal>Veelgestelde vragen</h2>
+		<h2 class="section-title faq-title" data-reveal>{t('faq.title')}</h2>
 		<p class="faq-intro" data-reveal>
-			Staat jullie vraag er niet bij? Bel gerust: <a href={`tel:${phoneHref}`} class="faq-phone">{phone}</a>
+			{t('faq.intro')} <a href={`tel:${phoneHref}`} class="faq-phone">{phone}</a>
 		</p>
 	</div>
 	<div class="faq-list">

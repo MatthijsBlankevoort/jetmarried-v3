@@ -1,4 +1,6 @@
 ---
+import { useTranslations } from '../i18n/ui';
+
 interface Step {
 	number: string;
 	title: string;
@@ -12,10 +14,11 @@ interface Props {
 }
 
 const { title, steps } = Astro.props;
+const t = useTranslations(Astro.currentLocale);
 ---
 
 <div id="werkwijze" class="werkwijze">
-	<div class="eyebrow" data-reveal>Zo werkt het</div>
+	<div class="eyebrow" data-reveal>{t('werkwijze.eyebrow')}</div>
 	<h2 class="section-title werkwijze-title" data-reveal>{title}</h2>
 
 	<div class="steps">

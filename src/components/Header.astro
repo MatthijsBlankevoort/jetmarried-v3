@@ -1,4 +1,6 @@
 ---
+import { locales, localeLabel, localePath, stripLocale, toLocale, useTranslations } from '../i18n/ui';
+
 interface Props {
 	nav: { label: string; href: string }[];
 	logoUrl: string;
@@ -6,6 +8,11 @@ interface Props {
 }
 
 const { nav, logoUrl, headerCta } = Astro.props;
+
+const locale = toLocale(Astro.currentLocale);
+const t = useTranslations(locale);
+// The switcher keeps you on the same page: only the language prefix changes.
+const path = stripLocale(Astro.url.pathname);
 ---
 
 <header class="header-wrap" data-header>
@@ -16,20 +23,30 @@ const { nav, logoUrl, headerCta } = Astro.props;
 			<img src={logoUrl} alt="Jetmarried" />
 		</a>
 
-		<nav class="header-nav" aria-label="Hoofdmenu">
+		<nav class="header-nav" aria-label={t('header.nav')}>
 			{nav.map((link) => <a href={link.href}>{link.label}</a>)}
 		</nav>
 
 		<div class="header-actions">
-			<div class="lang-switch" role="group" aria-label="Taal">
-				<span class="lang-active" aria-current="true">NL</span>
-				<a href="#top">DE</a>
-				<a href="#top">EN</a>
+			<div class="lang-switch" role="group" aria-label={t('header.language')}>
+				{
+					locales.map((l) =>
+						l === locale ? (
+							<span class="lang-active" aria-current="true">
+								{localeLabel[l]}
+							</span>
+						) : (
+							<a href={localePath(l, path)} hreflang={l}>
+								{localeLabel[l]}
+							</a>
+						),
+					)
+				}
 			</div>
 			<a href="#contact" class="header-cta">{headerCta}</a>
 		</div>
 
-		<button type="button" class="header-burger" aria-label="Menu openen" aria-expanded="false" aria-controls="mobile-nav" data-menu-toggle>
+		<button type="button" class="header-burger" aria-label={t('header.menuToggle')} aria-expanded="false" aria-controls="mobile-nav" data-menu-toggle>
 			<span></span>
 			<span></span>
 			<span></span>
@@ -38,14 +55,24 @@ const { nav, logoUrl, headerCta } = Astro.props;
 </header>
 
 <div class="mobile-nav" id="mobile-nav" data-mobile-nav>
-	<nav aria-label="Mobiel menu">
+	<nav aria-label={t('header.mobileNav')}>
 		{nav.map((link) => <a href={link.href} data-menu-link>{link.label}</a>)}
 	</nav>
 	<div class="mobile-nav-footer">
-		<div class="lang-switch" role="group" aria-label="Taal">
-			<span class="lang-active" aria-current="true">NL</span>
-			<a href="#top">DE</a>
-			<a href="#top">EN</a>
+		<div class="lang-switch" role="group" aria-label={t('header.language')}>
+			{
+				locales.map((l) =>
+					l === locale ? (
+						<span class="lang-active" aria-current="true">
+							{localeLabel[l]}
+						</span>
+					) : (
+						<a href={localePath(l, path)} hreflang={l}>
+							{localeLabel[l]}
+						</a>
+					),
+				)
+			}
 		</div>
 		<a href="#contact" class="header-cta" data-menu-link>{headerCta}</a>
 	</div>

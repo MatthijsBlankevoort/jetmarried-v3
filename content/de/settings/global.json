@@ -1,0 +1,22 @@
+{
+	"logoUrl": "/uploads/logo.webp",
+	"headerCta": "Ja, ich will",
+	"nav": [
+		{ "label": "Über Mariëtte", "href": "#over" },
+		{ "label": "Zeremonien", "href": "#ceremonies" },
+		{ "label": "So läuft es ab", "href": "#werkwijze" },
+		{ "label": "Stimmen", "href": "#verhalen" },
+		{ "label": "Blog", "href": "#blog" }
+	],
+	"contactName": "Mariëtte Boot",
+	"phone": "+31 6 43 23 35 05",
+	"phoneHref": "+31643233505",
+	"email": "trouwen@jetmarried.nl",
+	"kvk": "70404488",
+	"priceNote": "Eine Zeremonie kostet € 825. Auf Deutsch € 125 zusätzlich. Zuzüglich eventueller Nebenkosten.",
+	"footerSocials": [
+		{ "label": "Facebook", "href": "#top" },
+		{ "label": "Instagram", "href": "#top" },
+		{ "label": "Datenschutzerklärung", "href": "#top" }
+	]
+}

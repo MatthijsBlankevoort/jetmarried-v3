@@ -1,5 +1,6 @@
 ---
 import Photo from './Photo.astro';
+import { useTranslations } from '../i18n/ui';
 
 interface Props {
 	eyebrow: string;
@@ -13,11 +14,12 @@ interface Props {
 }
 
 const { eyebrow, titleLine1, titleLine2, paragraph1Before, motto, paragraph1After, paragraph2, image } = Astro.props;
+const t = useTranslations(Astro.currentLocale);
 ---
 
 <div id="over" class="about">
 	<div class="about-media" data-reveal>
-		<Photo src={image} alt="Portret Mariëtte" label={'FOTO — portret Mariëtte,\nbuiten, natuurlijk licht'} class="about-photo" />
+		<Photo src={image} alt={t('about.photoAlt')} label={t('about.photoLabel')} class="about-photo" />
 	</div>
 	<div>
 		<div class="eyebrow" data-reveal>{eyebrow}</div>
@@ -27,7 +29,7 @@ const { eyebrow, titleLine1, titleLine2, paragraph1Before, motto, paragraph1Afte
 				>{motto}</span> {paragraph1After}
 		</p>
 		<p class="about-text" data-reveal>{paragraph2}</p>
-		<a href="#blog" class="btn btn-bordered" data-reveal>Lees mijn verhaal</a>
+		<a href="#blog" class="btn btn-bordered" data-reveal>{t('about.cta')}</a>
 	</div>
 </div>
 
