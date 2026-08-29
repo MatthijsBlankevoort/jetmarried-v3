@@ -1,5 +1,6 @@
 import { defineConfig } from 'tinacms';
 import type { Collection, TinaField } from 'tinacms';
+import { Translations } from './fields/Translations';
 
 const branch = process.env.TINA_BRANCH || process.env.HEAD || process.env.VERCEL_GIT_COMMIT_REF || 'master';
 
@@ -182,6 +183,14 @@ const postFields: TinaField[] = [
 	{ type: 'rich-text', name: 'body', label: 'Inhoud', isBody: true },
 ];
 
+/** Display only: renders the 'Vertalingen' panel and never receives a value. */
+const translationsField: TinaField = {
+	type: 'string',
+	name: 'translations',
+	label: 'Vertalingen',
+	ui: { component: Translations },
+};
+
 /** Homepage and instellingen have exactly one document per language: content/<type>/<locale>.json. */
 const perLocaleFile = {
 	allowedActions: { create: false, delete: false },
@@ -195,7 +204,7 @@ const collections: Collection[] = [
 		path: 'content/settings',
 		format: 'json',
 		ui: perLocaleFile,
-		fields: settingsFields,
+		fields: [translationsField, ...settingsFields],
 	},
 	{
 		name: 'home',
@@ -203,14 +212,14 @@ const collections: Collection[] = [
 		path: 'content/home',
 		format: 'json',
 		ui: perLocaleFile,
-		fields: homeFields,
+		fields: [translationsField, ...homeFields],
 	},
 	{
 		name: 'posts',
 		label: 'Blog',
 		path: 'content/posts',
 		format: 'mdx',
-		fields: postFields,
+		fields: [...postFields, translationsField],
 	},
 ];
 
