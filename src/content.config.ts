@@ -2,23 +2,19 @@ import { defineCollection, z } from 'astro:content';
 import { glob } from 'astro/loaders';
 
 /**
- * Content is stored one folder per language (content/<locale>/…), the layout
- * TinaCMS writes to. Each collection therefore globs across all languages and
- * uses the locale as (part of) the entry id:
+ * Content is grouped by type, with the language one level below — the layout
+ * TinaCMS shows as folders inside a single collection:
  *
- *   settings / home → id is the locale, e.g. 'de'
- *   posts           → id is '<locale>/<slug>', e.g. 'de/ja-ik-wil'
+ *   content/settings/<locale>.json     → entry id is the locale, e.g. 'de'
+ *   content/home/<locale>.json         → entry id is the locale, e.g. 'de'
+ *   content/posts/<locale>/<slug>.mdx  → entry id is '<locale>/<slug>'
  *
  * Use the helpers in src/lib/content.ts to read them instead of getEntry directly.
  */
-const localeOf = ({ entry }: { entry: string }) => entry.split('/')[0];
-const localeAndSlug = ({ entry }: { entry: string }) => {
-	const [locale, , ...rest] = entry.split('/');
-	return `${locale}/${rest.join('/').replace(/\.mdx?$/, '')}`;
-};
+const withoutExtension = ({ entry }: { entry: string }) => entry.replace(/\.[^.]+$/, '');
 
 const posts = defineCollection({
-	loader: glob({ pattern: '*/posts/**/*.mdx', base: './content', generateId: localeAndSlug }),
+	loader: glob({ pattern: '**/*.mdx', base: './content/posts', generateId: withoutExtension }),
 	schema: z.object({
 		title: z.string(),
 		date: z.coerce.date(),
@@ -31,7 +27,7 @@ const posts = defineCollection({
 const navLink = z.object({ label: z.string(), href: z.string() });
 
 const settings = defineCollection({
-	loader: glob({ pattern: '*/settings/global.json', base: './content', generateId: localeOf }),
+	loader: glob({ pattern: '*.json', base: './content/settings', generateId: withoutExtension }),
 	schema: z.object({
 		logoUrl: z.string(),
 		headerCta: z.string(),
@@ -79,7 +75,7 @@ const faqItem = z.object({ q: z.string(), a: z.string() });
 const twoLineTitle = z.object({ titleLine1: z.string(), titleLine2: z.string() });
 
 const home = defineCollection({
-	loader: glob({ pattern: '*/home/index.json', base: './content', generateId: localeOf }),
+	loader: glob({ pattern: '*.json', base: './content/home', generateId: withoutExtension }),
 	schema: z.object({
 		hero: twoLineTitle.extend({ text: z.string(), image: z.string().optional() }),
 		marqueeText: z.string(),

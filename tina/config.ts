@@ -4,17 +4,12 @@ import type { Collection, TinaField } from 'tinacms';
 const branch = process.env.TINA_BRANCH || process.env.HEAD || process.env.VERCEL_GIT_COMMIT_REF || 'master';
 
 /**
- * Tina has no built-in i18n, so every language gets its own folder under
- * content/<locale>/ and its own set of collections. The field definitions below
- * are shared, so a new language means adding one entry to this list — nothing else.
- * Keep the codes in sync with `locales` in src/i18n/ui.ts.
+ * Tina has no built-in i18n. Every content type is one collection, with the
+ * language as a folder (blog) or as the filename (homepage, instellingen), so
+ * the sidebar stays short and editors pick a language inside the collection.
+ * Adding a language means adding files under content/<type>/ and a code to
+ * `locales` in src/i18n/ui.ts — this schema needs no change.
  */
-const locales = [
-	{ code: 'nl', label: 'Nederlands' },
-	{ code: 'en', label: 'English' },
-	{ code: 'de', label: 'Deutsch' },
-] as const;
-
 const settingsFields: TinaField[] = [
 	{ type: 'image', name: 'logoUrl', label: 'Logo' },
 	{ type: 'string', name: 'headerCta', label: 'Header CTA-tekst' },
@@ -187,33 +182,37 @@ const postFields: TinaField[] = [
 	{ type: 'rich-text', name: 'body', label: 'Inhoud', isBody: true },
 ];
 
-const singleton = { global: true, allowedActions: { create: false, delete: false } } as const;
+/** Homepage and instellingen have exactly one document per language: content/<type>/<locale>.json. */
+const perLocaleFile = {
+	allowedActions: { create: false, delete: false },
+	filename: { readonly: true },
+} as const;
 
-const collections: Collection[] = locales.flatMap(({ code, label }) => [
+const collections: Collection[] = [
 	{
-		name: `settings_${code}`,
-		label: `Site-instellingen — ${label}`,
-		path: `content/${code}/settings`,
+		name: 'settings',
+		label: 'Site-instellingen',
+		path: 'content/settings',
 		format: 'json',
-		ui: singleton,
+		ui: perLocaleFile,
 		fields: settingsFields,
 	},
 	{
-		name: `home_${code}`,
-		label: `Homepage — ${label}`,
-		path: `content/${code}/home`,
+		name: 'home',
+		label: 'Homepage',
+		path: 'content/home',
 		format: 'json',
-		ui: singleton,
+		ui: perLocaleFile,
 		fields: homeFields,
 	},
 	{
-		name: `posts_${code}`,
-		label: `Blog — ${label}`,
-		path: `content/${code}/posts`,
+		name: 'posts',
+		label: 'Blog',
+		path: 'content/posts',
 		format: 'mdx',
 		fields: postFields,
 	},
-]);
+];
 
 export default defineConfig({
 	branch,
