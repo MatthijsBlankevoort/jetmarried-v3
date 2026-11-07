@@ -17,7 +17,7 @@ const t = useTranslations(Astro.currentLocale);
 ---
 
 <div id={id} class="cer-card" class:list={{ flip }} data-cer>
-	<Photo src={image} alt={title} label={imageLabel} class="cer-photo" data-cer-img />
+	<Photo src={image} alt="" label={imageLabel} class="cer-photo" data-cer-img />
 	<div class="cer-body">
 		<h3 class="cer-title">{title}</h3>
 		<p class="cer-desc">{description}</p>
@@ -31,7 +31,9 @@ const t = useTranslations(Astro.currentLocale);
 				))
 			}
 		</div>
-		<a href="#contact" class="btn btn-bordered">{t('ceremony.cta')}</a>
+		<a href="#contact" class="btn btn-bordered" data-ceremony={id}>
+			{t('ceremony.cta')}<span class="sr-only">: {title}</span>
+		</a>
 	</div>
 </div>
 
@@ -106,14 +108,14 @@ const t = useTranslations(Astro.currentLocale);
 		font-size: 15px;
 		line-height: 1.7;
 		font-weight: 300;
-		color: #6a655c;
+		color: var(--color-text-muted);
 	}
 
 	.cer-dot {
 		width: 5px;
 		height: 5px;
 		border-radius: 50%;
-		background: var(--color-gold-light);
+		background: var(--color-gold);
 		display: inline-block;
 	}
 

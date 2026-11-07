@@ -14,7 +14,8 @@ import BlogTeasers from '../../components/BlogTeasers.astro';
 import Contact from '../../components/Contact.astro';
 import Footer from '../../components/Footer.astro';
 import { locales, localeParam, type Locale } from '../../i18n/ui';
-import { getHome, getSettings } from '../../lib/content';
+import { getHome, getPosts, getSettings, postKey, postSlug } from '../../lib/content';
+import { localePath } from '../../i18n/ui';
 
 export const getStaticPaths = (() =>
 	locales.map((locale) => ({
@@ -26,6 +27,10 @@ const { locale } = Astro.props as { locale: Locale };
 
 const settings = await getSettings(locale);
 const home = await getHome(locale);
+
+// "Read my story" opens the post about how Mariëtte became an officiant.
+const storyPost = (await getPosts(locale)).find((post) => postKey(post.id) === 'ja-ik-wil');
+const storyHref = storyPost ? localePath(locale, `/blog/${postSlug(storyPost)}/`) : localePath(locale, '/blog/');
 ---
 
 <Layout>
@@ -42,13 +47,17 @@ const home = await getHome(locale);
 			paragraph1After={home.about.paragraph1After}
 			paragraph2={home.about.paragraph2}
 			image={home.about.image}
+			storyHref={storyHref}
+			speechExcerpt={home.about.speechExcerpt}
+			speechCaption={home.about.speechCaption}
 		/>
 		<Ceremonies intro={home.ceremoniesIntro} ceremonies={home.ceremonies} />
 		<Werkwijze title={home.werkwijze.title} steps={home.werkwijze.steps} />
 		<Locations intro={home.locationsIntro} locations={home.locations} />
-		<Testimonials testimonials={home.testimonials} linkLabel={home.testimonialsLinkLabel} />
-		<Faq faqs={home.faq} phone={settings.phone} phoneHref={settings.phoneHref} />
+		<Testimonials testimonials={home.testimonials} linkLabel={home.testimonialsLinkLabel} linkUrl={home.testimonialsLinkUrl} />
 		<BlogTeasers locale={locale} />
+		{/* The FAQ settles the last doubts (price, rain, municipality) right before the form. */}
+		<Faq faqs={home.faq} phone={settings.phone} phoneHref={settings.phoneHref} />
 		<Contact
 			titleLine1={home.contact.titleLine1}
 			titleLine2={home.contact.titleLine2}
@@ -58,6 +67,10 @@ const home = await getHome(locale);
 			phoneHref={settings.phoneHref}
 			email={settings.email}
 			priceNote={settings.priceNote}
+			ceremonies={home.ceremonies.map(({ id, title }) => ({ id, title }))}
+			motto={home.about.motto}
+			formEndpoint={settings.formEndpoint}
+			privacyUrl={settings.privacyUrl}
 		/>
 	</main>
 	<Footer contactName={settings.contactName} kvk={settings.kvk} socials={settings.footerSocials} logoUrl={settings.logoUrl} />

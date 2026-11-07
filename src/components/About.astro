@@ -11,13 +11,28 @@ interface Props {
 	paragraph1After: string;
 	paragraph2: string;
 	image?: string | null;
+	storyHref: string;
+	speechExcerpt?: string;
+	speechCaption?: string;
 }
 
-const { eyebrow, titleLine1, titleLine2, paragraph1Before, motto, paragraph1After, paragraph2, image } = Astro.props;
+const {
+	eyebrow,
+	titleLine1,
+	titleLine2,
+	paragraph1Before,
+	motto,
+	paragraph1After,
+	paragraph2,
+	image,
+	storyHref,
+	speechExcerpt,
+	speechCaption,
+} = Astro.props;
 const t = useTranslations(Astro.currentLocale);
 ---
 
-<div id="over" class="about">
+<section id="over" class="about">
 	<div class="about-media" data-reveal>
 		<Photo src={image} alt={t('about.photoAlt')} label={t('about.photoLabel')} class="about-photo" />
 	</div>
@@ -29,9 +44,17 @@ const t = useTranslations(Astro.currentLocale);
 				>{motto}</span> {paragraph1After}
 		</p>
 		<p class="about-text" data-reveal>{paragraph2}</p>
-		<a href="#blog" class="btn btn-bordered" data-reveal>{t('about.cta')}</a>
+		{
+			speechExcerpt && (
+				<figure class="about-excerpt" data-reveal>
+					<blockquote>{speechExcerpt}</blockquote>
+					{speechCaption && <figcaption>{speechCaption}</figcaption>}
+				</figure>
+			)
+		}
+		<a href={storyHref} class="btn btn-bordered" data-reveal>{t('about.cta')}</a>
 	</div>
-</div>
+</section>
 
 <style>
 	.about {
@@ -75,25 +98,53 @@ const t = useTranslations(Astro.currentLocale);
 
 	.motto {
 		position: relative;
+		z-index: 0;
 		display: inline-block;
+		padding: 0 0.12em;
 		font-family: var(--font-display);
 		font-style: italic;
-		font-size: 22px;
+		font-size: 1.35em;
 		line-height: 1;
-		color: #7d5f3e;
+		color: var(--color-gold-deep);
 		white-space: nowrap;
 	}
 
+	/* A soft highlighter swash behind the motto, drawn in on scroll. */
 	.motto-line {
 		position: absolute;
+		z-index: -1;
 		left: 0;
 		right: 0;
-		bottom: -3px;
-		height: 2px;
-		background: var(--color-gold-light);
-		border-radius: 2px;
+		bottom: 0.04em;
+		height: 0.42em;
+		background: var(--color-gold-pale);
+		border-radius: 14px;
 		transform: scaleX(0);
 		transform-origin: left;
+	}
+
+	.about-excerpt {
+		margin: 30px 0 28px;
+		padding-left: clamp(18px, 2vw, 28px);
+		border-left: 1px solid var(--color-gold-light);
+		max-width: 52ch;
+	}
+
+	.about-excerpt blockquote {
+		margin: 0;
+		font-family: var(--font-display);
+		font-style: italic;
+		font-weight: 300;
+		font-size: clamp(22px, 2vw, 27px);
+		line-height: 1.4;
+		color: var(--color-text);
+		text-wrap: pretty;
+	}
+
+	.about-excerpt figcaption {
+		margin-top: 12px;
+		font-size: 13px;
+		color: var(--color-text-muted);
 	}
 
 	.about :global(.btn-bordered) {

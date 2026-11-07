@@ -13,9 +13,11 @@ const t = useTranslations(locale);
 const posts = (await getPosts(locale)).slice(0, 3);
 ---
 
-<div id="blog" class="blog-teasers">
+{
+	posts.length > 0 && (
+<section id="blog" class="blog-teasers" aria-labelledby="blog-title">
 	<div class="blog-head">
-		<h2 class="section-title" data-reveal>{t('blog.teaserTitle')}</h2>
+		<h2 id="blog-title" class="section-title" data-reveal>{t('blog.teaserTitle')}</h2>
 		<a href={localePath(locale, '/blog/')} class="btn btn-bordered" data-reveal>{t('blog.all')}</a>
 	</div>
 	<div class="blog-grid">
@@ -23,7 +25,7 @@ const posts = (await getPosts(locale)).slice(0, 3);
 			posts.map((post) => (
 				<div data-reveal>
 					<BlogCard
-						slug={postSlug(post.id)}
+						slug={postSlug(post)}
 						title={post.data.title}
 						excerpt={post.data.excerpt}
 						date={post.data.date}
@@ -34,7 +36,9 @@ const posts = (await getPosts(locale)).slice(0, 3);
 			))
 		}
 	</div>
-</div>
+</section>
+	)
+}
 
 <style>
 	.blog-teasers {

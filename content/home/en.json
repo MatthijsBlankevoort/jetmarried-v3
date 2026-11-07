@@ -61,7 +61,7 @@
       "id": "verbintenis",
       "title": "Commitment without paperwork",
       "imageLabel": "PHOTO — intimate detail, portrait",
-      "image": "/uploads/detail-strand.webp",
+      "image": "/uploads/blog-strandceremonie.webp",
       "description": "A promise to each other, without legal consequences — entirely on your own terms.",
       "bullets": [
         "For partners, friends or chosen family",
@@ -106,8 +106,7 @@
   "locations": [
     {
       "name": "De Slufter",
-      "imageLabel": "PHOTO — De Slufter, wide dune landscape",
-      "image": "/uploads/landing.webp"
+      "imageLabel": "PHOTO — De Slufter, wide dune landscape"
     },
     {
       "name": "Beach pavilion at sunset",
@@ -116,28 +115,24 @@
     },
     {
       "name": "De Cocksdorp lighthouse",
-      "imageLabel": "PHOTO — red lighthouse, De Cocksdorp",
-      "image": "/uploads/blog-strandceremonie.webp"
+      "imageLabel": "PHOTO — red lighthouse, De Cocksdorp"
     },
     {
       "name": "Pine forest near De Koog",
-      "imageLabel": "PHOTO — pine forest, soft light between the trunks",
-      "image": "/uploads/jetmarried-garden.webp"
+      "imageLabel": "PHOTO — pine forest, soft light between the trunks"
     },
     {
       "name": "Sheep barn in the polder",
-      "imageLabel": "PHOTO — sheep barn, Texel polder",
-      "image": "/uploads/herbevestiging-kerk.webp"
+      "imageLabel": "PHOTO — sheep barn, Texel polder"
     },
     {
       "name": "On board, out on the Wadden Sea",
-      "imageLabel": "PHOTO — sailing ship on the Wadden Sea",
-      "image": "/uploads/detail-strand.webp"
+      "imageLabel": "PHOTO — sailing ship on the Wadden Sea"
     },
     {
       "name": "Simply in your own garden",
       "imageLabel": "PHOTO — garden ceremony, laid tables",
-      "image": "/uploads/signeren-strand.webp"
+      "image": "/uploads/jetmarried-garden.webp"
     }
   ],
   "testimonialsLinkLabel": "All 13 reviews",
@@ -177,6 +172,10 @@
     {
       "q": "What does a ceremony cost?",
       "a": "€ 825, including all conversations and the written speech. A German-language ceremony is € 125 extra. Travel costs and any municipal fees come on top of that."
+    },
+    {
+      "q": "How is this different from a wedding at the town hall?",
+      "a": "As a BABS (a special registrar, sworn in by the municipality) I am just as authorised as the registrar at the town hall. The difference: I come to the place, day and time you choose, and I write the speech from your own story, after two conversations."
     },
     {
       "q": "Can we take you along to our own municipality?",

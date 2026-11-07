@@ -61,7 +61,7 @@
       "id": "verbintenis",
       "title": "Verbintenis zonder papieren",
       "imageLabel": "FOTO — intiem detail, staand",
-      "image": "/uploads/detail-strand.webp",
+      "image": "/uploads/blog-strandceremonie.webp",
       "description": "Een belofte aan elkaar, zonder juridische gevolgen — volledig naar eigen invulling.",
       "bullets": [
         "Voor partners, vrienden of gekozen familie",
@@ -106,8 +106,7 @@
   "locations": [
     {
       "name": "De Slufter",
-      "imageLabel": "FOTO — De Slufter, weids duinlandschap",
-      "image": "/uploads/landing.webp"
+      "imageLabel": "FOTO — De Slufter, weids duinlandschap"
     },
     {
       "name": "Strandpaviljoen bij zonsondergang",
@@ -116,28 +115,24 @@
     },
     {
       "name": "Vuurtoren De Cocksdorp",
-      "imageLabel": "FOTO — rode vuurtoren, De Cocksdorp",
-      "image": "/uploads/blog-strandceremonie.webp"
+      "imageLabel": "FOTO — rode vuurtoren, De Cocksdorp"
     },
     {
       "name": "Dennenbos bij De Koog",
-      "imageLabel": "FOTO — dennenbos, zacht licht tussen de stammen",
-      "image": "/uploads/jetmarried-garden.webp"
+      "imageLabel": "FOTO — dennenbos, zacht licht tussen de stammen"
     },
     {
       "name": "Schapenboet in de polder",
-      "imageLabel": "FOTO — schapenboet, Texelse polder",
-      "image": "/uploads/herbevestiging-kerk.webp"
+      "imageLabel": "FOTO — schapenboet, Texelse polder"
     },
     {
       "name": "Aan boord, op het wad",
-      "imageLabel": "FOTO — zeilschip op het wad",
-      "image": "/uploads/detail-strand.webp"
+      "imageLabel": "FOTO — zeilschip op het wad"
     },
     {
       "name": "Gewoon in jullie eigen tuin",
       "imageLabel": "FOTO — tuinceremonie, gedekte tafels",
-      "image": "/uploads/signeren-strand.webp"
+      "image": "/uploads/jetmarried-garden.webp"
     }
   ],
   "testimonialsLinkLabel": "Alle 13 reacties",
@@ -177,6 +172,10 @@
     {
       "q": "Wat kost een ceremonie?",
       "a": "€ 825, inclusief alle gesprekken en de geschreven speech. Een Duitstalige ceremonie kost € 125 extra. Reis- en eventuele gemeentekosten komen daar nog bij."
+    },
+    {
+      "q": "Wat is het verschil met trouwen op het gemeentehuis?",
+      "a": "Als BABS (buitengewoon ambtenaar van de burgerlijke stand) ben ik net zo bevoegd als de ambtenaar in het gemeentehuis. Het verschil: ik kom naar de plek, de dag en het tijdstip die jullie kiezen, en de speech schrijf ik uit jullie eigen verhaal, na twee gesprekken."
     },
     {
       "q": "Kunnen we je meenemen naar onze eigen gemeente?",

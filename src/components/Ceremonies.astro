@@ -18,7 +18,7 @@ interface Props {
 const { intro, ceremonies } = Astro.props;
 ---
 
-<div id="ceremonies" class="ceremonies-outer">
+<section id="ceremonies" class="ceremonies-outer">
 	<div class="ceremonies-head">
 		<h2 class="section-title" data-reveal>{intro.title}</h2>
 		<p class="ceremonies-intro" data-reveal>{intro.text}</p>
@@ -26,7 +26,7 @@ const { intro, ceremonies } = Astro.props;
 	<div class="ceremonies-list">
 		{ceremonies.map((c, i) => <CeremonyCard {...c} flip={i % 2 === 1} />)}
 	</div>
-</div>
+</section>
 
 <style>
 	.ceremonies-outer {
@@ -52,7 +52,7 @@ const { intro, ceremonies } = Astro.props;
 		font-size: 15.5px;
 		line-height: 1.75;
 		font-weight: 300;
-		color: #5a554d;
+		color: var(--color-text-muted);
 		text-wrap: pretty;
 	}
 

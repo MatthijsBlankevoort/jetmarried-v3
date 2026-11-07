@@ -2,15 +2,18 @@
 name: Jetmarried
 description: Warm, unhurried wedding-ceremony site for Mariëtte Boot, trouwambtenaar op Texel
 colors:
-  bg: "#faf8f4"
+  bg: "#faf5ec"
   text: "#2c2a26"
   text-muted: "#5a554d"
   text-mutedest: "#8a8378"
   bronze: "#9c7a55"
   bronze-light: "#c6b99f"
   bronze-pale: "#f0dcc2"
+  bronze-deep: "#7d5f3e"
   panel: "#f7f2e7"
   panel-2: "#faf8f4"
+  panel-deep: "#f1e7d6"
+  error: "#9e3b2a"
   border: "#e2dacb"
   border-strong: "#ddd0b6"
   border-soft: "#ddd4c3"
@@ -42,6 +45,36 @@ typography:
     fontSize: "17px"
     fontWeight: 300
     lineHeight: 1.8
+  lead:
+    fontFamily: "Jost, system-ui, sans-serif"
+    fontSize: "18px"
+    fontWeight: 300
+    lineHeight: 1.7
+  body-sm:
+    fontFamily: "Jost, system-ui, sans-serif"
+    fontSize: "16px"
+    fontWeight: 300
+    lineHeight: 1.75
+  small:
+    fontFamily: "Jost, system-ui, sans-serif"
+    fontSize: "15px"
+    fontWeight: 300
+    lineHeight: 1.75
+  meta:
+    fontFamily: "Jost, system-ui, sans-serif"
+    fontSize: "14px"
+    fontWeight: 300
+    lineHeight: 1.5
+  caption:
+    fontFamily: "Jost, system-ui, sans-serif"
+    fontSize: "13px"
+    fontWeight: 500
+    lineHeight: 1.5
+  motto:
+    fontFamily: "Cormorant Garamond, Jost, sans-serif"
+    fontSize: "22px"
+    fontWeight: 300
+    lineHeight: 1
   label:
     fontFamily: "Jost, system-ui, sans-serif"
     fontSize: "12.5px"
@@ -86,8 +119,8 @@ components:
     rounded: "{rounded.lg}"
     padding: "38px 34px"
   input-field:
-    backgroundColor: "{colors.dark}"
-    textColor: "{colors.dark-text}"
+    backgroundColor: "{colors.bg}"
+    textColor: "{colors.text}"
     rounded: "{rounded.sm}"
     padding: "14px 16px"
 ---
@@ -107,28 +140,34 @@ The system explicitly rejects two directions: the cold precision of generic corp
 - Cormorant Garamond italic serif for emphasis words and mottos, set against a plain grotesque (Jost) for everything else
 - Pill-shaped buttons, nav, and language switcher; large 26–44px radii on every panel and card — no sharp corners anywhere
 - Flat by design: depth comes from tonal panel shifts and one glass-blur header, never from drop shadows
-- A dark "velvet" panel (contact section) as the one deliberate tonal inversion, signaling the site's single conversion moment
+- A deeper sand "closing panel" (contact section) as the one deliberate tonal step below every other surface, signaling the site's single conversion moment and ending in Mariëtte's own sign-off ("geniet vandaag — Mariëtte")
 
 ## Colors
 
-Warm, low-saturation, and almost entirely tonal — cream, sand, and bronze, with a single dark inversion for the contact section.
+Warm, low-saturation, and almost entirely tonal — cream, sand, and bronze, with one deeper sand step for the contact section.
 
 ### Primary
 - **Warm Bronze** (`#9c7a55`): the one accent color — eyebrows, mottos, CTA hover states, focus rings, dividers, active-state fills. Used sparingly, never as a base background.
 - **Warm Bronze — Light** (`#c6b99f`): motto underline, quote marks, secondary bullet dots. A quieter step down from the primary accent.
-- **Warm Bronze — Pale** (`#f0dcc2`): hero headline emphasis (italic word), text selection highlight, light hover fills on dark surfaces.
+- **Warm Bronze — Pale** (`#f0dcc2`): hero headline emphasis (italic word), the motto's highlighter swash, text selection highlight.
+- **Warm Bronze — Deep** (`#7d5f3e`): bronze for *small* text — eyebrow, motto, blog dates, step tags, the sign-off. The base bronze is only 3.6:1 on paper; this is 5.6:1. Base bronze stays for large text (marquee, step numbers), rules, dots and focus rings.
 
 ### Neutral
-- **Warm Paper** (`#faf8f4`): page background and lightest panel (`--color-bg` / `--color-panel-2`).
+- **Warm Paper** (`#faf5ec` page / `#faf8f4` panel): page background (`--color-bg`) and lightest card surface (`--color-panel-2`).
 - **Soft Linen** (`#f7f2e7`): secondary section panel background (FAQ, testimonials) — one shade warmer/darker than the page.
-- **Ink** (`#2c2a26`): primary text color and the dark contact-panel background — doubles as both foreground and the one inverted surface.
+- **Closing Sand** (`#f1e7d6`, `--color-panel-deep`): the contact panel only — one tonal step below every other surface, so the conversion moment reads as the page's ending without inverting to dark.
+- **Ink** (`#2c2a26`): primary text color, primary buttons and the active chip fill.
 - **Muted Ink** (`#5a554d`): body copy on light panels (descriptions, paragraphs).
 - **Faint Ink** (`#8a8378`): tertiary text — testimonial attribution, placeholder labels, least emphasis.
 - **Hairline Border** (`#e2dacb` / `#ddd4c3`) and **Border Strong** (`#ddd0b6`): card and divider borders; "strong" appears only on hover/active/open states.
-- **Warm Cream (dark mode text)** (`#f4efe4`) and **Dark Accent** (`#c0a077`): text and accent colors used only inside the dark contact panel.
+- **Warm Cream** (`#f4efe4`) and **Dark Accent** (`#c0a077`): reserved for text and accents on ink surfaces; currently unused since the contact panel is light.
+- **Muted Ink** is the floor for any readable secondary text. **Faint Ink** (`#8a8378`, 3.5:1) is for placeholders and decoration only, never for labels, attributions or links.
+
+### Functional
+- **Error Brick** (`#9e3b2a`, `--color-error`): form validation messages and invalid-field borders only. A state, not an accent — it never decorates.
 
 ### Named Rules
-**The One Accent Rule.** Warm Bronze is the only saturated color in the system. It never appears as a fill larger than a button or icon circle — always text, border, or small accent, never a background panel.
+**The One Accent Rule.** Warm Bronze is the only saturated color in the system (Error Brick is a functional state, not an accent). It never appears as a fill larger than a button or icon circle — always text, border, or small accent, never a background panel.
 
 ## Typography
 
@@ -142,7 +181,11 @@ Warm, low-saturation, and almost entirely tonal — cream, sand, and bronze, wit
 - **Headline** (weight 300, `clamp(36px, 4.2vw, 56px)`, line-height ~1.05): section titles (About, Contact, FAQ).
 - **Title** (weight 400, `clamp(30px, 3.2vw, 42px)`, line-height 1.04): card-level headings (ceremony card titles).
 - **Body** (weight 300, 15.5–19px, line-height 1.65–1.85): paragraph copy; description text caps around 44–60ch measure.
-- **Label** (weight 400–500, 11.5–13px, letter-spacing 0.1–0.22em, uppercase): eyebrows, form field labels, footer links, testimonial attribution.
+- **Lead / Body-sm / Small / Meta / Caption** (18 / 16 / 15 / 14 / 13px): the supporting steps used for hero text, contact details, card copy, buttons and form labels. New values snap to one of these instead of adding half-pixel steps.
+- **Label** (weight 400–500, 11.5–13px, letter-spacing 0.1–0.22em, uppercase): the About eyebrow, testimonial attribution and index, footer links. Form labels are *not* uppercase — they are sentence-case Caption (13px/500) so a first-time visitor reads them as questions, not codes.
+
+### Named Rules
+**The One Kicker Rule.** Only the About section carries a tracked uppercase eyebrow ("Over Mariëtte"). Every other section opens straight on its serif headline; an eyebrow everywhere stops meaning anything.
 - **Motto/Emphasis** (Cormorant Garamond italic, 22px, color Warm Bronze `#7d5f3e` deep variant): the single recurring device for one important phrase per section (e.g. "geniet vandaag"), always underlined with an animated bronze-light rule.
 
 ### Named Rules
@@ -175,7 +218,7 @@ Buttons, cards, and inputs are uniformly soft and unhurried: generous radii, slo
 - **Solid (default, e.g. header CTA):** background `--color-text` (ink), text `--color-bg`; hover shifts to Warm Bronze background, white text.
 - **Bordered/Ghost:** transparent background, 1px `--color-border-soft` border; hover inverts to ink background with paper text. Used for secondary actions (testimonials link, ceremony card CTA, "Lees mijn verhaal").
 - **Outline (on photography):** transparent with a 45%-opacity white border, for buttons placed directly over the hero image.
-- **Form submit:** rectangular padding but still no radius token deviation — background `--color-panel`, hover to `--color-dark-accent`.
+- **Form submit:** ink pill, label names the action ("Plan een kennismaking"), hover to Bronze Deep; disabled + "Even geduld…" while sending.
 
 ### Cards / Containers
 - **Corner Style:** 26–34px radius depending on card size (ceremony card 34px outer / 26px photo inset; testimonial and FAQ item 26–30px).
@@ -184,9 +227,11 @@ Buttons, cards, and inputs are uniformly soft and unhurried: generous radii, slo
 - **Internal Padding:** 22–38px depending on card size, always via `clamp()` for responsive scaling.
 
 ### Inputs / Fields
-- **Style:** on the dark contact panel only — translucent ink background (`rgba(242,238,230,0.08)`), 1px translucent border, 14px radius, cream text.
-- **Focus:** 2px solid outline in `--color-dark-accent` with 1px offset, plus border-color shift to the same accent — no glow or shadow.
-- **Labels:** uppercase, 12.5px, 0.12em tracking, 60% opacity — sits above the field, never inline/floating.
+- **Style:** on the contact panel's paper form card — `--color-bg` fill, 1px `--color-border-strong`, 14px radius, 50px tall, 16px text (no iOS zoom). Native select gets a drawn chevron.
+- **Focus:** 2px solid outline in Warm Bronze with 1px offset, plus border-color shift to the same — no glow or shadow.
+- **Labels:** sentence case, 13px/500 Ink, above the field; "(optioneel)" in Muted Ink for optional fields.
+- **Errors:** inline under the field in Error Brick, field border to Error Brick, `aria-invalid`; first invalid field takes focus. Messages say what to do ("Vul een e-mailadres in waarop ik kan antwoorden.").
+- **States:** sending (button disabled), sent (form replaced by an italic-serif "Dank jullie wel!" message that takes focus), failed (inline message with the direct email address). Without a configured endpoint the form hands off to the visitor's mail app and says so.
 
 ### Navigation
 - Floating glass pill header, fixed 18px from viewport top, max-width 1240px, centered. Nav links sit inline with 100px-radius hover backgrounds (`rgba(255,255,255,0.75)`). A three-way language switch (NL/DE/EN) uses the same pill-within-pill pattern, active state solid white. Collapses to logo + CTA only below 860px.

@@ -7,7 +7,8 @@ const { text: base } = Astro.props;
 const text = `${base} · ${base} · ${base} · `;
 ---
 
-<div class="marquee-outer">
+<!-- Decorative: the same vow in three languages, repeated. Hidden from screen readers. -->
+<div class="marquee-outer" aria-hidden="true">
 	<div class="marquee-track" data-marquee>
 		<span>{text}</span>
 		<span>{text}</span>
@@ -17,7 +18,7 @@ const text = `${base} · ${base} · ${base} · `;
 <style>
 	.marquee-outer {
 		overflow: hidden;
-		padding: 44px 0 30px;
+		padding: clamp(36px, 4vw, 56px) 0 clamp(24px, 3vw, 40px);
 		-webkit-mask-image: linear-gradient(to right, transparent, black 80px, black calc(100% - 80px), transparent);
 		mask-image: linear-gradient(to right, transparent, black 80px, black calc(100% - 80px), transparent);
 	}
@@ -30,8 +31,11 @@ const text = `${base} · ${base} · ${base} · `;
 
 	.marquee-track span {
 		font-family: var(--font-display);
-		font-size: 38px;
+		font-style: italic;
+		font-size: clamp(40px, 4.6vw, 64px);
 		font-weight: 300;
-		color: var(--color-gold-light);
+		line-height: 1.1;
+		color: var(--color-gold);
+		padding-right: 0.3em;
 	}
 </style>

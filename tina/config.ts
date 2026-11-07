@@ -32,6 +32,13 @@ const settingsFields: TinaField[] = [
 	{ type: 'string', name: 'kvk', label: 'KVK-nummer' },
 	{ type: 'string', name: 'priceNote', label: 'Prijsnotitie', ui: { component: 'textarea' } },
 	{
+		type: 'string',
+		name: 'formEndpoint',
+		label: 'Contactformulier — verzendadres (URL)',
+		description: 'Bijv. een Formspree- of Web3Forms-adres. Leeg: het formulier opent het mailprogramma van de bezoeker.',
+	},
+	{ type: 'string', name: 'privacyUrl', label: 'Link naar privacyverklaring' },
+	{
 		type: 'object',
 		name: 'footerSocials',
 		label: 'Footer-links',
@@ -70,6 +77,14 @@ const homeFields: TinaField[] = [
 			{ type: 'string', name: 'paragraph1After', label: 'Alinea 1 — na de lijfspreuk', ui: { component: 'textarea' } },
 			{ type: 'string', name: 'paragraph2', label: 'Alinea 2', ui: { component: 'textarea' } },
 			{ type: 'image', name: 'image', label: 'Portretfoto' },
+			{
+				type: 'string',
+				name: 'speechExcerpt',
+				label: 'Fragment uit een speech',
+				description: 'Een paar echte zinnen uit een ceremonie (met toestemming). Leeg: niet zichtbaar.',
+				ui: { component: 'textarea' },
+			},
+			{ type: 'string', name: 'speechCaption', label: 'Fragment — bijschrift (bijv. "Uit de speech voor A & B, 2025")' },
 		],
 	},
 	{
@@ -140,6 +155,12 @@ const homeFields: TinaField[] = [
 	},
 	{ type: 'string', name: 'testimonialsLinkLabel', label: 'Testimonials — link-label' },
 	{
+		type: 'string',
+		name: 'testimonialsLinkUrl',
+		label: 'Testimonials — link naar alle reacties (URL)',
+		description: 'Leeg: de knop wordt niet getoond.',
+	},
+	{
 		type: 'object',
 		name: 'testimonials',
 		label: 'Testimonials',
@@ -178,6 +199,13 @@ const postFields: TinaField[] = [
 	{ type: 'string', name: 'title', label: 'Titel', isTitle: true, required: true },
 	{ type: 'datetime', name: 'date', label: 'Datum' },
 	{ type: 'string', name: 'excerpt', label: 'Samenvatting', ui: { component: 'textarea' } },
+	{
+		type: 'string',
+		name: 'slug',
+		label: 'URL',
+		description:
+			'Laat leeg om de bestandsnaam te gebruiken. Vul hier een vertaalde URL in — de bestandsnaam moet in alle talen gelijk blijven, want daarmee horen de vertalingen bij elkaar.',
+	},
 	{ type: 'image', name: 'cover', label: 'Coverfoto' },
 	{ type: 'string', name: 'coverLabel', label: 'Placeholder-tekst (als er geen foto is)' },
 	{ type: 'rich-text', name: 'body', label: 'Inhoud', isBody: true },

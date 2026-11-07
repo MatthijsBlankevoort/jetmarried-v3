@@ -61,7 +61,7 @@
       "id": "verbintenis",
       "title": "Verbindung ohne Papiere",
       "imageLabel": "FOTO — intimes Detail, hochkant",
-      "image": "/uploads/detail-strand.webp",
+      "image": "/uploads/blog-strandceremonie.webp",
       "description": "Ein Versprechen aneinander, ohne rechtliche Folgen — ganz nach eurer eigenen Vorstellung.",
       "bullets": [
         "Für Partner, Freunde oder gewählte Familie",
@@ -106,8 +106,7 @@
   "locations": [
     {
       "name": "De Slufter",
-      "imageLabel": "FOTO — De Slufter, weite Dünenlandschaft",
-      "image": "/uploads/landing.webp"
+      "imageLabel": "FOTO — De Slufter, weite Dünenlandschaft"
     },
     {
       "name": "Strandpavillon bei Sonnenuntergang",
@@ -116,28 +115,24 @@
     },
     {
       "name": "Leuchtturm De Cocksdorp",
-      "imageLabel": "FOTO — roter Leuchtturm, De Cocksdorp",
-      "image": "/uploads/blog-strandceremonie.webp"
+      "imageLabel": "FOTO — roter Leuchtturm, De Cocksdorp"
     },
     {
       "name": "Kiefernwald bei De Koog",
-      "imageLabel": "FOTO — Kiefernwald, weiches Licht zwischen den Stämmen",
-      "image": "/uploads/jetmarried-garden.webp"
+      "imageLabel": "FOTO — Kiefernwald, weiches Licht zwischen den Stämmen"
     },
     {
       "name": "Schafscheune im Polder",
-      "imageLabel": "FOTO — Schafscheune, Texeler Polder",
-      "image": "/uploads/herbevestiging-kerk.webp"
+      "imageLabel": "FOTO — Schafscheune, Texeler Polder"
     },
     {
       "name": "An Bord, auf dem Wattenmeer",
-      "imageLabel": "FOTO — Segelschiff auf dem Wattenmeer",
-      "image": "/uploads/detail-strand.webp"
+      "imageLabel": "FOTO — Segelschiff auf dem Wattenmeer"
     },
     {
       "name": "Einfach in eurem eigenen Garten",
       "imageLabel": "FOTO — Gartenzeremonie, gedeckte Tische",
-      "image": "/uploads/signeren-strand.webp"
+      "image": "/uploads/jetmarried-garden.webp"
     }
   ],
   "testimonialsLinkLabel": "Alle 13 Stimmen",
@@ -177,6 +172,10 @@
     {
       "q": "Was kostet eine Zeremonie?",
       "a": "€ 825, inklusive aller Gespräche und der geschriebenen Rede. Eine deutschsprachige Zeremonie kostet € 125 zusätzlich. Fahrtkosten und eventuelle Gebühren der Gemeinde kommen hinzu."
+    },
+    {
+      "q": "Was ist der Unterschied zur Trauung im Rathaus?",
+      "a": "Als BABS (außerordentliche Standesbeamtin, von der Gemeinde vereidigt) bin ich genauso befugt wie die Standesbeamtin im Rathaus. Der Unterschied: Ich komme an den Ort, den Tag und die Uhrzeit, die ihr wählt, und die Rede schreibe ich aus eurer eigenen Geschichte, nach zwei Gesprächen."
     },
     {
       "q": "Können wir dich in unsere eigene Gemeinde mitnehmen?",

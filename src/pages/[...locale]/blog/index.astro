@@ -31,7 +31,7 @@ const settings = await getSettings(locale);
 					posts.map((post) => (
 						<div data-reveal>
 							<BlogCard
-								slug={postSlug(post.id)}
+								slug={postSlug(post)}
 								title={post.data.title}
 								excerpt={post.data.excerpt}
 								date={post.data.date}

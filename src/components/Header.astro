@@ -1,18 +1,26 @@
 ---
-import { locales, localeLabel, localePath, stripLocale, toLocale, useTranslations } from '../i18n/ui';
+import { locales, localeLabel, localePath, stripLocale, toLocale, useTranslations, type Locale } from '../i18n/ui';
 
 interface Props {
 	nav: { label: string; href: string }[];
 	logoUrl: string;
 	headerCta: string;
+	/**
+	 * Where this page lives in the other languages. Pass it where the path is not
+	 * the same in every language — a blog post with a translated slug.
+	 */
+	alternates?: { locale: Locale; path: string }[];
 }
 
-const { nav, logoUrl, headerCta } = Astro.props;
+const { nav, logoUrl, headerCta, alternates } = Astro.props;
 
 const locale = toLocale(Astro.currentLocale);
 const t = useTranslations(locale);
-// The switcher keeps you on the same page: only the language prefix changes.
+// By default the switcher keeps you on the same page and only the language
+// prefix changes; a page with translated slugs passes its own paths instead.
 const path = stripLocale(Astro.url.pathname);
+const hrefFor = (target: Locale) =>
+	alternates?.find(({ locale: l }) => l === target)?.path ?? localePath(target, path);
 ---
 
 <header class="header-wrap" data-header>
@@ -36,7 +44,7 @@ const path = stripLocale(Astro.url.pathname);
 								{localeLabel[l]}
 							</span>
 						) : (
-							<a href={localePath(l, path)} hreflang={l}>
+							<a href={hrefFor(l)} hreflang={l}>
 								{localeLabel[l]}
 							</a>
 						),
@@ -67,7 +75,7 @@ const path = stripLocale(Astro.url.pathname);
 							{localeLabel[l]}
 						</span>
 					) : (
-						<a href={localePath(l, path)} hreflang={l}>
+						<a href={hrefFor(l)} hreflang={l}>
 							{localeLabel[l]}
 						</a>
 					),
@@ -127,11 +135,24 @@ const path = stripLocale(Astro.url.pathname);
 		white-space: nowrap;
 	}
 
+	/* The logo file has a white background; multiply lets it sit on the glass. */
 	.header-logo img {
-		height: 34px;
-		width: auto;
+		/* The square logo file is mostly whitespace: crop to the rings and wordmark. */
+		width: 96px;
+		height: 48px;
+		object-fit: cover;
+		object-position: 50% 52%;
 		display: block;
-		border-radius: 8px;
+		mix-blend-mode: multiply;
+	}
+
+	.header-nav a:focus-visible,
+	.lang-switch a:focus-visible,
+	.header-cta:focus-visible,
+	.header-burger:focus-visible,
+	.header-logo:focus-visible {
+		outline: 2px solid var(--color-gold);
+		outline-offset: 2px;
 	}
 
 	.header-nav {
@@ -185,7 +206,7 @@ const path = stripLocale(Astro.url.pathname);
 	}
 
 	.lang-switch a {
-		color: #8d857a;
+		color: var(--color-text-muted);
 	}
 
 	.header-cta {
@@ -215,7 +236,9 @@ const path = stripLocale(Astro.url.pathname);
 		width: 44px;
 		height: 44px;
 		border-radius: 50%;
+		border: 1px solid var(--color-border-soft);
 		background: transparent;
+		cursor: pointer;
 		flex-shrink: 0;
 	}
 
@@ -285,8 +308,21 @@ const path = stripLocale(Astro.url.pathname);
 
 	@media (max-width: 860px) {
 		.header-nav,
-		.header-actions {
+		.header-actions .lang-switch {
 			display: none;
+		}
+
+		.header-pill {
+			gap: 10px;
+			padding: 8px 8px 8px 20px;
+		}
+
+		.header-actions {
+			margin-left: auto;
+		}
+
+		.header-actions .header-cta {
+			padding: 11px 18px;
 		}
 
 		.header-burger {

@@ -19,6 +19,12 @@ const posts = defineCollection({
 		title: z.string(),
 		date: z.coerce.date(),
 		excerpt: z.string(),
+		/**
+		 * URL override. Leave it empty and the filename is used — which is what
+		 * keeps the translations of an article linked, see postKey in
+		 * src/lib/content.ts.
+		 */
+		slug: z.string().optional(),
 		cover: z.string().optional(),
 		coverLabel: z.string().default('FOTO — nieuw artikel'),
 	}),
@@ -38,6 +44,14 @@ const settings = defineCollection({
 		email: z.string(),
 		kvk: z.string(),
 		priceNote: z.string(),
+		/**
+		 * Where the contact form posts to (Formspree, Web3Forms, Basin… any
+		 * service that accepts a JSON-answering POST). Empty → the form opens
+		 * the visitor's mail app with everything filled in instead.
+		 */
+		formEndpoint: z.string().optional(),
+		/** Privacy statement, linked from the consent checkbox. */
+		privacyUrl: z.string().optional(),
 		footerSocials: z.array(navLink),
 	}),
 });
@@ -86,6 +100,9 @@ const home = defineCollection({
 			paragraph1After: z.string(),
 			paragraph2: z.string(),
 			image: z.string().optional(),
+			/** A few real sentences from one of Mariëtte's speeches. Empty → not shown. */
+			speechExcerpt: z.string().optional(),
+			speechCaption: z.string().optional(),
 		}),
 		ceremoniesIntro: z.object({ title: z.string(), text: z.string() }),
 		ceremonies: z.array(ceremony),
@@ -93,6 +110,8 @@ const home = defineCollection({
 		locationsIntro: z.object({ title: z.string(), text: z.string() }),
 		locations: z.array(location),
 		testimonialsLinkLabel: z.string(),
+		/** Where all reviews live (Google, Facebook…). Empty → the link is hidden. */
+		testimonialsLinkUrl: z.string().optional(),
 		testimonials: z.array(testimonial),
 		faq: z.array(faqItem),
 		contact: twoLineTitle.extend({ text: z.string() }),

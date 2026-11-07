@@ -7,15 +7,12 @@ function initFaq() {
 
 	let open = 0;
 
+	// Height is animated in CSS (grid rows); closed answers are inert so they drop out of the tab order.
 	const setOpen = (i) => {
 		items.forEach((item, k) => {
-			const ans = item.querySelector('[data-faq-a]');
-			const icon = item.querySelector('[data-faq-icon]');
-			const bar = item.querySelector('[data-faq-bar]');
 			const on = k === i;
-			if (ans) ans.style.height = on ? `${ans.firstElementChild.offsetHeight}px` : '0px';
 			item.classList.toggle('faq-item-open', on);
-			if (bar) bar.style.opacity = on ? '0' : '1';
+			item.querySelector('[data-faq-a]')?.toggleAttribute('inert', !on);
 			item.querySelector('[data-faq-q]')?.setAttribute('aria-expanded', String(on));
 		});
 		open = i;
@@ -26,11 +23,6 @@ function initFaq() {
 		head?.addEventListener('click', () => setOpen(open === i ? -1 : i));
 	});
 
-	window.addEventListener('resize', () => {
-		if (open >= 0) setOpen(open);
-	});
-
-	requestAnimationFrame(() => setOpen(0));
 }
 
 function initLocations() {
@@ -38,11 +30,13 @@ function initLocations() {
 	const chips = Array.from(document.querySelectorAll('[data-loc]'));
 	if (!imgs.length || !chips.length) return;
 
-	let active = 0;
+	let active = Math.max(0, imgs.findIndex((img) => img.classList.contains('loc-img-active')));
 	const show = (i) => {
 		if (i === active) return;
 		imgs[active].classList.remove('loc-img-active');
+		imgs[active].setAttribute('aria-hidden', 'true');
 		imgs[i].classList.add('loc-img-active');
+		imgs[i].removeAttribute('aria-hidden');
 		chips.forEach((c, k) => {
 			c.classList.toggle('loc-chip-active', k === i);
 			c.setAttribute('aria-pressed', String(k === i));
@@ -56,8 +50,82 @@ function initLocations() {
 	});
 }
 
+// Carousel arrows work without GSAP too (keyboard, reduced motion); GSAP only adds the easing.
+function initTestimonials(animate) {
+	const view = document.querySelector('[data-rev-view]');
+	const track = document.querySelector('[data-rev-track]');
+	const bar = document.querySelector('[data-rev-bar]');
+	const prev = document.querySelector('[data-rev-prev]');
+	const next = document.querySelector('[data-rev-next]');
+	if (!view || !track) return;
+
+	let maxX = 0;
+	let x = 0;
+	const measure = () => {
+		maxX = Math.max(0, track.scrollWidth - view.clientWidth + 24);
+		x = Math.min(0, Math.max(-maxX, x));
+	};
+
+	const render = (duration) => {
+		const progress = 0.22 + (Math.abs(x) / (maxX || 1)) * 0.78;
+		if (animate) {
+			// Always go through GSAP when it is in charge, so its cached position never goes stale.
+			gsap.to(track, { x, duration, ease: 'power3.out', overwrite: true });
+			if (bar) gsap.to(bar, { scaleX: progress, duration, ease: 'power3.out', overwrite: true });
+		} else {
+			track.style.transform = `translateX(${x}px)`;
+			if (bar) bar.style.transform = `scaleX(${progress})`;
+		}
+		if (prev) prev.disabled = x >= 0;
+		if (next) next.disabled = x <= -maxX;
+	};
+
+	measure();
+	render(0);
+	window.addEventListener('resize', () => {
+		measure();
+		render(0);
+	});
+
+	let dragging = false;
+	let startX = 0;
+	let base = 0;
+	view.addEventListener('pointerdown', (e) => {
+		dragging = true;
+		startX = e.clientX;
+		base = x;
+		view.style.cursor = 'grabbing';
+	});
+	window.addEventListener('pointermove', (e) => {
+		if (!dragging) return;
+		x = Math.min(0, Math.max(-maxX, base + (e.clientX - startX)));
+		render(0);
+	});
+	window.addEventListener('pointerup', () => {
+		if (!dragging) return;
+		dragging = false;
+		view.style.cursor = 'grab';
+	});
+
+	const step = () => {
+		const card = track.children[0];
+		return card ? card.getBoundingClientRect().width + 18 : 418;
+	};
+	const nudge = (dir) => {
+		x = Math.min(0, Math.max(-maxX, x - dir * step()));
+		render(0.7);
+	};
+	prev?.addEventListener('click', () => nudge(-1));
+	next?.addEventListener('click', () => nudge(1));
+	view.addEventListener('keydown', (e) => {
+		if (e.key === 'ArrowRight') nudge(1);
+		if (e.key === 'ArrowLeft') nudge(-1);
+	});
+}
+
 function initGsap() {
 	gsap.registerPlugin(ScrollTrigger);
+	gsap.defaults({ overwrite: 'auto' });
 
 	gsap.set('[data-hero]', { y: 34, opacity: 0 });
 	gsap.to('[data-hero]', { y: 0, opacity: 1, duration: 1.1, ease: 'power3.out', stagger: 0.09, delay: 0.15 });
@@ -129,7 +197,6 @@ function initGsap() {
 		if (dot) tl.fromTo(dot, { scale: 0.2, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.6, ease: 'back.out(2.4)' }, 0.1);
 		if (cols.length) tl.fromTo(cols, { y: 18, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6, ease: 'power3.out', stagger: 0.09 }, 0.2);
 
-		const baseActive = card?.classList.contains('step-card-active');
 		ScrollTrigger.create({
 			trigger: el,
 			start: 'top 66%',
@@ -137,7 +204,7 @@ function initGsap() {
 			onToggle: (self) => {
 				if (card) {
 					gsap.to(card, {
-						borderColor: self.isActive ? '#b9a684' : baseActive ? '#ddd0b6' : 'rgba(236,231,221,0)',
+						borderColor: self.isActive ? '#b9a684' : '#e2dacb',
 						duration: 0.45,
 					});
 				}
@@ -148,68 +215,20 @@ function initGsap() {
 		});
 	});
 
+	// The progress line is drawn through a custom property, so CSS decides whether it runs down or across.
 	const stepBar = document.querySelector('[data-step-bar]');
 	if (stepBar) {
-		gsap.to(stepBar, {
-			scaleY: 1,
+		gsap.to(stepBar.parentNode, {
+			'--p': 1,
 			ease: 'none',
 			scrollTrigger: { trigger: stepBar.parentNode, start: 'top 72%', end: 'bottom 78%', scrub: 0.6 },
 		});
 	}
 
-	// testimonials: drag-to-scroll carousel + progress bar + arrows
+	// testimonials: hover lift + staggered reveal (dragging and arrows live in initTestimonials)
 	const revView = document.querySelector('[data-rev-view]');
 	const revTrack = document.querySelector('[data-rev-track]');
-	const revBar = document.querySelector('[data-rev-bar]');
 	if (revView && revTrack) {
-		let maxX = 0;
-		const measure = () => {
-			maxX = Math.max(0, revTrack.scrollWidth - revView.clientWidth + 24);
-		};
-		measure();
-		window.addEventListener('resize', measure);
-
-		let dragX = 0;
-		const apply = () => {
-			const x = Math.min(0, Math.max(-maxX, dragX));
-			gsap.set(revTrack, { x });
-			if (revBar) gsap.set(revBar, { scaleX: 0.22 + (Math.abs(x) / (maxX || 1)) * 0.78 });
-		};
-
-		let dragging = false;
-		let startX = 0;
-		let base = 0;
-		revView.addEventListener('pointerdown', (e) => {
-			dragging = true;
-			startX = e.clientX;
-			base = dragX;
-			revView.style.cursor = 'grabbing';
-		});
-		window.addEventListener('pointermove', (e) => {
-			if (!dragging) return;
-			dragX = base + (e.clientX - startX);
-			apply();
-		});
-		window.addEventListener('pointerup', () => {
-			if (!dragging) return;
-			dragging = false;
-			revView.style.cursor = 'grab';
-			dragX = Math.min(0, Math.max(-maxX, dragX));
-			gsap.to(revTrack, { x: dragX, duration: 0.45, ease: 'power3.out' });
-		});
-
-		const step = () => {
-			const c = revTrack.children[0];
-			return c ? c.getBoundingClientRect().width + 18 : 418;
-		};
-		const nudge = (dir) => {
-			dragX = Math.min(0, Math.max(-maxX, dragX - dir * step()));
-			gsap.to(revTrack, { x: dragX, duration: 0.7, ease: 'power3.out' });
-			if (revBar) gsap.to(revBar, { scaleX: 0.22 + (Math.abs(dragX) / (maxX || 1)) * 0.78, duration: 0.7, ease: 'power3.out' });
-		};
-		document.querySelector('[data-rev-prev]')?.addEventListener('click', () => nudge(-1));
-		document.querySelector('[data-rev-next]')?.addEventListener('click', () => nudge(1));
-
 		document.querySelectorAll('[data-rev]').forEach((card) => {
 			card.addEventListener('mouseenter', () => gsap.to(card, { y: -10, duration: 0.4, ease: 'power3.out' }));
 			card.addEventListener('mouseleave', () => gsap.to(card, { y: 0, duration: 0.5, ease: 'power3.out' }));
@@ -270,9 +289,12 @@ function initGsap() {
 }
 
 function init() {
+	const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 	initFaq();
 	initLocations();
-	initGsap();
+	initTestimonials(!reduceMotion);
+	// With reduced motion everything simply stays in place and visible.
+	if (!reduceMotion) initGsap();
 }
 
 if (document.readyState === 'loading') {

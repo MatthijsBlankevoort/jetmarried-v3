@@ -17,12 +17,12 @@ const [line2First, ...line2Rest] = titleLine2.split(' ');
 <div id="top" class="hero-outer">
 	<div class="hero" data-hero-scale>
 		<Photo src={image} alt="" label={t('hero.photoLabel')} class="hero-photo" data-hero-img />
-		<div class="hero-overlay"></div>
+		<div class="hero-overlay" aria-hidden="true"></div>
 
 		<div class="hero-content">
 			<h1 class="hero-title">
 				<span data-hero>{titleLine1}</span>
-				<span data-hero><em>{line2First}</em> {line2Rest.join(' ')}</span>
+				<span data-hero><em>{line2First}</em>{line2Rest.length > 0 && ` ${line2Rest.join(' ')}`}</span>
 			</h1>
 			<div class="hero-bottom-row">
 				<p class="hero-text" data-hero>{text}</p>

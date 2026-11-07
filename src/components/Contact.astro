@@ -10,198 +10,637 @@ interface Props {
 	phoneHref: string;
 	email: string;
 	priceNote: string;
+	/** Offered in the "which ceremony" select; the ceremony cards pre-fill it. */
+	ceremonies: { id: string; title: string }[];
+	/** Signed off under the panel, like the end of a letter. */
+	motto?: string;
+	formEndpoint?: string;
+	privacyUrl?: string;
 }
 
-const { titleLine1, titleLine2, text, contactName, phone, phoneHref, email, priceNote } = Astro.props;
+const {
+	titleLine1,
+	titleLine2,
+	text,
+	contactName,
+	phone,
+	phoneHref,
+	email,
+	priceNote,
+	ceremonies,
+	motto,
+	formEndpoint,
+	privacyUrl,
+} = Astro.props;
 const t = useTranslations(Astro.currentLocale);
+const firstName = contactName.split(' ')[0];
+const today = new Date().toISOString().slice(0, 10);
 ---
 
-<div id="contact" class="contact-outer">
+<section id="contact" class="contact-outer" aria-labelledby="contact-title">
 	<div class="contact-panel">
-		<div>
-			<div class="contact-eyebrow" data-reveal>{t('contact.eyebrow')}</div>
-			<h2 class="contact-title" data-reveal>{titleLine1}<br />{titleLine2}</h2>
+		<div class="contact-copy">
+			<h2 id="contact-title" class="contact-title" data-reveal>{titleLine1}<br />{titleLine2}</h2>
 			<p class="contact-text" data-reveal>{text}</p>
+
+			<div class="contact-next" data-reveal>
+				<h3 class="contact-next-title">{t('contact.nextTitle')}</h3>
+				<ol>
+					<li>{t('contact.next1')}</li>
+					<li>{t('contact.next2')}</li>
+					<li>{t('contact.next3')}</li>
+				</ol>
+			</div>
+
 			<div class="contact-details" data-reveal>
 				<div>{contactName}</div>
 				<a href={`tel:${phoneHref}`}>{phone}</a>
 				<a href={`mailto:${email}`}>{email}</a>
 			</div>
-			<div class="contact-price" data-reveal>{priceNote}</div>
+			<p class="contact-price" data-reveal>{priceNote}</p>
 		</div>
-		<form class="contact-form" data-reveal>
-			<label class="form-field">
-				<span class="form-label">{t('contact.name')}</span>
-				<input type="text" name="name" />
-			</label>
-			<label class="form-field">
-				<span class="form-label">{t('contact.email')}</span>
-				<input type="email" name="email" />
-			</label>
-			<label class="form-field">
-				<span class="form-label">{t('contact.message')}</span>
-				<textarea name="message" rows="4"></textarea>
-			</label>
-			<label class="form-consent">
-				<input type="checkbox" name="consent" />
-				{t('contact.consent')}
-			</label>
-			<button type="submit" class="btn form-submit">{t('contact.submit')}</button>
-		</form>
+
+		<div class="contact-form-wrap" data-reveal>
+			<form
+				class="contact-form"
+				method="post"
+				action={formEndpoint || undefined}
+				novalidate
+				data-contact-form
+				data-endpoint={formEndpoint || ''}
+				data-email={email}
+				data-subject={t('contact.mailSubject')}
+				data-label-date={t('contact.date')}
+				data-label-ceremony={t('contact.ceremony')}
+				data-label-unknown={t('contact.dateUnknown')}
+			>
+				<div class="form-row">
+					<div class="form-field">
+						<label class="form-label" for="cf-name">{t('contact.name')}</label>
+						<input id="cf-name" type="text" name="name" autocomplete="name" required aria-describedby="cf-name-err" />
+						<p class="form-error" id="cf-name-err" data-error-for="name" hidden>{t('contact.errName')}</p>
+					</div>
+					<div class="form-field">
+						<label class="form-label" for="cf-email">{t('contact.email')}</label>
+						<input id="cf-email" type="email" name="email" autocomplete="email" required aria-describedby="cf-email-err" />
+						<p class="form-error" id="cf-email-err" data-error-for="email" hidden>{t('contact.errEmail')}</p>
+					</div>
+				</div>
+
+				<div class="form-row">
+					<div class="form-field">
+						<label class="form-label" for="cf-date">
+							{t('contact.date')} <span class="form-optional">({t('contact.optional')})</span>
+						</label>
+						<input id="cf-date" type="date" name="date" min={today} data-date />
+						<label class="form-check form-check-small">
+							<input type="checkbox" name="dateUnknown" value="ja" data-date-unknown />
+							<span>{t('contact.dateUnknown')}</span>
+						</label>
+					</div>
+					<div class="form-field">
+						<label class="form-label" for="cf-ceremony">{t('contact.ceremony')}</label>
+						<div class="form-select">
+							<select id="cf-ceremony" name="ceremony" data-ceremony-select>
+								<option value="">{t('contact.ceremonyUnsure')}</option>
+								{ceremonies.map((c) => <option value={c.title} data-id={c.id}>{c.title}</option>)}
+							</select>
+						</div>
+					</div>
+				</div>
+
+				<div class="form-field">
+					<label class="form-label" for="cf-message">
+						{t('contact.message')} <span class="form-optional">({t('contact.optional')})</span>
+					</label>
+					<textarea id="cf-message" name="message" rows="4"></textarea>
+				</div>
+
+				<!-- Honeypot: invisible to people, filled in by bots. -->
+				<div class="form-trap" aria-hidden="true">
+					<input type="text" name="_gotcha" tabindex="-1" autocomplete="off" />
+				</div>
+
+				<div class="form-field">
+					<label class="form-check">
+						<input type="checkbox" name="consent" value="ja" required aria-describedby="cf-consent-err" />
+						<span>
+							{t('contact.consentBefore')}{' '}
+							{privacyUrl ? <a href={privacyUrl} target="_blank" rel="noopener">{t('contact.consentLink')}</a> : t('contact.consentLink')}
+							{t('contact.consentAfter') && ` ${t('contact.consentAfter')}`}
+						</span>
+					</label>
+					<p class="form-error" id="cf-consent-err" data-error-for="consent" hidden>{t('contact.errConsent')}</p>
+				</div>
+
+				<div class="form-actions">
+					<button type="submit" class="btn form-submit" data-submit data-sending-label={t('contact.sending')}>
+						{t('contact.submit')}
+					</button>
+					<p class="form-status" role="alert" data-form-error hidden>
+						{t('contact.error')} <a href={`mailto:${email}`}>{email}</a>.
+					</p>
+				</div>
+			</form>
+
+			<div class="form-done" tabindex="-1" data-form-done="sent" hidden>
+				<p class="form-done-title">{t('contact.successTitle')}</p>
+				<p>{t('contact.successText')}</p>
+			</div>
+			<div class="form-done" tabindex="-1" data-form-done="mailto" hidden>
+				<p class="form-done-title">{t('contact.mailtoTitle')}</p>
+				<p>{t('contact.mailtoText')} <a href={`mailto:${email}`}>{email}</a>.</p>
+			</div>
+		</div>
 	</div>
-</div>
+
+	{
+		motto && (
+			<p class="contact-signoff" data-reveal>
+				<em>{motto}</em>
+				<span>— {firstName}</span>
+			</p>
+		)
+	}
+</section>
 
 <style>
 	.contact-outer {
 		padding: 0 14px 14px;
 	}
 
+	/* The page's closing panel: one tonal step deeper than any card above it. */
 	.contact-panel {
 		border-radius: 44px;
-		background: var(--color-panel-2);
-		border: 1px solid var(--color-border);
+		background: var(--color-panel-deep);
 		color: var(--color-text);
-		padding: clamp(56px, 6vw, 96px) clamp(28px, 4vw, 60px);
+		padding: clamp(48px, 6vw, 104px) clamp(22px, 4.6vw, 72px);
 		display: grid;
-		grid-template-columns: 1fr 1fr;
-		gap: clamp(40px, 5vw, 80px);
-	}
-
-	.contact-eyebrow {
-		font-size: 12px;
-		letter-spacing: 0.22em;
-		text-transform: uppercase;
-		color: var(--color-gold);
-		margin-bottom: 22px;
+		grid-template-columns: 0.9fr 1.1fr;
+		gap: clamp(40px, 5vw, 88px);
+		align-items: start;
 	}
 
 	.contact-title {
 		margin: 0 0 24px;
 		font-family: var(--font-display);
 		font-weight: 300;
-		font-size: clamp(38px, 4.4vw, 58px);
-		line-height: 1.02;
+		font-size: clamp(52px, 5.4vw, 104px);
+		line-height: 0.98;
+		letter-spacing: -0.01em;
+		text-wrap: balance;
 	}
 
 	.contact-text {
-		margin: 0 0 38px;
+		margin: 0 0 36px;
 		font-size: 17px;
-		line-height: 1.85;
+		line-height: 1.8;
 		font-weight: 300;
 		color: var(--color-text-muted);
 		max-width: 44ch;
 		text-wrap: pretty;
 	}
 
+	.contact-next {
+		margin-bottom: 40px;
+	}
+
+	.contact-next-title {
+		margin: 0 0 14px;
+		font-size: 15px;
+		font-weight: 500;
+	}
+
+	.contact-next ol {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		counter-reset: next;
+		display: flex;
+		flex-direction: column;
+		gap: 10px;
+	}
+
+	.contact-next li {
+		counter-increment: next;
+		display: grid;
+		grid-template-columns: 28px 1fr;
+		align-items: baseline;
+		font-size: 16px;
+		line-height: 1.6;
+		font-weight: 300;
+		color: var(--color-text-muted);
+		max-width: 46ch;
+	}
+
+	.contact-next li::before {
+		content: counter(next);
+		font-family: var(--font-display);
+		font-style: italic;
+		font-size: 22px;
+		line-height: 1;
+		color: var(--color-gold-deep);
+	}
+
 	.contact-details {
 		display: flex;
 		flex-direction: column;
-		gap: 14px;
+		gap: 10px;
 		font-size: 16px;
 		font-weight: 300;
 		color: var(--color-text-muted);
 	}
 
+	.contact-details a {
+		align-self: flex-start;
+		border-bottom: 1px solid var(--color-border-strong);
+		transition: border-color 0.3s ease, color 0.3s ease;
+	}
+
+	.contact-details a:hover {
+		color: var(--color-text);
+		border-color: var(--color-gold);
+	}
+
 	.contact-price {
-		margin-top: 40px;
-		padding: 20px 24px;
-		border-radius: 22px;
-		background: var(--color-panel);
-		border: 1px solid var(--color-border);
-		font-size: 14.5px;
-		line-height: 1.8;
+		margin: 32px 0 0;
+		font-size: 15px;
+		line-height: 1.75;
 		font-weight: 300;
 		color: var(--color-text-muted);
 		max-width: 44ch;
+		padding-top: 22px;
+		border-top: 1px solid var(--color-border-strong);
+	}
+
+	.contact-form-wrap {
+		border-radius: 34px;
+		background: var(--color-panel-2);
+		padding: clamp(24px, 3.2vw, 46px);
 	}
 
 	.contact-form {
-		border-radius: 32px;
-		background: var(--color-panel);
-		border: 1px solid var(--color-border);
-		padding: clamp(28px, 3vw, 42px);
 		display: flex;
 		flex-direction: column;
-		gap: 20px;
+		gap: 22px;
+	}
+
+	.form-row {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 22px 18px;
 	}
 
 	.form-field {
-		display: block;
+		display: flex;
+		flex-direction: column;
+		min-width: 0;
 	}
 
 	.form-label {
 		display: block;
-		font-size: 12.5px;
-		letter-spacing: 0.12em;
-		text-transform: uppercase;
-		color: var(--color-text-mutedest);
-		margin-bottom: 9px;
+		font-size: 13px;
+		font-weight: 500;
+		letter-spacing: 0.02em;
+		color: var(--color-text);
+		margin-bottom: 8px;
 	}
 
-	.form-field input,
-	.form-field textarea {
+	.form-optional {
+		font-weight: 300;
+		color: var(--color-text-muted);
+	}
+
+	.form-field input:not([type='checkbox']),
+	.form-field textarea,
+	.form-field select {
 		width: 100%;
 		border-radius: 14px;
-		background: var(--color-panel-2);
-		border: 1px solid var(--color-border);
+		background: var(--color-bg);
+		border: 1px solid var(--color-border-strong);
 		color: var(--color-text);
 		font-family: var(--font-body);
-		font-size: 15px;
-		padding: 14px 16px;
-		resize: vertical;
+		font-size: 16px;
+		font-weight: 300;
+		padding: 13px 16px;
+		transition: border-color 0.3s ease, background 0.3s ease;
 	}
 
-	.form-field input {
-		height: 48px;
+	.form-field input:not([type='checkbox']),
+	.form-field select {
+		height: 50px;
 	}
 
 	.form-field textarea {
-		min-height: 124px;
+		min-height: 120px;
+		resize: vertical;
+		line-height: 1.6;
+	}
+
+	.form-field input:disabled {
+		opacity: 0.45;
+	}
+
+	.form-select {
+		position: relative;
+	}
+
+	.form-select select {
+		appearance: none;
+		padding-right: 44px;
+		cursor: pointer;
+	}
+
+	.form-select::after {
+		content: '';
+		position: absolute;
+		right: 20px;
+		top: 50%;
+		width: 7px;
+		height: 7px;
+		border-right: 1.5px solid var(--color-text-muted);
+		border-bottom: 1.5px solid var(--color-text-muted);
+		transform: translateY(-70%) rotate(45deg);
+		pointer-events: none;
+	}
+
+	.form-field input:hover,
+	.form-field textarea:hover,
+	.form-field select:hover {
+		border-color: var(--color-gold-light);
 	}
 
 	.form-field input:focus-visible,
-	.form-field textarea:focus-visible {
+	.form-field textarea:focus-visible,
+	.form-field select:focus-visible {
 		outline: 2px solid var(--color-gold);
 		outline-offset: 1px;
 		border-color: var(--color-gold);
 	}
 
-	.form-consent {
-		display: flex;
-		align-items: center;
-		gap: 11px;
-		font-size: 13.5px;
-		font-weight: 300;
-		color: var(--color-text-muted);
+	.form-field [aria-invalid='true'] {
+		border-color: var(--color-error);
 	}
 
-	.form-consent input {
-		width: 17px;
-		height: 17px;
-		border-radius: 6px;
+	.form-check {
+		display: flex;
+		align-items: flex-start;
+		gap: 11px;
+		font-size: 14px;
+		line-height: 1.5;
+		font-weight: 300;
+		color: var(--color-text-muted);
+		cursor: pointer;
+	}
+
+	.form-check-small {
+		margin-top: 10px;
+		font-size: 13.5px;
+	}
+
+	.form-check input {
+		flex: 0 0 auto;
+		width: 18px;
+		height: 18px;
+		margin: 1px 0 0;
 		accent-color: var(--color-gold);
 	}
 
+	.form-check a {
+		color: var(--color-text);
+		border-bottom: 1px solid var(--color-gold);
+	}
+
+	.form-error {
+		margin: 8px 0 0;
+		font-size: 13.5px;
+		line-height: 1.5;
+		color: var(--color-error);
+	}
+
+	.form-trap {
+		position: absolute;
+		left: -9999px;
+		width: 1px;
+		height: 1px;
+		overflow: hidden;
+	}
+
+	.form-actions {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 14px;
+		margin-top: 4px;
+	}
+
 	.form-submit {
-		align-self: flex-start;
-		margin-top: 6px;
-		padding: 16px 38px;
+		padding: 17px 36px;
 		background: var(--color-text);
 		color: var(--color-bg);
-		font-size: 14.5px;
+		font-size: 15px;
 		letter-spacing: 0.02em;
 		border: none;
 		cursor: pointer;
 	}
 
 	.form-submit:hover {
-		background: var(--color-gold);
-		color: var(--color-bg);
+		background: var(--color-gold-deep);
 	}
 
-	@media (max-width: 780px) {
+	.form-submit:disabled {
+		cursor: progress;
+		opacity: 0.7;
+	}
+
+	.form-submit:focus-visible {
+		outline: 2px solid var(--color-gold);
+		outline-offset: 3px;
+	}
+
+	.form-status {
+		margin: 0;
+		font-size: 14px;
+		line-height: 1.6;
+		color: var(--color-error);
+	}
+
+	.form-status a,
+	.form-done a {
+		border-bottom: 1px solid currentColor;
+	}
+
+	.form-done {
+		padding: clamp(8px, 2vw, 24px) 0;
+		font-size: 17px;
+		line-height: 1.75;
+		font-weight: 300;
+		color: var(--color-text-muted);
+		outline: none;
+	}
+
+	.form-done p {
+		margin: 0;
+		max-width: 40ch;
+	}
+
+	.form-done .form-done-title {
+		margin-bottom: 12px;
+		font-family: var(--font-display);
+		font-style: italic;
+		font-size: clamp(30px, 3.2vw, 42px);
+		line-height: 1.05;
+		color: var(--color-text);
+	}
+
+	.contact-signoff {
+		margin: clamp(40px, 5vw, 64px) 0 clamp(8px, 2vw, 20px);
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		align-items: baseline;
+		gap: 0.4em;
+		font-family: var(--font-display);
+		font-weight: 300;
+		font-size: clamp(30px, 3.2vw, 42px);
+		line-height: 1.1;
+		color: var(--color-text-muted);
+		text-align: center;
+	}
+
+	.contact-signoff em {
+		color: var(--color-gold-deep);
+	}
+
+	.contact-signoff span {
+		font-size: 0.6em;
+	}
+
+	@media (max-width: 900px) {
 		.contact-panel {
 			grid-template-columns: 1fr;
 		}
 	}
+
+	@media (max-width: 520px) {
+		.contact-panel {
+			border-radius: 34px;
+		}
+
+		.form-row {
+			grid-template-columns: 1fr;
+		}
+	}
 </style>
+
+<script>
+	const form = document.querySelector<HTMLFormElement>('[data-contact-form]');
+
+	if (form) {
+		const select = form.querySelector<HTMLSelectElement>('[data-ceremony-select]');
+		const date = form.querySelector<HTMLInputElement>('[data-date]');
+		const dateUnknown = form.querySelector<HTMLInputElement>('[data-date-unknown]');
+		const submit = form.querySelector<HTMLButtonElement>('[data-submit]');
+		const failure = form.querySelector<HTMLElement>('[data-form-error]');
+		const submitLabel = submit?.textContent?.trim() ?? '';
+
+		// A ceremony card's "request this ceremony" button pre-selects it here.
+		document.addEventListener('click', (event) => {
+			const trigger = (event.target as Element).closest<HTMLElement>('[data-ceremony]');
+			if (!trigger || !select) return;
+			const option = select.querySelector<HTMLOptionElement>(`option[data-id="${trigger.dataset.ceremony}"]`);
+			if (option) select.value = option.value;
+		});
+
+		dateUnknown?.addEventListener('change', () => {
+			if (!date) return;
+			date.disabled = dateUnknown.checked;
+			if (dateUnknown.checked) date.value = '';
+		});
+
+		const fields = ['name', 'email', 'consent'] as const;
+		const isValid = (name: (typeof fields)[number]) => {
+			const input = form.elements.namedItem(name) as HTMLInputElement;
+			if (name === 'consent') return input.checked;
+			if (name === 'email') return input.value.trim() !== '' && input.validity.valid;
+			return input.value.trim() !== '';
+		};
+		const showError = (name: (typeof fields)[number], on: boolean) => {
+			const input = form.elements.namedItem(name) as HTMLInputElement;
+			const message = form.querySelector<HTMLElement>(`[data-error-for="${name}"]`);
+			input.setAttribute('aria-invalid', String(on));
+			if (message) message.hidden = !on;
+		};
+
+		// Once a field has been flagged, clear the message as soon as it is fixed.
+		fields.forEach((name) => {
+			const input = form.elements.namedItem(name) as HTMLInputElement;
+			input.addEventListener(name === 'consent' ? 'change' : 'input', () => {
+				if (input.getAttribute('aria-invalid') === 'true' && isValid(name)) showError(name, false);
+			});
+		});
+
+		const finish = (state: 'sent' | 'mailto') => {
+			const done = form.parentElement?.querySelector<HTMLElement>(`[data-form-done="${state}"]`);
+			if (!done) return;
+			form.hidden = true;
+			done.hidden = false;
+			done.focus();
+		};
+
+		const mailtoBody = (data: FormData) => {
+			const { labelDate, labelCeremony, labelUnknown } = form.dataset;
+			const date = data.get('dateUnknown') ? labelUnknown : data.get('date');
+			const details = [
+				`${data.get('name')} <${data.get('email')}>`,
+				date ? `${labelDate}: ${date}` : '',
+				data.get('ceremony') ? `${labelCeremony} ${data.get('ceremony')}` : '',
+			].filter(Boolean);
+			return [...details, '', `${data.get('message') ?? ''}`].join('\n');
+		};
+
+		form.addEventListener('submit', async (event) => {
+			event.preventDefault();
+			if (failure) failure.hidden = true;
+
+			const invalid = fields.filter((name) => !isValid(name));
+			fields.forEach((name) => showError(name, invalid.includes(name)));
+			if (invalid.length) {
+				(form.elements.namedItem(invalid[0]) as HTMLInputElement).focus();
+				return;
+			}
+
+			const data = new FormData(form);
+			if (data.get('_gotcha')) return;
+
+			const endpoint = form.dataset.endpoint;
+			if (!endpoint) {
+				const href = `mailto:${form.dataset.email}?subject=${encodeURIComponent(form.dataset.subject ?? '')}&body=${encodeURIComponent(mailtoBody(data))}`;
+				window.location.href = href;
+				finish('mailto');
+				return;
+			}
+
+			if (submit) {
+				submit.disabled = true;
+				submit.textContent = submit.dataset.sendingLabel ?? submitLabel;
+			}
+			try {
+				const response = await fetch(endpoint, {
+					method: 'POST',
+					body: data,
+					headers: { Accept: 'application/json' },
+				});
+				if (!response.ok) throw new Error(String(response.status));
+				finish('sent');
+			} catch {
+				if (failure) failure.hidden = false;
+			} finally {
+				if (submit) {
+					submit.disabled = false;
+					submit.textContent = submitLabel;
+				}
+			}
+		});
+	}
+</script>

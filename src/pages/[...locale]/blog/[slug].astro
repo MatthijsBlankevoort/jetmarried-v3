@@ -6,14 +6,14 @@ import Header from '../../../components/Header.astro';
 import Footer from '../../../components/Footer.astro';
 import Photo from '../../../components/Photo.astro';
 import { locales, localeParam, localePath, formatDate, useTranslations, type Locale } from '../../../i18n/ui';
-import { getPosts, getSettings, postSlug } from '../../../lib/content';
+import { getPosts, getSettings, postAlternates, postSlug } from '../../../lib/content';
 
 export const getStaticPaths = (async () => {
 	const paths = await Promise.all(
 		locales.map(async (locale) => {
 			const posts = await getPosts(locale);
 			return posts.map((post) => ({
-				params: { locale: localeParam(locale), slug: postSlug(post.id) },
+				params: { locale: localeParam(locale), slug: postSlug(post) },
 				props: { post, locale },
 			}));
 		}),
@@ -23,14 +23,16 @@ export const getStaticPaths = (async () => {
 
 const { post, locale } = Astro.props;
 const t = useTranslations(locale);
+// Slugs may be translated, so the other languages cannot be derived from the URL.
+const alternates = await postAlternates(post);
 const { Content } = await render(post);
 const settings = await getSettings(locale);
 
 const dateLabel = formatDate(post.data.date, locale);
 ---
 
-<Layout title={`${post.data.title} — Jetmarried`} description={post.data.excerpt}>
-	<Header nav={settings.nav} logoUrl={settings.logoUrl} headerCta={settings.headerCta} />
+<Layout title={`${post.data.title} — Jetmarried`} description={post.data.excerpt} alternates={alternates}>
+	<Header nav={settings.nav} logoUrl={settings.logoUrl} headerCta={settings.headerCta} alternates={alternates} />
 	<main>
 		<article class="post">
 			<div class="post-head">

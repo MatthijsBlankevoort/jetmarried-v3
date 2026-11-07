@@ -10,32 +10,40 @@ interface Testimonial {
 interface Props {
 	testimonials: Testimonial[];
 	linkLabel: string;
+	/** Where all reviews live. Without it the link is hidden rather than pointing nowhere. */
+	linkUrl?: string;
 }
 
-const { testimonials, linkLabel } = Astro.props;
+const { testimonials, linkLabel, linkUrl } = Astro.props;
 const t = useTranslations(Astro.currentLocale);
 ---
 
-<div id="verhalen" class="testimonials">
+<section id="verhalen" class="testimonials" aria-labelledby="testimonials-title">
 	<div class="testimonials-head">
-		<h2 class="section-title" data-reveal>{t('testimonials.title')}</h2>
-		<a href="#contact" class="btn btn-bordered" data-reveal>{linkLabel}</a>
+		<h2 id="testimonials-title" class="section-title" data-reveal>{t('testimonials.title')}</h2>
+		{
+			linkUrl && (
+				<a href={linkUrl} class="btn btn-bordered" target="_blank" rel="noopener" data-reveal>
+					{linkLabel}
+				</a>
+			)
+		}
 	</div>
 
-	<div class="testimonials-viewport" data-rev-view>
+	<div class="testimonials-viewport" role="region" aria-labelledby="testimonials-title" tabindex="0" data-rev-view>
 		<div class="testimonials-track" data-rev-track>
 			{
-				testimonials.map((t, i) => (
-					<div class="testimonial-card" class:list={{ 'testimonial-card-highlight': t.highlight }} data-rev>
-						<div class="testimonial-top">
+				testimonials.map((item, i) => (
+					<figure class="testimonial-card" class:list={{ 'testimonial-card-highlight': item.highlight }} data-rev>
+						<div class="testimonial-top" aria-hidden="true">
 							<div class="quote-mark">&ldquo;</div>
 							<div class="testimonial-index">
 								{String(i + 1).padStart(2, '0')} / {String(testimonials.length).padStart(2, '0')}
 							</div>
 						</div>
-						<p class="testimonial-quote">{t.quote}</p>
-						<div class="testimonial-author">{t.author}</div>
-					</div>
+						<blockquote class="testimonial-quote">{item.quote}</blockquote>
+						<figcaption class="testimonial-author">{item.author}</figcaption>
+					</figure>
 				))
 			}
 		</div>
@@ -46,11 +54,15 @@ const t = useTranslations(Astro.currentLocale);
 			<div class="testimonials-bar-fill" data-rev-bar></div>
 		</div>
 		<div class="testimonials-arrows">
-			<span class="arrow-btn" data-rev-prev>←</span>
-			<span class="arrow-btn" data-rev-next>→</span>
+			<button type="button" class="arrow-btn" aria-label={t('testimonials.prev')} data-rev-prev>
+				<span aria-hidden="true">←</span>
+			</button>
+			<button type="button" class="arrow-btn" aria-label={t('testimonials.next')} data-rev-next>
+				<span aria-hidden="true">→</span>
+			</button>
 		</div>
 	</div>
-</div>
+</section>
 
 <style>
 	.testimonials {
@@ -79,6 +91,12 @@ const t = useTranslations(Astro.currentLocale);
 		touch-action: pan-y;
 	}
 
+	.testimonials-viewport:focus-visible {
+		outline: 2px solid var(--color-gold);
+		outline-offset: -2px;
+		border-radius: 26px;
+	}
+
 	.testimonials-track {
 		display: flex;
 		gap: 18px;
@@ -87,8 +105,9 @@ const t = useTranslations(Astro.currentLocale);
 	}
 
 	.testimonial-card {
-		width: 400px;
-		border-radius: 30px;
+		margin: 0;
+		width: min(400px, calc(100vw - 72px));
+		border-radius: 26px;
 		background: var(--color-panel-2);
 		padding: 38px 34px;
 		display: flex;
@@ -126,7 +145,7 @@ const t = useTranslations(Astro.currentLocale);
 	.testimonial-index {
 		font: 400 11.5px/1 'Jost', sans-serif;
 		letter-spacing: 0.16em;
-		color: #a9a091;
+		color: var(--color-text-muted);
 	}
 
 	.testimonial-quote {
@@ -134,7 +153,7 @@ const t = useTranslations(Astro.currentLocale);
 		font-size: 19px;
 		line-height: 1.65;
 		font-weight: 300;
-		color: #4a463f;
+		color: var(--color-text);
 		text-wrap: pretty;
 	}
 
@@ -145,7 +164,7 @@ const t = useTranslations(Astro.currentLocale);
 		font-size: 12.5px;
 		letter-spacing: 0.1em;
 		text-transform: uppercase;
-		color: var(--color-text-mutedest);
+		color: var(--color-text-muted);
 	}
 
 	.testimonials-controls {
@@ -189,12 +208,19 @@ const t = useTranslations(Astro.currentLocale);
 		height: 46px;
 		border-radius: 50%;
 		border: 1px solid var(--color-border-soft);
+		background: transparent;
 		color: var(--color-text-muted);
+		font: inherit;
 		font-size: 17px;
 		line-height: 1;
 		cursor: pointer;
 		user-select: none;
 		transition: background 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+	}
+
+	.arrow-btn:focus-visible {
+		outline: 2px solid var(--color-gold);
+		outline-offset: 3px;
 	}
 
 	.arrow-btn:hover {

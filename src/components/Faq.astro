@@ -16,9 +16,9 @@ const { faqs, phone, phoneHref } = Astro.props;
 const t = useTranslations(Astro.currentLocale);
 ---
 
-<div class="faq-outer">
+<section class="faq-outer" aria-labelledby="faq-title">
 	<div>
-		<h2 class="section-title faq-title" data-reveal>{t('faq.title')}</h2>
+		<h2 id="faq-title" class="section-title faq-title" data-reveal>{t('faq.title')}</h2>
 		<p class="faq-intro" data-reveal>
 			{t('faq.intro')} <a href={`tel:${phoneHref}`} class="faq-phone">{phone}</a>
 		</p>
@@ -27,21 +27,25 @@ const t = useTranslations(Astro.currentLocale);
 		{
 			faqs.map((item, i) => (
 				<div class="faq-item" class:list={{ 'faq-item-open': i === 0 }} data-faq={i} data-reveal>
-					<button type="button" class="faq-q" data-faq-q={i} aria-expanded={i === 0} aria-controls={`faq-a-${i}`}>
-						<h4>{item.q}</h4>
-						<span class="faq-icon" data-faq-icon={i} aria-hidden="true">
-							<span class="faq-icon-bar" />
-							<span class="faq-icon-bar faq-icon-bar-v" data-faq-bar={i} />
-						</span>
-					</button>
-					<div class="faq-a" id={`faq-a-${i}`} data-faq-a={i}>
-						<p>{item.a}</p>
+					<h3 class="faq-h">
+						<button type="button" class="faq-q" data-faq-q={i} aria-expanded={i === 0 ? 'true' : 'false'} aria-controls={`faq-a-${i}`}>
+							<span class="faq-q-text">{item.q}</span>
+							<span class="faq-icon" aria-hidden="true">
+								<span class="faq-icon-bar" />
+								<span class="faq-icon-bar faq-icon-bar-v" />
+							</span>
+						</button>
+					</h3>
+					<div class="faq-a" id={`faq-a-${i}`} data-faq-a={i} inert={i !== 0}>
+						<div>
+							<p>{item.a}</p>
+						</div>
 					</div>
 				</div>
 			))
 		}
 	</div>
-</div>
+</section>
 
 <style>
 	.faq-outer {
@@ -103,7 +107,18 @@ const t = useTranslations(Astro.currentLocale);
 		user-select: none;
 	}
 
-	.faq-q h4 {
+	.faq-h {
+		margin: 0;
+		font: inherit;
+	}
+
+	.faq-q:focus-visible {
+		outline: 2px solid var(--color-gold);
+		outline-offset: -4px;
+		border-radius: 26px;
+	}
+
+	.faq-q-text {
 		margin: 0;
 		font-size: 18px;
 		font-weight: 500;
@@ -123,7 +138,7 @@ const t = useTranslations(Astro.currentLocale);
 
 	.faq-item-open .faq-icon {
 		transform: rotate(180deg);
-		background: #f0e8da;
+		background: var(--color-panel);
 		border-color: var(--color-border-strong);
 	}
 
@@ -147,14 +162,27 @@ const t = useTranslations(Astro.currentLocale);
 		opacity: 0;
 	}
 
+	/* Grid rows open to the content's own height without animating layout height. */
 	.faq-a {
+		display: grid;
+		grid-template-rows: 0fr;
+		transition: grid-template-rows 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+	}
+
+	.faq-a > div {
 		overflow: hidden;
-		height: 0;
-		transition: height 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+		min-height: 0;
 	}
 
 	.faq-item-open .faq-a {
-		height: auto;
+		grid-template-rows: 1fr;
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.faq-a,
+		.faq-icon {
+			transition: none;
+		}
 	}
 
 	.faq-a p {
